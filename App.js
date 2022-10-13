@@ -1,117 +1,69 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
-import type {Node} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import { StyleSheet, Button, SafeAreaView } from 'react-native';
+import Longdo from 'longdo-map-react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+export default function App() {
+  Longdo.apiKey = 'c2b90d53eac048b6be2dcb883bc429e2';
+  let map;
+  let loc = { lon: 100.5, lat: 13.7 };
+  let home = Longdo.object('Marker', loc, { detail: 'Home' });
 
-/* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
- * LTI update could not be added via codemod */
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
+  function onReady() {
+    console.log('ready ' + new Date());
+    map.call('Overlays.load', Longdo.object('Overlays.Object', 'A00146852', 'LONGDO'));
+  }
 
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
+  function onOverlayClick(data) {
+    if (Longdo.isSameObject(data, home)) {
+      console.log('At Home');
+    }
+    map.call('Overlays.list').then(console.log);
+  }
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+  function onPressTest1() {
+    map.call('Overlays.add', home);
+    map.objectCall(home, 'pop', true);
+    map.call('location', loc);
+  }
+
+  async function onPressTest2() {
+    let zoom = await map.call('zoom');
+    let location = await map.call('location');
+    alert(location.lon + '\n' + location.lat + '\n' + zoom);
+  }
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
+    <SafeAreaView style={styles.container}>
+      <Longdo.MapView
+        ref={r => (map = r)}
+        layer={Longdo.static('Layers', 'GRAY')}
+        zoom={15}
+        zoomRange={{min: 14, max: 16}}
+        location={{lon: 100.5382, lat: 13.7649}}
+        // ui={false}
+        lastView={false}
+        // language={'en'}
+        onReady={onReady}
+        onOverlayClick={onOverlayClick}
       />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
+      <Button
+        onPress={onPressTest1}
+        title="Home"
+      />
+      <Button
+        onPress={onPressTest2}
+        title="Where am I"
+      />
     </SafeAreaView>
   );
-};
+}
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    // alignItems: 'center', // center not working, use stretch (default value)
+    justifyContent: 'center',
+    paddingTop: Platform.OS === 'android' ? 25 : 0,
   },
 });
-
-export default App;
