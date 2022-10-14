@@ -1,6 +1,9 @@
 import Map from '../screen/Map';
 import HomeScreen from '../screen/HomeScreen';
-import ShopScreen from '../screen/ShopScreen';
+import Notification from '../screen/SignIn';
+import Question from '../screen/Question';
+import Profile from '../screen/Profile';
+import AskAdmin from '../screen/AskAdmin';
 
 export const ScreenDetail = [
     {
@@ -9,14 +12,26 @@ export const ScreenDetail = [
         Icon: '',
     },
     {
-        name: 'Shop',
-        component: ShopScreen,
+        name: 'Notification',
+        component: Notification,
         Icon: '',
 
     },
     {
-        name: 'Map',
-        component: Map,
+        name: 'Q&A',
+        component: Question,
+        Icon: '',
+
+    },
+    {
+        name: 'AskAdmin',
+        component: AskAdmin,
+        Icon: '',
+
+    },
+    {
+        name: 'Profile',
+        component: Profile,
         Icon: '',
 
     },
