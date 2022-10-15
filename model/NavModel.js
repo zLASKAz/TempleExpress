@@ -4,11 +4,12 @@ import Question from '../components/Question';
 import Profile from '../screen/Profile';
 import AskAdmin from '../screen/AskAdmin';
 import SignIn from '../components/SignIn';
+import ConfirmOrder from '../screen/ConfirmOrder';
 
 export const ScreenDetail = [
     {
         name: 'Home',
-        component: HomeScreen,
+        component: ConfirmOrder,
         Icon: '',
     },
     {
