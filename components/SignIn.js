@@ -2,21 +2,18 @@ import {StyleSheet, View, ScrollView} from 'react-native';
 import React, {useState} from 'react';
 import {Text, Card, Button, Icon, ButtonGroup} from '@rneui/themed';
 
-type CardsComponentsProps = {};
-const [selectedIndex, setSelectedIndex] = useState(0);
-const [selectedIndexes, setSelectedIndexes] = useState([0, 2]);
-const Cards: React.FunctionComponent<CardsComponentsProps> = () => {
+
+const SignIn = () => {
   return (
     <>
       <ScrollView>
         <View style={styles.siginButton}>
           <ButtonGroup containerStyle={styles.signupButoon}
-            buttonStyle={{ backgroundColor: 'rgba(255, 193, 7, 1)' }}
             style={styles.siginButton}
             buttons={['Sign In', 'Sign Up']}
-            selectedIndex={selectedIndex}
+            // selectedIndex={selectedIndex}
             onPress={value => {
-              setSelectedIndex(value);
+              // setSelectedIndex(value);
             }}
           />
           <Card containerStyle={styles.siginButton}>
@@ -40,6 +37,9 @@ const Cards: React.FunctionComponent<CardsComponentsProps> = () => {
     </>
   );
 };
+
+export default SignIn
+
 const styles = StyleSheet.create({
   siginButton: {
     margin: 0,
@@ -53,5 +53,4 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 20,
     backgroundColor: 'rgba(255, 193, 7, 1)'
   }
-});
-export default Cards;
+})

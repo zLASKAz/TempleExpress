@@ -1,9 +1,9 @@
-import Map from '../screen/Map';
 import HomeScreen from '../screen/HomeScreen';
-import Notification from '../screen/SignIn';
-import Question from '../screen/Question';
+import Notification from '../screen/Notification';
+import Question from '../components/Question';
 import Profile from '../screen/Profile';
 import AskAdmin from '../screen/AskAdmin';
+import SignIn from '../components/SignIn';
 
 export const ScreenDetail = [
     {
@@ -19,7 +19,7 @@ export const ScreenDetail = [
     },
     {
         name: 'Q&A',
-        component: Question,
+        component: SignIn,
         Icon: '',
 
     },
