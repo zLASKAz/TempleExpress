@@ -1,6 +1,6 @@
 import Map from '../screen/Map';
 import HomeScreen from '../screen/HomeScreen';
-import Notification from '../screen/SignIn';
+import Notification from '../screen/Notification';
 import Question from '../screen/Question';
 import Profile from '../screen/Profile';
 import AskAdmin from '../screen/AskAdmin';
