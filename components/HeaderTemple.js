@@ -12,6 +12,10 @@ export default HeaderTemple
 const styles = StyleSheet.create({
     header: {
         fontSize:18,
-        fontFamily:'Kanit'
+        fontFamily:'Kanit',
+        padding:20,
+        paddingBottom:0,
+        alignSelf:'center',
+        color:'#000'
       },
 })
