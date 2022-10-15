@@ -5,6 +5,7 @@ import Profile from '../screen/Profile';
 import AskAdmin from '../screen/AskAdmin';
 import SignIn from '../components/SignIn';
 import ConfirmOrder from '../screen/ConfirmOrder';
+import Payment from '../screen/Payment'
 
 export const ScreenDetail = [
     {
@@ -14,7 +15,7 @@ export const ScreenDetail = [
     },
     {
         name: 'Notification',
-        component: Notification,
+        component: Payment,
         Icon: '',
 
     },
