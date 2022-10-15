@@ -141,6 +141,13 @@ const ConfirmOrder = () => {
             <Text style={styles.text}>{total + 45} ฿</Text>
           </View>
         </View>
+        <View style={styles.ButtonCont}>
+        <Button
+              title="CONFIRM"
+              buttonStyle={styles.confirmButton}
+              containerStyle={styles.confirmContButton}
+              titleStyle={styles.confirmText}/>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -209,8 +216,33 @@ const styles = StyleSheet.create({
     padding: 2,
     borderRadius: 10,
   },
+
   amountItem: {
     flexDirection: 'row',
     alignItems: 'center',
   },
+
+  ButtonCont:{
+    alignSelf:'center',
+    paddingBottom:20
+  },
+
+  confirmButton:{
+    backgroundColor: '#F86041',
+    borderWidth: 2,
+    borderColor: '#fff',
+    borderRadius: 30,
+    
+  },
+
+  confirmContButton:{
+    width: 200,
+    alignContent:'center'
+  },
+
+  confirmText:{ 
+    fontWeight: 'bold',
+  fontFamily:'Kanit' 
+}
+
 });
