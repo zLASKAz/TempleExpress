@@ -1,21 +1,31 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import {StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import {Button, Icon, Card} from '@rneui/themed';
 
-const HeaderTemple = (temple) => {
+const HeaderTemple = temple => {
   return (
-    <Text style={styles.header}>{temple.temple}</Text>
-  )
-}
+    <View style={styles.container}>
+      <Icon name="location" type="ionicon" color="#33A9AC" size={40} /> 
+      <Text style={styles.header}>{temple.temple}</Text>
+    </View>
+  );
+};
 
-export default HeaderTemple
+export default HeaderTemple;
 
 const styles = StyleSheet.create({
-    header: {
-        fontSize:18,
-        fontFamily:'Kanit',
-        padding:20,
-        paddingBottom:0,
-        alignSelf:'center',
-        color:'#000'
-      },
-})
+  header: {
+    fontSize: 18,
+    fontFamily: 'Kanit',
+    padding: 20,
+    paddingBottom: 0,
+    color: '#000',
+  },
+
+  container: {
+    flexDirection: 'row',
+    justifyContent:'center',
+    alignItems:'center'
+  },
+
+});

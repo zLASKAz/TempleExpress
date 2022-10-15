@@ -7,8 +7,8 @@ import {
   ScrollView,
   TextInput,
 } from 'react-native';
-import React, {useState,useEffect} from 'react';
-import { Button,Icon,Card } from "@rneui/themed";
+import React, {useState, useEffect} from 'react';
+import {Button, Icon, Card} from '@rneui/themed';
 import HeaderTemple from '../components/HeaderTemple';
 import item1 from '../assets/item1.png';
 import item2 from '../assets/item2.png';
@@ -32,42 +32,57 @@ const ConfirmOrder = () => {
       name: 'ชุดอาหารปลา',
       price: 40,
       amount: 1,
-      img: item2,
+      img: item1,
     },
-    
-    
   ];
 
-  
-  const [cartItem, setcartItem] = useState(data)
+  const [cartItem, setcartItem] = useState(data);
 
   const [total, settotal] = useState(
     cartItem.reduce((pre, cur) => {
       return pre + cur.price * cur.amount;
     }, 0),
+  );
+
+  const increment = name => {
+    const itemAmount = cartItem.find(item => item.name === name);
+    setcartItem(
+      cartItem.map(i =>
+        i.name === name ? {...itemAmount, amount: i.amount + 1} : i,
+      ),
     );
-  
-  const increment = (name) => {  
-    const itemAmount = cartItem.find(item => item.name === name)
-    setcartItem(cartItem.map((i) => i.name === name ? {...itemAmount, amount: i.amount+1}: i))
-    calTotal()
-  }
+    calTotal();
+  };
 
-  const decrement = (name) => {  
-    const itemAmount = cartItem.find(item => item.name === name)
-    setcartItem(cartItem.map((i) => i.name === name ? {...itemAmount, amount: i.amount-1}: i))
-    calTotal()
+  const decrement = name => {
+    const itemAmount = cartItem.find(item => item.name === name);
+    if (itemAmount.amount > 1) {
+      setcartItem(
+        cartItem.map(i =>
+          i.name === name ? {...itemAmount, amount: i.amount - 1} : i,
+        ),
+      );
+      calTotal();
+    } else {
+      setcartItem(
+        cartItem.map(i =>
+          i.name === name ? {...itemAmount, amount: (i.amount = 1)} : i,
+        ),
+      );
+      calTotal();
+    }
+  };
 
-  }
-  
   const calTotal = () => {
-    settotal(cartItem.reduce((pre, cur) => {
-      return pre + cur.price * cur.amount;
-    }, 0),)
-  }
-  console.log(cartItem)
+    settotal(
+      cartItem.reduce((pre, cur) => {
+        return pre + cur.price * cur.amount;
+      }, 0),
+    );
+  };
+  console.log(cartItem);
   console.log(total);
-  
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView
@@ -88,9 +103,26 @@ const ConfirmOrder = () => {
                   <View style={styles.textCont}>
                     <Text style={styles.text}>{items.name}</Text>
                     <Text style={styles.text}>{items.price} ฿</Text>
-                    <Button onPress={()=> decrement(items.name)}> - </Button>
-                    <TextInput style={styles.textInput} onChange>{items.amount}</TextInput>
-                    <Button onPress={()=> increment(items.name)}></Button>
+                    <View style={styles.amountItem}>
+                      <Icon
+                        name="remove-circle-outline"
+                        type="ionicon"
+                        size={20}
+                        color="#000"
+                        onPress={() => decrement(items.name)}
+                      />
+                      <TextInput style={styles.textInput} >
+                        {items.amount}
+                      </TextInput>
+                      <Icon
+                        name="add-circle-outline"
+                        type="ionicon"
+                        size={20}
+                        color="#000"
+                        onPress={() => increment(items.name)}
+                        style={styles.iconItem}
+                      />
+                    </View>
                   </View>
                 </View>
               </Card>
@@ -100,11 +132,13 @@ const ConfirmOrder = () => {
         <View style={styles.sumBox}>
           <View style={styles.textCont}>
             <Text style={styles.text}>ค่าจัดส่ง</Text>
-            <Text style={styles.text}>ราคาทั้งหมด</Text>
+            <Text style={styles.text}>ราคาสินค้าทั้งหมด</Text>
+            <Text style={styles.text}>รวมทั้งหมด</Text>
           </View>
           <View style={styles.textCont}>
             <Text style={styles.text}>45 ฿</Text>
             <Text style={styles.text}>{total} ฿</Text>
+            <Text style={styles.text}>{total + 45} ฿</Text>
           </View>
         </View>
       </ScrollView>
@@ -119,8 +153,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#fff',
-    width:'100%',
-    height:'100%',
+    width: '100%',
+    height: '100%',
   },
 
   scrollCont: {
@@ -151,14 +185,13 @@ const styles = StyleSheet.create({
 
   sumBox: {
     padding: 30,
-    flexDirection:'row',
-    justifyContent:'space-between'
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 
   textCont: {
     flexDirection: 'column',
     justifyContent: 'space-evenly',
-    
   },
 
   text: {
@@ -167,13 +200,17 @@ const styles = StyleSheet.create({
     color: '#000',
   },
 
-  textInput:{
-    backgroundColor:'#fff',
+  textInput: {
+    backgroundColor: '#fff',
     fontSize: 16,
     fontFamily: 'Kanit',
     color: '#000',
-    width:30,
-    padding:2,
-    borderRadius:10,
-  }
+    width: 30,
+    padding: 2,
+    borderRadius: 10,
+  },
+  amountItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
 });
