@@ -1,15 +1,19 @@
 import { StyleSheet, Button, SafeAreaView, Text, FlatList, TouchableOpacity, Dimensions } from 'react-native';
 import { Card } from "react-native-paper";
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { Icon} from '@rneui/themed';
 const { width , height } = Dimensions.get('window');
 
 export default function Profile({ navigation }) {
   const productToday = [{
     "Screen_id": "MonksOffering",
-    "Screen_name": "Monks Offering"
+    "Screen_name": "Monks Offering",
+    "Screen_icontype": "material-community",
+    "Screen_icon": "cart"
   }, {
     "Screen_id": "Donated",
-    "Screen_name": "Donated"
+    "Screen_name": "Donated",
+    "Screen_icontype": "material-community",
+    "Screen_icon": "currency-usd"
   }]
   return (
       <SafeAreaView style={styles.container}>
@@ -29,7 +33,7 @@ export default function Profile({ navigation }) {
                     >
                       <Card style={styles.card}>
                         <Text style={styles.text}>{item.Screen_name}</Text>
-                        <Icon name='facebook' size={30} color="#900" />
+                        <Icon containerStyle={styles.icon} name={item.Screen_icon} type={item.Screen_icontype} size={30} color="#900" />
                       </Card>
                     </TouchableOpacity>
                   );
@@ -72,4 +76,9 @@ const styles = StyleSheet.create({
     bottom: height * 0.02,
     left: width * 0.03,
   },
+  icon: {
+    position: 'absolute',
+    bottom: height * 0.02,
+    right: width * 0.05,
+  }
 });

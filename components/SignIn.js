@@ -1,22 +1,27 @@
-import {StyleSheet, View, ScrollView} from 'react-native';
+import { StyleSheet, View, ScrollView, Dimensions } from 'react-native';
 import React, {useState} from 'react';
 import {Text, Card, Button, Icon, ButtonGroup} from '@rneui/themed';
-
+const { width , height } = Dimensions.get('window');
 
 const SignIn = () => {
+  const [selectedIndex, setSelectedIndex] = useState(0);
   return (
     <>
       <ScrollView>
-        <View style={styles.siginButton}>
-          <ButtonGroup containerStyle={styles.signupButoon}
-            style={styles.siginButton}
+        <View style={styles.signinButton}>
+          <ButtonGroup containerStyle={styles.signupButton}
+            buttonStyle={{ backgroundColor: 'rgba(255, 193, 7, 1)' }}
+            style={styles.signinButton}
             buttons={['Sign In', 'Sign Up']}
-            // selectedIndex={selectedIndex}
+            selectedIndex={selectedIndex}
+            selectedButtonStyle={{ backgroundColor: '#1E1E1E'}}
             onPress={value => {
-              // setSelectedIndex(value);
+              setSelectedIndex(value);
+              console.log(selectedIndex)
             }}
           />
-          <Card containerStyle={styles.siginButton}>
+          {selectedIndex == 0 &&
+          <Card containerStyle={styles.signinButton}>
             <Card.Divider />
             <Text style={styles.fonts} h1>
               h1 Heading
@@ -32,6 +37,7 @@ const SignIn = () => {
             </Text>
             <Text style={styles.fonts}>Normal Text</Text>
           </Card>
+          }
         </View>
       </ScrollView>
     </>
@@ -41,16 +47,18 @@ const SignIn = () => {
 export default SignIn
 
 const styles = StyleSheet.create({
-  siginButton: {
+  signinButton: {
     margin: 0,
     borderWidth: 0,
     borderRadius: 0,
   },
-  signupButoon: {
+  signupButton: {
     marginVertical: 0,
     marginHorizontal: 0,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    backgroundColor: 'rgba(255, 193, 7, 1)'
+    backgroundColor: 'rgba(255, 193, 7, 1)',
+    height:height*0.1,
+    width:width*0.8,
   }
 })
