@@ -1,44 +1,108 @@
-import {StyleSheet, Text, View, SafeAreaView, Image} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  Image,
+  ScrollView,
+} from 'react-native';
 import {Button, Icon, Card} from '@rneui/themed';
-import React from 'react';
+import React, {useState} from 'react';
 import SignIn from '../components/SignIn';
+import Collapsible from 'react-native-collapsible';
 
 const Payment = () => {
-  const buttonData = [
-    {
-      title: 'E-wallet',
-      component: '',
-    },
-    {
-      title: 'Credit Card',
-      component: '',
-    },
-    {
-      title: 'Debit Card',
-      component: '',
-    },
-  ];
+  const [MobileBanking, setMobileBanking] = useState(false);
+  const [Ewallet, setEwallet] = useState(true);
+  const [CreditCard, setCreditCard] = useState(true);
+  const [DebitCard, setDebitCard] = useState(true);
+
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.qrcode}>
-        <Image
-          source={require('../assets/qrcode.png')}
-          style={styles.itemImg}
+        <Button
+          title="Mobile Banking"
+          buttonStyle={styles.confirmButton}
+          containerStyle={styles.confirmContButton}
+          titleStyle={styles.confirmText}
+          onPress={() => {
+            setMobileBanking(!MobileBanking);
+            setEwallet(true);
+            setCreditCard(true);
+            setDebitCard(true);
+          }}
         />
-        <Text style={styles.confirmText}>Mobile Banking</Text>
-      </View>
-
-      {buttonData.map((items, i) => {
-        return (
-          <Button
-            key={i}
-            title={items.title}
-            buttonStyle={styles.confirmButton}
-            containerStyle={styles.confirmContButton}
-            titleStyle={styles.confirmText}
-          />
-        );
-      })}
+        <Collapsible collapsed={MobileBanking}>
+          <View style={styles.qrcode}>
+              <Text style={styles.confirmText}>Mobile Banking</Text>
+            <Image
+              source={require('../assets/qrcode.png')}
+              style={styles.itemImg}
+            />
+          </View>
+        </Collapsible>
+        <Button
+          title="E-Wallet"
+          buttonStyle={styles.confirmButton}
+          containerStyle={styles.confirmContButton}
+          titleStyle={styles.confirmText}
+          onPress={() => {
+            setMobileBanking(true);
+            setEwallet(!Ewallet);
+            setCreditCard(true);
+            setDebitCard(true);
+          }}
+        />
+        <Collapsible collapsed={Ewallet}>
+          <View style={styles.qrcode}>
+              <Text style={styles.confirmText}>E-Wallet</Text>
+            <Image
+              source={require('../assets/qrcode.png')}
+              style={styles.itemImg}
+            />
+          </View>
+        </Collapsible>
+        <Button
+          title="Credit Card"
+          buttonStyle={styles.confirmButton}
+          containerStyle={styles.confirmContButton}
+          titleStyle={styles.confirmText}
+          onPress={() => {
+            setMobileBanking(true);
+            setEwallet(true);
+            setCreditCard(!CreditCard);
+            setDebitCard(true);
+          }}
+        />
+        <Collapsible collapsed={CreditCard}>
+          <View style={styles.qrcode}>
+              <Text style={styles.confirmText}>CreditCard</Text>
+            <Image
+              source={require('../assets/qrcode.png')}
+              style={styles.itemImg}
+            />
+          </View>
+        </Collapsible>
+        <Button
+          title="Debit Card"
+          buttonStyle={styles.confirmButton}
+          containerStyle={styles.confirmContButton}
+          titleStyle={styles.confirmText}
+          onPress={() => {
+            setMobileBanking(true);
+            setEwallet(true);
+            setCreditCard(true);
+            setDebitCard(!DebitCard);
+          }}
+        />
+        <Collapsible collapsed={DebitCard}>
+          <View style={styles.qrcode}>
+              <Text style={styles.confirmText}>Debit Card</Text>
+            <Image
+              source={require('../assets/qrcode.png')}
+              style={styles.itemImg}
+            />
+          </View>
+        </Collapsible>
     </SafeAreaView>
   );
 };
@@ -82,13 +146,13 @@ const styles = StyleSheet.create({
   qrcode: {
     backgroundColor: '#F86041',
     padding: 20,
-    paddingBottom:15,
+    paddingBottom: 15,
     borderRadius: 20,
     width: 300,
     height: 350,
     justifyContent: 'space-between',
     alignItems: 'center',
-    margin:5,
+    margin: 5,
   },
 
   itemImg: {
