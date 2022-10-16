@@ -33,7 +33,6 @@ const Payment = () => {
         />
         <Collapsible collapsed={MobileBanking}>
           <View style={styles.qrcode}>
-              <Text style={styles.confirmText}>Mobile Banking</Text>
             <Image
               source={require('../assets/qrcode.png')}
               style={styles.itemImg}
@@ -54,7 +53,6 @@ const Payment = () => {
         />
         <Collapsible collapsed={Ewallet}>
           <View style={styles.qrcode}>
-              <Text style={styles.confirmText}>E-Wallet</Text>
             <Image
               source={require('../assets/qrcode.png')}
               style={styles.itemImg}
@@ -75,7 +73,6 @@ const Payment = () => {
         />
         <Collapsible collapsed={CreditCard}>
           <View style={styles.qrcode}>
-              <Text style={styles.confirmText}>CreditCard</Text>
             <Image
               source={require('../assets/qrcode.png')}
               style={styles.itemImg}
@@ -96,7 +93,6 @@ const Payment = () => {
         />
         <Collapsible collapsed={DebitCard}>
           <View style={styles.qrcode}>
-              <Text style={styles.confirmText}>Debit Card</Text>
             <Image
               source={require('../assets/qrcode.png')}
               style={styles.itemImg}
@@ -146,10 +142,9 @@ const styles = StyleSheet.create({
   qrcode: {
     backgroundColor: '#F86041',
     padding: 20,
-    paddingBottom: 15,
     borderRadius: 20,
     width: 300,
-    height: 350,
+    height: 320,
     justifyContent: 'space-between',
     alignItems: 'center',
     margin: 5,
