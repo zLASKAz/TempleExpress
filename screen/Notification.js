@@ -48,13 +48,13 @@ const Notification = () => {
     <NotificationLayout label="Notification">
       <View style={styles.box}>
         <Text style={styles.boxHeader}>Update Status</Text>
-        {/* <FlatList
+        <FlatList
           data={notifData}
           keyExtractor={item => item.id}
           renderItem={({item}) => (
             <BoxItem title={item.title} detail={item.detail} />
           )}
-        /> */}
+        />
       </View>
     </NotificationLayout>
   );
