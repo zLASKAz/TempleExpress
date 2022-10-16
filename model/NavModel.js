@@ -5,6 +5,8 @@ import Profile from '../screen/Profile';
 import Select from '../screen/Select';
 import AskAdmin from '../screen/AskAdmin';
 import SignIn from '../components/SignIn';
+import ConfirmOrder from '../screen/ConfirmOrder';
+import Payment from '../screen/Payment'
 
 import Donated from '../components/Donated';
 import MonksOffering from '../components/MonksOffering';
@@ -13,12 +15,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 export const ScreenDetail = [
     {
         name: 'Home',
-        component: HomeScreen,
+        component: ConfirmOrder,
         Icon: '',
     },
     {
         name: 'Notification',
-        component: Notification,
+        component: Payment,
         Icon: '',
 
     },
