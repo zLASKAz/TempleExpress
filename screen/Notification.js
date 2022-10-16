@@ -9,17 +9,17 @@ const Notification = () => {
       {
         id: 1,
         title: 'Temple Express',
-        detail: 'HELLO FROM NOTIFICATIONNNNNNNNNNN',
+        detail: 'Your order is confirm',
       },
       {
         id: 2,
         title: 'Temple Express',
-        detail: 'HELLO FROM NOTIFICATIONNNNNNNNNNN',
+        detail: 'Your order has arrived to the temple',
       },
       {
         id: 3,
         title: 'Temple Express',
-        detail: 'HELLO FROM NOTIFICATIONNNNNNNNNNN',
+        detail: '',
       },
       {
         id: 4,
@@ -29,12 +29,12 @@ const Notification = () => {
       {
         id: 5,
         title: 'Temple Express',
-        detail: 'HELLO FROM NOTIFICATIONNNNNNNNNNN',
+        detail: 'HELLO FROM NOTIFICATIONN  ABCDEFGHI',
       },
       {
         id: 6,
         title: 'Temple Express',
-        detail: 'HELLO FROM NOTIFICATIONNNNNNNNNNN',
+        detail: 'HELLO FROM SUPER NOTIFICATIONNNNNNNNNNN',
       },
     ]);
 
@@ -45,7 +45,7 @@ const Notification = () => {
   }, []);
 
   return (
-    <NotificationLayout label="Notification">
+    <NotificationLayout label="Notifications">
       <View style={styles.box}>
         <Text style={styles.boxHeader}>Update Status</Text>
         <FlatList
