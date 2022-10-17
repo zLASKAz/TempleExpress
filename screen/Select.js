@@ -1,9 +1,11 @@
 import { StyleSheet, Button, SafeAreaView, Text, FlatList, TouchableOpacity, Dimensions } from 'react-native';
 import { Card } from "react-native-paper";
 import { Icon} from '@rneui/themed';
+import HeaderTemple from '../components/HeaderTemple';
 const { width , height } = Dimensions.get('window');
 
 export default function Profile({ navigation }) {
+  const templeName = 'วัดบวรนิเวศราชวรวิหาร';
   const productToday = [{
     "Screen_id": "MonksOffering",
     "Screen_name": "Monks Offering",
@@ -17,6 +19,7 @@ export default function Profile({ navigation }) {
   }]
   return (
       <SafeAreaView style={styles.container}>
+        <HeaderTemple temple={templeName} />
               <FlatList
                 showsHorizontalScrollIndicator={false}
                 contentContainerStyle={styles.flatList}
@@ -33,7 +36,7 @@ export default function Profile({ navigation }) {
                     >
                       <Card style={styles.card}>
                         <Text style={styles.text}>{item.Screen_name}</Text>
-                        <Icon containerStyle={styles.icon} name={item.Screen_icon} type={item.Screen_icontype} size={30} color="#900" />
+                        <Icon reverse containerStyle={styles.icon} name={item.Screen_icon} type={item.Screen_icontype} size={25} color="#F86041" />
                       </Card>
                     </TouchableOpacity>
                   );
@@ -46,8 +49,7 @@ export default function Profile({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    paddingTop: 120,
+    paddingTop: height * 0.05,
     backgroundColor: "#FFFFFF",
     padding: 8,
   },
@@ -55,6 +57,7 @@ const styles = StyleSheet.create({
     paddingLeft: width * 0.08,
     // paddingHorizontal: 0,
     paddingVertical: 16,
+    paddingTop: height * 0.05,
   },
   cardContainer: {
     height: height * 0.35,
@@ -78,7 +81,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     position: 'absolute',
-    bottom: height * 0.02,
-    right: width * 0.05,
+    bottom: -height * 0.005,
+    right: 0,
   }
 });
