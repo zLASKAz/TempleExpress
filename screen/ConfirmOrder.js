@@ -37,21 +37,47 @@ const ConfirmOrder = () => {
   ];
 
   const [cartItem, setcartItem] = useState(data);
-
+  
+  const [test, settest] = useState(0);
   const [total, settotal] = useState(
     cartItem.reduce((pre, cur) => {
       return pre + cur.price * cur.amount;
     }, 0),
   );
 
+  useEffect(() => {
+    calTotal()
+  },[cartItem])
+
+  const changeAmountInput = (e, name) => {
+    const itemAmount = cartItem.find(item => item.name === name);
+    if (e !== '' && parseInt(e) > 0) {
+      setcartItem(
+        cartItem.map(i =>
+          i.name === name
+            ? {...itemAmount, amount: (i.amount = parseInt(e))}
+            : i,
+        ),
+      );
+    } else {
+      setcartItem(
+        cartItem.map(i =>
+          i.name === name
+            ? {...itemAmount, amount: (i.amount = 1)}
+            : i,
+        ),
+      );
+    }
+  };
+
   const increment = name => {
     const itemAmount = cartItem.find(item => item.name === name);
+    console.log(itemAmount);
     setcartItem(
       cartItem.map(i =>
-        i.name === name ? {...itemAmount, amount: i.amount + 1} : i,
+        i.name === name ? {...itemAmount, amount: (i.amount += 1)} : i,
       ),
     );
-    calTotal();
   };
 
   const decrement = name => {
@@ -59,17 +85,9 @@ const ConfirmOrder = () => {
     if (itemAmount.amount > 1) {
       setcartItem(
         cartItem.map(i =>
-          i.name === name ? {...itemAmount, amount: i.amount - 1} : i,
+          i.name === name ? {...itemAmount, amount: (i.amount -= 1)} : i,
         ),
       );
-      calTotal();
-    } else {
-      setcartItem(
-        cartItem.map(i =>
-          i.name === name ? {...itemAmount, amount: (i.amount = 1)} : i,
-        ),
-      );
-      calTotal();
     }
   };
 
@@ -80,8 +98,6 @@ const ConfirmOrder = () => {
       }, 0),
     );
   };
-  console.log(cartItem);
-  console.log(total);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -111,9 +127,18 @@ const ConfirmOrder = () => {
                         color="#000"
                         onPress={() => decrement(items.name)}
                       />
-                      <TextInput style={styles.textInput} >
-                        {items.amount}
+                      <TextInput
+                        name="amount"
+                        keyboardType="decimal-pad"
+                        defaultValue={`${items.amount}`}
+                        style={styles.textInput}
+                        textAlign="center"
+                        onChange={e =>
+                          changeAmountInput(e.nativeEvent.text, items.name)
+                        }>
+                        
                       </TextInput>
+
                       <Icon
                         name="add-circle-outline"
                         type="ionicon"
@@ -137,16 +162,19 @@ const ConfirmOrder = () => {
           </View>
           <View style={styles.textCont}>
             <Text style={styles.text}>45 ฿</Text>
-            <Text style={styles.text}>{total} ฿</Text>
-            <Text style={styles.text}>{total + 45} ฿</Text>
+            <Text style={styles.text}>{total.toLocaleString('en-US')} ฿</Text>
+            <Text style={styles.text}>
+              {(total + 45).toLocaleString('en-US')} ฿
+            </Text>
           </View>
         </View>
         <View style={styles.ButtonCont}>
-        <Button
-              title="CONFIRM"
-              buttonStyle={styles.confirmButton}
-              containerStyle={styles.confirmContButton}
-              titleStyle={styles.confirmText}/>
+          <Button
+            title="CONFIRM"
+            buttonStyle={styles.confirmButton}
+            containerStyle={styles.confirmContButton}
+            titleStyle={styles.confirmText}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -222,27 +250,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-  ButtonCont:{
-    alignSelf:'center',
-    paddingBottom:20
+  ButtonCont: {
+    alignSelf: 'center',
+    paddingBottom: 20,
   },
 
-  confirmButton:{
+  confirmButton: {
     backgroundColor: '#F86041',
     borderWidth: 2,
     borderColor: '#fff',
     borderRadius: 30,
-    
   },
 
-  confirmContButton:{
+  confirmContButton: {
     width: 200,
-    alignContent:'center'
+    alignContent: 'center',
   },
 
-  confirmText:{ 
+  confirmText: {
     fontWeight: 'bold',
-  fontFamily:'Kanit' 
-}
-
+    fontFamily: 'Kanit',
+  },
 });
