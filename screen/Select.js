@@ -36,7 +36,7 @@ export default function Profile({ navigation }) {
                     >
                       <Card style={styles.card}>
                         <Text style={styles.text}>{item.Screen_name}</Text>
-                        <Icon reverse containerStyle={styles.icon} name={item.Screen_icon} type={item.Screen_icontype} size={25} color="#F86041" />
+                        <Icon reverse containerStyle={styles.icon} name={item.Screen_icon} type={item.Screen_icontype} size={height * 0.03} color="#F86041" />
                       </Card>
                     </TouchableOpacity>
                   );

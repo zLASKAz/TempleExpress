@@ -44,7 +44,7 @@ export default function MonksOffering() {
             containerStyle={styles.icon}
             name="cart"
             type="material-community"
-            size={20}
+              size={height * 0.02}
             color="#F86041"
           />
         </View>
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     position: 'absolute',
-    bottom: 0,
+    bottom: height * 0.004,
     right: width * 0.05,
   },
   CheckBoxCard: {
