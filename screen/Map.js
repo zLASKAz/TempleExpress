@@ -1,7 +1,24 @@
-import React from "react";
+import React,{ useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import MapView from "react-native-maps";
+import Geolocation from "@react-native-community/geolocation";
+
+
+
+function getMyLocation(){
+  const data = [0,0];
+  const [myPos, setMypos] = useState(data);
+  if (myPos == data){
+    Geolocation.getCurrentPosition(info => setMypos([info.coords.latitude,info.coords.longitude]));
+  }
+    console.log('My Location')
+    console.log(myPos)
+  return myPos
+}
 export default function Map() {
+  const myloc = getMyLocation();
+
+  console.log(myloc)
   return (
     <View style={styles.container}>
       {/*Render our MapView*/}
@@ -9,8 +26,8 @@ export default function Map() {
         style={styles.map}
         //specify our coordinates.
         initialRegion={{
-          latitude: 37.78825,
-          longitude: -122.4324,
+          latitude: myloc[0],
+          longitude: myloc[1],
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}
