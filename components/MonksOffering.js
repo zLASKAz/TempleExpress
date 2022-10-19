@@ -5,8 +5,9 @@ import {
   SafeAreaView,
   Text,
   Dimensions,
+  ScrollView,
 } from 'react-native';
-import { CheckBox, Icon, Button } from '@rneui/themed';
+import { CheckBox, Icon, Button, Input } from '@rneui/themed';
 import HeaderTemple from '../components/HeaderTemple';
 const {width, height} = Dimensions.get('window');
 
@@ -18,9 +19,22 @@ export default function MonksOffering() {
   const [check4, setCheck4] = useState(false);
   const [check5, setCheck5] = useState(false);
   const [check6, setCheck6] = useState(false);
+  const [value, onChangeText] = useState('');
+
+  function MonksOfferingConfirm(){
+    if(check6 == true){
+      if (value.trim().length !== 0) {
+        alert(value)
+      onChangeText('')
+      }else {
+        alert('ตรงอื่นๆพิมพ์ข้อความด้วย')
+      }
+    }
+  }
 
   return (
     <SafeAreaView style={styles.container}>
+      <ScrollView >
       <HeaderTemple temple={templeName} />
       <View style={styles.Box}>
         <View style={styles.BoxHeader}>
@@ -80,6 +94,7 @@ export default function MonksOffering() {
             checkedColor="#F86041"
             onPress={() => setCheck5(!check5)}
           />
+            {check6 === false ? 
           <CheckBox
             title="อื่นๆ(ในโน้ต)"
             containerStyle={styles.checkBox}
@@ -89,6 +104,24 @@ export default function MonksOffering() {
             checkedColor="#F86041"
             onPress={() => setCheck6(!check6)}
           />
+          :
+              <View style={styles.CheckBoxCard1}>
+              <CheckBox
+                containerStyle={styles.checkBox}
+                checked={check6}
+                textStyle={styles.textcheckBox}
+                uncheckedColor="#F86041"
+                checkedColor="#F86041"
+                onPress={() => setCheck6(!check6)} />
+                <Input
+                  containerStyle={styles.input}
+                  inputStyle={styles.inputText}
+                  inputContainerStyle={styles.inputContainer}
+                  onChangeText={text => onChangeText(text)}
+                  value={value}
+                  placeholder='พิมพ์สักที' /></View>
+          
+          }
         </View>
         <View style={styles.BoxFooter}>
           <Text style={styles.TextHeader}>Note</Text>
@@ -97,9 +130,11 @@ export default function MonksOffering() {
             buttonStyle={styles.buttonStyle}
             containerStyle={styles.confirm}
             titleStyle={styles.Texttitle}
+              onPress={() => MonksOfferingConfirm()}
           />
         </View>
       </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -142,6 +177,10 @@ const styles = StyleSheet.create({
   CheckBoxCard: {
     marginTop: height * 0.08,
   },
+  CheckBoxCard1: {
+    flex: 1,
+    flexDirection: "row",
+  },
   checkBox: {
     backgroundColor: '#F6F6F6',
   },
@@ -177,5 +216,19 @@ const styles = StyleSheet.create({
     fontWeight: 'bold' ,
     fontSize: 16,
     marginVertical: -height * 0.01,
-  }
+  },
+  input: {
+    width: width * 0.5,
+    marginLeft: -width * 0.06,
+    marginTop: height * 0.02,
+  },
+  inputContainer: {
+    height: height * 0.03,
+  },
+  inputText: {
+    color: '#000000',
+    fontWeight: '500',
+    fontSize: 14,
+    fontFamily: 'Kanit'
+  },
 });
