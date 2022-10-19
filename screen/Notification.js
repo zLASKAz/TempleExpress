@@ -75,13 +75,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 8,
-    backgroundColor: 'aliceblue',
   },
   box: {
     width: '100%',
     height: '100%',
     backgroundColor: '#ECECEC',
     padding: 20,
+    borderRadius: 5
   },
   boxHeader: {
     textAlign: 'center',
