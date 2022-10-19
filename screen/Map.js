@@ -1,9 +1,12 @@
 import React, {useState} from 'react';
 
 import Geolocation from '@react-native-community/geolocation';
-import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
+import MapView from 'react-native-maps';
 import {StyleSheet, View, Dimensions} from 'react-native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import { enableLatestRenderer } from 'react-native-maps';
+
+enableLatestRenderer();
 
 const {width, height} = Dimensions.get('window');
 
@@ -22,38 +25,23 @@ export default function App() {
   Geolocation.getCurrentPosition(info => setCheck1(info.coords));
 
   return (
-    <View style={styles.container}>
+    <View>
       <MapView
-        style={styles.map}
-        provider={PROVIDER_GOOGLE}
-        initialRegion={INITIAL_POSITION}
-      />
-      <View><GooglePlacesAutocomplete
-        placeholder="Search"
-        onPress={(data, details = null) => {
-          // 'details' is provided when fetchDetails = true
-          console.log(data, details);
-        }}
-        query={{
-          key: 'AIzaSyBmS3upqooujXRTrK5AxGhKXl-yjhvvlE4',
-          language: 'en',
-        }}
-      /></View>
-      
+      style = {styles.maps}
+      initialRegion={{
+        latitude: 37.78825,
+        longitude: -122.4324,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+    }}
+  />  
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  map: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
+  maps: {
+    ...StyleSheet.absoluteFillObject,
   },
 });
 
