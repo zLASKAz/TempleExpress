@@ -4,7 +4,7 @@ import Notification from '../screen/SignIn';
 import Question from '../screen/Question';
 import Profile from '../screen/Profile';
 import AskAdmin from '../screen/AskAdmin';
-
+import Offering from '../screen/Offering';
 export const ScreenDetail = [
     {
         name: 'Home',
@@ -35,5 +35,11 @@ export const ScreenDetail = [
         Icon: '',
 
     },
+    {
+        name: 'Offering',
+        component: Offering,
+        Icon: '',
+    },
+
 
 ]
