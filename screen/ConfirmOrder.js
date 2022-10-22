@@ -39,8 +39,6 @@ const ConfirmOrder = () => {
   ];
 
   const [cartItem, setcartItem] = useState(data);
-
-  const [test, settest] = useState(0);
   const [total, settotal] = useState(
     cartItem.reduce((pre, cur) => {
       return pre + cur.price * cur.amount;
@@ -48,6 +46,7 @@ const ConfirmOrder = () => {
   );
 
   useEffect(() => {
+  console.log(cartItem);
     calTotal();
   }, [cartItem]);
 
@@ -72,7 +71,6 @@ const ConfirmOrder = () => {
 
   const increment = name => {
     const itemAmount = cartItem.find(item => item.name === name);
-    console.log(itemAmount);
     setcartItem(
       cartItem.map(i =>
         i.name === name ? {...itemAmount, amount: (i.amount += 1)} : i,
@@ -96,8 +94,9 @@ const ConfirmOrder = () => {
     if (itemAmount) {
       setcartItem(cartItem.filter(i => i.name !== name));
     }
+    
   };
-
+  
   const calTotal = () => {
     settotal(
       cartItem.reduce((pre, cur) => {
@@ -108,6 +107,7 @@ const ConfirmOrder = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+    { cartItem.length !== 0 ? 
       <ScrollView
         style={styles.scrollCont}
         showsVerticalScrollIndicator={false}>
@@ -198,7 +198,16 @@ const ConfirmOrder = () => {
           />
         </View>
       </ScrollView>
-    </SafeAreaView>
+      
+      : <View style={styles.container}>
+        <Text style={styles.text}>
+          ขออภัย ไม่มีสินค้าในตะกร้าของคุณ
+        </Text>
+        <Button containerStyle={styles.ButtonCont}>
+          Back
+        </Button>
+        </View>}
+      </SafeAreaView>
   );
 };
 
