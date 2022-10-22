@@ -13,7 +13,7 @@ export default function HomeScreen() {
         style= {{flex:1, width:'75%'}}  >
           <Text style={styles.textStyle}>ขอความช่วยเหลือ</Text>
           <Card />
-          <TouchableOpacity style={styles.confirmBox} onPress={() => alert("Sign Out")}>
+          <TouchableOpacity style={styles.confirmBox} onPress={() => alert("ส่งข้อมูลการติดต่อกลับเรียบร้อยเเล้ว")}>
             <Text style={{color:'#ffffff', padding: 3, textAlign: 'center', fontSize: 16, fontWeight: 'bold', fontWeight: '350'}}>Confirm</Text>
           </TouchableOpacity>
       </KeyboardAwareScrollView>
