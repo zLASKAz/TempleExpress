@@ -12,6 +12,8 @@ import {Button, Icon, Card} from '@rneui/themed';
 import HeaderTemple from '../components/HeaderTemple';
 import item1 from '../assets/item1.png';
 import item2 from '../assets/item2.png';
+
+
 const ConfirmOrder = () => {
   // Mock Data
   const templeName = 'วัดบวรนิเวศราชวรวิหาร';
@@ -37,7 +39,7 @@ const ConfirmOrder = () => {
   ];
 
   const [cartItem, setcartItem] = useState(data);
-  
+
   const [test, settest] = useState(0);
   const [total, settotal] = useState(
     cartItem.reduce((pre, cur) => {
@@ -46,8 +48,8 @@ const ConfirmOrder = () => {
   );
 
   useEffect(() => {
-    calTotal()
-  },[cartItem])
+    calTotal();
+  }, [cartItem]);
 
   const changeAmountInput = (e, name) => {
     const itemAmount = cartItem.find(item => item.name === name);
@@ -62,9 +64,7 @@ const ConfirmOrder = () => {
     } else {
       setcartItem(
         cartItem.map(i =>
-          i.name === name
-            ? {...itemAmount, amount: (i.amount = 1)}
-            : i,
+          i.name === name ? {...itemAmount, amount: (i.amount = 1)} : i,
         ),
       );
     }
@@ -91,6 +91,13 @@ const ConfirmOrder = () => {
     }
   };
 
+  const deleteItem = name => {
+    const itemAmount = cartItem.find(item => item.name === name);
+    if (itemAmount) {
+      setcartItem(cartItem.filter(i => i.name !== name));
+    }
+  };
+
   const calTotal = () => {
     settotal(
       cartItem.reduce((pre, cur) => {
@@ -111,7 +118,23 @@ const ConfirmOrder = () => {
           };
           return (
             <View key={i}>
+                
               <Card containerStyle={styles.cardCont}>
+                  <Icon
+                  name="x"
+                  type="feather"
+                  size={15}
+                  color="#F9A72B"
+                  backgroundColor="#fff"
+                  containerStyle={{
+                    top: -20,
+                    right: -20,
+                    borderRadius: 30,
+                    position: 'absolute',
+                  }}
+                  onPress={() => deleteItem(items.name)}
+                  />
+                  
                 <View style={styles.dataCont}>
                   <View style={styles.imgCont}>
                     <Image source={items.img} style={styles.itemImg} />
@@ -135,9 +158,7 @@ const ConfirmOrder = () => {
                         textAlign="center"
                         onChange={e =>
                           changeAmountInput(e.nativeEvent.text, items.name)
-                        }>
-                        
-                      </TextInput>
+                        }></TextInput>
 
                       <Icon
                         name="add-circle-outline"
