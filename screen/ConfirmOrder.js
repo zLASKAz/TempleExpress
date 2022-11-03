@@ -13,7 +13,6 @@ import HeaderTemple from '../components/HeaderTemple';
 import item1 from '../assets/item1.png';
 import item2 from '../assets/item2.png';
 
-
 const ConfirmOrder = () => {
   // Mock Data
   const templeName = 'วัดบวรนิเวศราชวรวิหาร';
@@ -46,7 +45,7 @@ const ConfirmOrder = () => {
   );
 
   useEffect(() => {
-  console.log(cartItem);
+    console.log(cartItem);
     calTotal();
   }, [cartItem]);
 
@@ -94,9 +93,8 @@ const ConfirmOrder = () => {
     if (itemAmount) {
       setcartItem(cartItem.filter(i => i.name !== name));
     }
-    
   };
-  
+
   const calTotal = () => {
     settotal(
       cartItem.reduce((pre, cur) => {
@@ -107,107 +105,102 @@ const ConfirmOrder = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-    { cartItem.length !== 0 ? 
-      <ScrollView
-        style={styles.scrollCont}
-        showsVerticalScrollIndicator={false}>
-        <HeaderTemple temple={templeName} />
-        {cartItem.map((items, i) => {
-          () => {
-            settotal(total + items.price * items.amount);
-          };
-          return (
-            <View key={i}>
-                
-              <Card containerStyle={styles.cardCont}>
+      {cartItem.length !== 0 ? (
+        <ScrollView
+          style={styles.scrollCont}
+          showsVerticalScrollIndicator={false}>
+          <HeaderTemple temple={templeName} />
+          {cartItem.map((items, i) => {
+            () => {
+              settotal(total + items.price * items.amount);
+            };
+            return (
+              <View key={i}>
+                <Card containerStyle={styles.cardCont}>
                   <Icon
-                  name="x"
-                  type="feather"
-                  size={15}
-                  color="#F9A72B"
-                  backgroundColor="#fff"
-                  containerStyle={{
-                    top: -20,
-                    right: -20,
-                    borderRadius: 30,
-                    position: 'absolute',
-                  }}
-                  onPress={() => deleteItem(items.name)}
+                    name="x"
+                    type="feather"
+                    size={15}
+                    color="#F9A72B"
+                    backgroundColor="#fff"
+                    containerStyle={{
+                      top: -20,
+                      right: -20,
+                      borderRadius: 30,
+                      position: 'absolute',
+                    }}
+                    onPress={() => deleteItem(items.name)}
                   />
-                  
-                <View style={styles.dataCont}>
-                  <View style={styles.imgCont}>
-                    <Image source={items.img} style={styles.itemImg} />
-                  </View>
-                  <View style={styles.textCont}>
-                    <Text style={styles.text}>{items.name}</Text>
-                    <Text style={styles.text}>{items.price} ฿</Text>
-                    <View style={styles.amountItem}>
-                      <Icon
-                        name="remove-circle-outline"
-                        type="ionicon"
-                        size={20}
-                        color="#000"
-                        onPress={() => decrement(items.name)}
-                      />
-                      <TextInput
-                        name="amount"
-                        keyboardType="decimal-pad"
-                        defaultValue={`${items.amount}`}
-                        style={styles.textInput}
-                        textAlign="center"
-                        onChange={e =>
-                          changeAmountInput(e.nativeEvent.text, items.name)
-                        }></TextInput>
 
-                      <Icon
-                        name="add-circle-outline"
-                        type="ionicon"
-                        size={20}
-                        color="#000"
-                        onPress={() => increment(items.name)}
-                        style={styles.iconItem}
-                      />
+                  <View style={styles.dataCont}>
+                    <View style={styles.imgCont}>
+                      <Image source={items.img} style={styles.itemImg} />
+                    </View>
+                    <View style={styles.textCont}>
+                      <Text style={styles.text}>{items.name}</Text>
+                      <Text style={styles.text}>{items.price} ฿</Text>
+                      <View style={styles.amountItem}>
+                        <Icon
+                          name="remove-circle-outline"
+                          type="ionicon"
+                          size={20}
+                          color="#000"
+                          onPress={() => decrement(items.name)}
+                        />
+                        <TextInput
+                          name="amount"
+                          keyboardType="decimal-pad"
+                          defaultValue={`${items.amount}`}
+                          style={styles.textInput}
+                          textAlign="center"
+                          onChange={e => changeAmountInput(e.nativeEvent.text, items.name)
+                          }></TextInput>
+
+                        <Icon
+                          name="add-circle-outline"
+                          type="ionicon"
+                          size={20}
+                          color="#000"
+                          onPress={() => increment(items.name)}
+                          style={styles.iconItem}
+                        />
+                      </View>
                     </View>
                   </View>
-                </View>
-              </Card>
+                </Card>
+              </View>
+            );
+          })}
+          <View style={styles.sumBox}>
+            <View style={styles.textCont}>
+              <Text style={styles.text}>ค่าจัดส่ง</Text>
+              <Text style={styles.text}>ราคาสินค้าทั้งหมด</Text>
+              <Text style={styles.text}>รวมทั้งหมด</Text>
             </View>
-          );
-        })}
-        <View style={styles.sumBox}>
-          <View style={styles.textCont}>
-            <Text style={styles.text}>ค่าจัดส่ง</Text>
-            <Text style={styles.text}>ราคาสินค้าทั้งหมด</Text>
-            <Text style={styles.text}>รวมทั้งหมด</Text>
+            <View style={styles.textCont}>
+              <Text style={styles.text}>45 ฿</Text>
+              <Text style={styles.text}>{total.toLocaleString('en-US')} ฿</Text>
+              <Text style={styles.text}>
+                {(total + 45).toLocaleString('en-US')} ฿
+              </Text>
+            </View>
           </View>
-          <View style={styles.textCont}>
-            <Text style={styles.text}>45 ฿</Text>
-            <Text style={styles.text}>{total.toLocaleString('en-US')} ฿</Text>
-            <Text style={styles.text}>
-              {(total + 45).toLocaleString('en-US')} ฿
-            </Text>
+          <View style={styles.ButtonCont}>
+            <Button
+              title="CONFIRM"
+              buttonStyle={styles.confirmButton}
+              containerStyle={styles.confirmContButton}
+              titleStyle={styles.confirmText}
+            />
           </View>
+        </ScrollView>
+      ) : (
+        <View style={styles.container}>
+          <Text style={styles.text}>ขออภัย ไม่มีสินค้าในตะกร้าของคุณ</Text>
+          <Button containerStyle={styles.ButtonCont} buttonStyle={styles.ButtonStyle}>Back</Button>
         </View>
-        <View style={styles.ButtonCont}>
-          <Button
-            title="CONFIRM"
-            buttonStyle={styles.confirmButton}
-            containerStyle={styles.confirmContButton}
-            titleStyle={styles.confirmText}
-          />
-        </View>
-      </ScrollView>
-      
-      : <View style={styles.container}>
-        <Text style={styles.text}>
-          ขออภัย ไม่มีสินค้าในตะกร้าของคุณ
-        </Text>
-        <Button containerStyle={styles.ButtonCont}>
-          Back
-        </Button>
-        </View>}
-      </SafeAreaView>
+      )}
+    </SafeAreaView>
   );
 };
 
@@ -290,6 +283,10 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#fff',
     borderRadius: 30,
+  },
+  ButtonStyle:{
+    backgroundColor:'#F86041',
+    borderRadius:20,
   },
 
   confirmContButton: {
