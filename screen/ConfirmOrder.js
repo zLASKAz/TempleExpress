@@ -12,6 +12,7 @@ import {Button, Icon, Card} from '@rneui/themed';
 import HeaderTemple from '../components/HeaderTemple';
 import item1 from '../assets/item1.png';
 import item2 from '../assets/item2.png';
+
 const ConfirmOrder = () => {
   // Mock Data
   const templeName = 'วัดบวรนิเวศราชวรวิหาร';
@@ -37,21 +38,43 @@ const ConfirmOrder = () => {
   ];
 
   const [cartItem, setcartItem] = useState(data);
-
   const [total, settotal] = useState(
     cartItem.reduce((pre, cur) => {
       return pre + cur.price * cur.amount;
     }, 0),
   );
 
+  useEffect(() => {
+    console.log(cartItem);
+    calTotal();
+  }, [cartItem]);
+
+  const changeAmountInput = (e, name) => {
+    const itemAmount = cartItem.find(item => item.name === name);
+    if (e !== '' && parseInt(e) > 0) {
+      setcartItem(
+        cartItem.map(i =>
+          i.name === name
+            ? {...itemAmount, amount: (i.amount = parseInt(e))}
+            : i,
+        ),
+      );
+    } else {
+      setcartItem(
+        cartItem.map(i =>
+          i.name === name ? {...itemAmount, amount: (i.amount = 1)} : i,
+        ),
+      );
+    }
+  };
+
   const increment = name => {
     const itemAmount = cartItem.find(item => item.name === name);
     setcartItem(
       cartItem.map(i =>
-        i.name === name ? {...itemAmount, amount: i.amount + 1} : i,
+        i.name === name ? {...itemAmount, amount: (i.amount += 1)} : i,
       ),
     );
-    calTotal();
   };
 
   const decrement = name => {
@@ -59,17 +82,16 @@ const ConfirmOrder = () => {
     if (itemAmount.amount > 1) {
       setcartItem(
         cartItem.map(i =>
-          i.name === name ? {...itemAmount, amount: i.amount - 1} : i,
+          i.name === name ? {...itemAmount, amount: (i.amount -= 1)} : i,
         ),
       );
-      calTotal();
-    } else {
-      setcartItem(
-        cartItem.map(i =>
-          i.name === name ? {...itemAmount, amount: (i.amount = 1)} : i,
-        ),
-      );
-      calTotal();
+    }
+  };
+
+  const deleteItem = name => {
+    const itemAmount = cartItem.find(item => item.name === name);
+    if (itemAmount) {
+      setcartItem(cartItem.filter(i => i.name !== name));
     }
   };
 
@@ -80,75 +102,104 @@ const ConfirmOrder = () => {
       }, 0),
     );
   };
-  console.log(cartItem);
-  console.log(total);
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView
-        style={styles.scrollCont}
-        showsVerticalScrollIndicator={false}>
-        <HeaderTemple temple={templeName} />
-        {cartItem.map((items, i) => {
-          () => {
-            settotal(total + items.price * items.amount);
-          };
-          return (
-            <View key={i}>
-              <Card containerStyle={styles.cardCont}>
-                <View style={styles.dataCont}>
-                  <View style={styles.imgCont}>
-                    <Image source={items.img} style={styles.itemImg} />
-                  </View>
-                  <View style={styles.textCont}>
-                    <Text style={styles.text}>{items.name}</Text>
-                    <Text style={styles.text}>{items.price} ฿</Text>
-                    <View style={styles.amountItem}>
-                      <Icon
-                        name="remove-circle-outline"
-                        type="ionicon"
-                        size={20}
-                        color="#000"
-                        onPress={() => decrement(items.name)}
-                      />
-                      <TextInput style={styles.textInput} >
-                        {items.amount}
-                      </TextInput>
-                      <Icon
-                        name="add-circle-outline"
-                        type="ionicon"
-                        size={20}
-                        color="#000"
-                        onPress={() => increment(items.name)}
-                        style={styles.iconItem}
-                      />
+      {cartItem.length !== 0 ? (
+        <ScrollView
+          style={styles.scrollCont}
+          showsVerticalScrollIndicator={false}>
+          <HeaderTemple temple={templeName} />
+          {cartItem.map((items, i) => {
+            () => {
+              settotal(total + items.price * items.amount);
+            };
+            return (
+              <View key={i}>
+                <Card containerStyle={styles.cardCont}>
+                  <Icon
+                    name="x"
+                    type="feather"
+                    size={15}
+                    color="#F9A72B"
+                    backgroundColor="#fff"
+                    containerStyle={{
+                      top: -20,
+                      right: -20,
+                      borderRadius: 30,
+                      position: 'absolute',
+                    }}
+                    onPress={() => deleteItem(items.name)}
+                  />
+
+                  <View style={styles.dataCont}>
+                    <View style={styles.imgCont}>
+                      <Image source={items.img} style={styles.itemImg} />
+                    </View>
+                    <View style={styles.textCont}>
+                      <Text style={styles.text}>{items.name}</Text>
+                      <Text style={styles.text}>{items.price} ฿</Text>
+                      <View style={styles.amountItem}>
+                        <Icon
+                          name="remove-circle-outline"
+                          type="ionicon"
+                          size={20}
+                          color="#000"
+                          onPress={() => decrement(items.name)}
+                        />
+                        <TextInput
+                          name="amount"
+                          keyboardType="decimal-pad"
+                          defaultValue={`${items.amount}`}
+                          style={styles.textInput}
+                          textAlign="center"
+                          onChange={e => changeAmountInput(e.nativeEvent.text, items.name)
+                          }></TextInput>
+
+                        <Icon
+                          name="add-circle-outline"
+                          type="ionicon"
+                          size={20}
+                          color="#000"
+                          onPress={() => increment(items.name)}
+                          style={styles.iconItem}
+                        />
+                      </View>
                     </View>
                   </View>
-                </View>
-              </Card>
+                </Card>
+              </View>
+            );
+          })}
+          <View style={styles.sumBox}>
+            <View style={styles.textCont}>
+              <Text style={styles.text}>ค่าจัดส่ง</Text>
+              <Text style={styles.text}>ราคาสินค้าทั้งหมด</Text>
+              <Text style={styles.text}>รวมทั้งหมด</Text>
             </View>
-          );
-        })}
-        <View style={styles.sumBox}>
-          <View style={styles.textCont}>
-            <Text style={styles.text}>ค่าจัดส่ง</Text>
-            <Text style={styles.text}>ราคาสินค้าทั้งหมด</Text>
-            <Text style={styles.text}>รวมทั้งหมด</Text>
+            <View style={styles.textCont}>
+              <Text style={styles.text}>45 ฿</Text>
+              <Text style={styles.text}>{total.toLocaleString('en-US')} ฿</Text>
+              <Text style={styles.text}>
+                {(total + 45).toLocaleString('en-US')} ฿
+              </Text>
+            </View>
           </View>
-          <View style={styles.textCont}>
-            <Text style={styles.text}>45 ฿</Text>
-            <Text style={styles.text}>{total} ฿</Text>
-            <Text style={styles.text}>{total + 45} ฿</Text>
-          </View>
-        </View>
-        <View style={styles.ButtonCont}>
-        <Button
+          <View style={styles.ButtonCont}>
+            <Button
               title="CONFIRM"
               buttonStyle={styles.confirmButton}
               containerStyle={styles.confirmContButton}
-              titleStyle={styles.confirmText}/>
+              titleStyle={styles.confirmText}
+            />
+          </View>
+        </ScrollView>
+      ) : (
+        <View style={styles.container}>
+          <Text style={styles.text}>ขออภัย ไม่มีสินค้าในตะกร้าของคุณ</Text>
+          <Button containerStyle={styles.ButtonCont} buttonStyle={styles.ButtonStyle}>Back</Button>
         </View>
-      </ScrollView>
+      )}
     </SafeAreaView>
   );
 };
@@ -222,27 +273,29 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-  ButtonCont:{
-    alignSelf:'center',
-    paddingBottom:20
+  ButtonCont: {
+    alignSelf: 'center',
+    paddingBottom: 20,
   },
 
-  confirmButton:{
+  confirmButton: {
     backgroundColor: '#F86041',
     borderWidth: 2,
     borderColor: '#fff',
     borderRadius: 30,
-    
+  },
+  ButtonStyle:{
+    backgroundColor:'#F86041',
+    borderRadius:20,
   },
 
-  confirmContButton:{
+  confirmContButton: {
     width: 200,
-    alignContent:'center'
+    alignContent: 'center',
   },
 
-  confirmText:{ 
+  confirmText: {
     fontWeight: 'bold',
-  fontFamily:'Kanit' 
-}
-
+    fontFamily: 'Kanit',
+  },
 });
