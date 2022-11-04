@@ -8,7 +8,7 @@ import {
   Alert,
 } from 'react-native';
 import React from 'react';
-const add = () => Alert.alert("Succes")
+
 const BoxItem = ({ title, price, pricebtn, navigation }, props ) => {
   return (
     <View style={styles.container}>
