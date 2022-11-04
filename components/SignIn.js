@@ -14,8 +14,8 @@ const SignIn = () => {
             buttons={['Sign in', 'Sign up']}
             selectedIndex={selectedIndex}
             selectedButtonStyle={styles.selectButton}
-            selectedTextStyle={styles.textcolor}
-            textStyle={styles.textcolor}
+            selectedTextStyle={styles.selecttextcolor}
+            textStyle={styles.notselecttextcolor}
             onPress={value => {
               setSelectedIndex(value);
             }}
@@ -126,7 +126,7 @@ export default SignIn;
 const styles = StyleSheet.create({
   signinButton: {
     margin: 0,
-    backgroundColor: '#F6F6F6',
+    backgroundColor: '#FFA646',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     borderBottomLeftRadius: 20,
@@ -139,16 +139,26 @@ const styles = StyleSheet.create({
     marginHorizontal: 0,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    backgroundColor: '#F86041',
+    backgroundColor: '#F6F6F6',
     width: '100%',
     marginBottom: -15,
     height: 55,
   },
   selectButton: {
-    backgroundColor: '#F6F6F6',
+    backgroundColor: '#FFA646',
   },
   textcolor: {
     color: '#000',
+    fontSize: 18,
+    paddingBottom: 10,
+  },
+  selecttextcolor: {
+    color: '#000',
+    fontSize: 18,
+    paddingBottom: 10,
+  },
+  notselecttextcolor: {
+    color: "#343D43",
     fontSize: 18,
     paddingBottom: 10,
   },

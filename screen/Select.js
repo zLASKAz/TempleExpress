@@ -65,12 +65,12 @@ const styles = StyleSheet.create({
     shadowColor: "#FFFFFF"
   },
   cardContainer: {
-    height: height * 0.35,
+    height: height * 0.45,
     width: width * 0.55,
     marginRight: width * 0.08, //gap ความห่าง
   },
   card: {
-    height: height * 0.35,
+    height: height * 0.45,
     width: width * 0.55,
     borderRadius: height * 0.04,
     padding: 10,
