@@ -12,6 +12,8 @@ import Donated from '../components/Donated';
 import MonksOffering from '../components/MonksOffering';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+import Offering from '../screen/Offering';
+import AddOffering from '../screen/AddOffering';
 export const ScreenDetail = [
     {
         name: 'Home',
@@ -48,10 +50,17 @@ export const ScreenDetail = [
         Icon: '',
 
     },
+    {
+        name: 'Offering',
+        component: OfferingStackScreen,
+        Icon: '',
+    },
 
 ]
 
 const HomeStack = createNativeStackNavigator();
+const OfferingStack = createNativeStackNavigator();
+
 
 function HomeStackScreen() {
     return (
@@ -60,5 +69,14 @@ function HomeStackScreen() {
             <HomeStack.Screen name="Donated" component={Donated} options={{ headerShown: false }} />
             <HomeStack.Screen name="MonksOffering" component={MonksOffering} options={{ headerShown: false }} />
         </HomeStack.Navigator>
+    );
+}
+
+function OfferingStackScreen() {
+    return (
+        <OfferingStack.Navigator>
+            <OfferingStack.Screen name="offering" component={Offering} options={{ headerShown: false }} />
+            <OfferingStack.Screen name="AddOffering" component={AddOffering} options={{ headerShown: false }} />
+        </OfferingStack.Navigator>
     );
 }
