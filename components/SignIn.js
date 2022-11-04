@@ -8,7 +8,7 @@ const SignIn = () => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={{width: '80%', alignSelf: 'center'}}>
-        <View style={styles.siginButton}>
+        <View style={styles.signinButton}>
           <ButtonGroup
             containerStyle={styles.signupButton}
             buttons={['Sign in', 'Sign up']}
@@ -21,7 +21,7 @@ const SignIn = () => {
             }}
           />
           {selectedIndex == 0 ? (
-            <Card containerStyle={styles.siginButton}>
+            <Card containerStyle={styles.signinButton}>
               <Card.Divider />
               <Text style={styles.fonts}>Email</Text>
               <Input
@@ -59,7 +59,7 @@ const SignIn = () => {
               />
             </Card>
           ) : (
-            <Card containerStyle={styles.siginButton}>
+            <Card containerStyle={styles.signinButton}>
               <Card.Divider />
               <Text style={styles.fonts}>Username</Text>
               <Input
