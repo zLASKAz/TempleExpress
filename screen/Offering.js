@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
 import BoxItem from '../components/OfferingCard';
 
-const Offering = () => {
+const Offering = ({navigation }) => {
   const [OfferingData, setOfferingInfo] = useState([]);
   useEffect(() => {
     setOfferingInfo([
@@ -42,7 +42,8 @@ const Offering = () => {
             <BoxItem
               title={item.title}
               price={item.price}
-              pricebtn={item.pricebtn}>
+              pricebtn={item.pricebtn}
+              navigation= {navigation}>
             </BoxItem>
 
             // <TouchableOpacity onPress={() => navigation.navigate('AddOffering')}>

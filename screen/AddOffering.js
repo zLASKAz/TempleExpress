@@ -10,6 +10,7 @@ import {
   
   const add = () => Alert.alert('Succes');
   const BoxItem = ({title, price, pricebtn, count}, props) => {
+    console.log({ title })
     return (
       <View style={styles.container}>
         <View style={styles.textView}>
