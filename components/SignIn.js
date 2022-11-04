@@ -1,64 +1,163 @@
-import { StyleSheet, View, ScrollView, Dimensions } from 'react-native';
+import {StyleSheet, View, ScrollView, SafeAreaView} from 'react-native';
 import React, {useState} from 'react';
-import {Text, Card, Button, Icon, ButtonGroup} from '@rneui/themed';
-const { width , height } = Dimensions.get('window');
+import {Text, Card, Button, Icon, ButtonGroup, Input} from '@rneui/themed';
+import {color} from '@rneui/base';
 
 const SignIn = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   return (
-    <>
-      <ScrollView>
-        <View style={styles.signinButton}>
-          <ButtonGroup containerStyle={styles.signupButton}
-            buttonStyle={{ backgroundColor: 'rgba(255, 193, 7, 1)' }}
-            style={styles.signinButton}
-            buttons={['Sign In', 'Sign Up']}
+    <SafeAreaView style={styles.container}>
+      <ScrollView style={{width: '80%', alignSelf: 'center'}}>
+        <View style={styles.siginButton}>
+          <ButtonGroup
+            containerStyle={styles.signupButton}
+            buttons={['Sign in', 'Sign up']}
             selectedIndex={selectedIndex}
-            selectedButtonStyle={{ backgroundColor: '#1E1E1E'}}
+            selectedButtonStyle={styles.selectButton}
+            selectedTextStyle={styles.textcolor}
+            textStyle={styles.textcolor}
             onPress={value => {
               setSelectedIndex(value);
-              console.log(selectedIndex)
             }}
           />
-          {selectedIndex == 0 &&
-          <Card containerStyle={styles.signinButton}>
-            <Card.Divider />
-            <Text style={styles.fonts} h1>
-              h1 Heading
-            </Text>
-            <Text style={styles.fonts} h2>
-              h2 Heading
-            </Text>
-            <Text style={styles.fonts} h3>
-              h3 Heading
-            </Text>
-            <Text style={styles.fonts} h4>
-              h4 Heading
-            </Text>
-            <Text style={styles.fonts}>Normal Text</Text>
-          </Card>
-          }
+          {selectedIndex == 0 ? (
+            <Card containerStyle={styles.siginButton}>
+              <Card.Divider />
+              <Text style={styles.fonts}>Email</Text>
+              <Input
+                inputContainerStyle={{
+                  backgroundColor: '#fff',
+                  borderBottomWidth: 0,
+                  height: 28,
+                }}
+                placeholder=""
+              />
+
+              <Text style={styles.fonts}>Password</Text>
+
+              <Input
+                placeholder=""
+                secureTextEntry={true}
+                inputContainerStyle={{
+                  backgroundColor: '#fff',
+                  borderBottomWidth: 0,
+                  height: 28,
+                }}
+              />
+
+              <Button
+                title="Sign in"
+                titleStyle={{fontSize: 18}}
+                buttonStyle={{
+                  backgroundColor: '#F86041',
+                  borderRadius: 3,
+                }}
+                containerStyle={{
+                  width: 200,
+                  marginHorizontal: 50,
+                }}
+              />
+            </Card>
+          ) : (
+            <Card containerStyle={styles.siginButton}>
+              <Card.Divider />
+              <Text style={styles.fonts}>Username</Text>
+              <Input
+                inputContainerStyle={{
+                  backgroundColor: '#fff',
+                  borderBottomWidth: 0,
+                  height: 28,
+                }}
+                placeholder=""
+              />
+              <Text style={styles.fonts}>Phone Number</Text>
+              <Input
+                inputContainerStyle={{
+                  backgroundColor: '#fff',
+                  borderBottomWidth: 0,
+                  height: 28,
+                }}
+                placeholder=""
+              />
+              <Text style={styles.fonts}>Email</Text>
+              <Input
+                inputContainerStyle={{
+                  backgroundColor: '#fff',
+                  borderBottomWidth: 0,
+                  height: 28,
+                }}
+                placeholder=""
+              />
+
+              <Text style={styles.fonts}>Password</Text>
+
+              <Input
+                placeholder=""
+                secureTextEntry={true}
+                inputContainerStyle={{
+                  backgroundColor: '#fff',
+                  borderBottomWidth: 0,
+                  height: 28,
+                }}
+              />
+
+              <Button
+                title="Sign up"
+                titleStyle={{fontSize: 18}}
+                buttonStyle={{
+                  backgroundColor: '#F86041',
+                  borderRadius: 3,
+                }}
+                containerStyle={{
+                  width: 200,
+                  marginHorizontal: 50,
+                }}
+              />
+            </Card>
+          )}
         </View>
       </ScrollView>
-    </>
+    </SafeAreaView>
   );
 };
 
-export default SignIn
+export default SignIn;
 
 const styles = StyleSheet.create({
   signinButton: {
     margin: 0,
-    borderWidth: 0,
-    borderRadius: 0,
+    backgroundColor: '#F6F6F6',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+    borderColor: '#F6F6F6',
+    
   },
   signupButton: {
     marginVertical: 0,
     marginHorizontal: 0,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    backgroundColor: 'rgba(255, 193, 7, 1)',
-    height:height*0.1,
-    width:width*0.8,
-  }
-})
+    backgroundColor: '#F86041',
+    width: '100%',
+    marginBottom: -15,
+    height: 55,
+  },
+  selectButton: {
+    backgroundColor: '#F6F6F6',
+  },
+  textcolor: {
+    color: '#000',
+    fontSize: 18,
+    paddingBottom: 10,
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    width: '100%',
+    paddingTop: 65,
+    backgroundColor: '#FFFFFF',
+    padding: 8,
+  },
+});
