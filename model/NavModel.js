@@ -17,7 +17,7 @@ import AddOffering from '../screen/AddOffering';
 export const ScreenDetail = [
     {
         name: 'Home',
-        component: Question,
+        component: SignIn,
         Icon: '',
     },
     {
@@ -28,7 +28,7 @@ export const ScreenDetail = [
     },
     {
         name: 'Q&A',
-        component: SignIn,
+        component: Question,
         Icon: '',
 
     },
@@ -77,6 +77,8 @@ function OfferingStackScreen() {
         <OfferingStack.Navigator>
             <OfferingStack.Screen name="offering" component={Offering} options={{ headerShown: false }} />
             <OfferingStack.Screen name="AddOffering" component={AddOffering} options={{ headerShown: false }} />
+            <OfferingStack.Screen name="ConfirmOrder" component={ConfirmOrder} options={{ headerShown: false }} />
+            <OfferingStack.Screen name="Payment" component={Payment} options={{ headerShown: false }} />
         </OfferingStack.Navigator>
     );
 }

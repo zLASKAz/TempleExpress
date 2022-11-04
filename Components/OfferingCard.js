@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import React from 'react';
 
+
 const BoxItem = ({ title, price, pricebtn, navigation }, props ) => {
   return (
     <View style={styles.container}>
@@ -17,8 +18,7 @@ const BoxItem = ({ title, price, pricebtn, navigation }, props ) => {
           <Text style={styles.titleText}>{title}</Text>
           <Text style={styles.priceText}>{price}</Text>
           <TouchableOpacity style={styles.btn} onPress={() => {
-            navigation.navigate("AddOffering")
-          }}>
+            navigation.navigate("AddOffering")}}>
             <Text style={styles.btnText}>{pricebtn}</Text>
           </TouchableOpacity>
         </View>

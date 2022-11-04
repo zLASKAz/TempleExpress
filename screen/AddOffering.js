@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
 import BoxItem from '../components/AddOfferingCard'
 
-export default function AddOffering() {
+export default function AddOffering({ navigation }) {
   const [OfferingData, setOfferingInfo] = useState([]);
   useEffect(() => {
     setOfferingInfo([
@@ -36,7 +36,9 @@ export default function AddOffering() {
           )}
         />
       </View>
-      <TouchableOpacity style={styles.btnAdd}>
+      <TouchableOpacity style={styles.btnAdd} onPress={() => {
+        navigation.navigate("ConfirmOrder")
+      }}>
         <Text style={styles.btnTextAdd}>Add</Text>
       </TouchableOpacity>
     </OfferingLayout>

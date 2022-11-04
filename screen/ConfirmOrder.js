@@ -13,7 +13,7 @@ import HeaderTemple from '../components/HeaderTemple';
 import item1 from '../assets/item1.png';
 import item2 from '../assets/item2.png';
 
-const ConfirmOrder = () => {
+const ConfirmOrder = ({ navigation }) => {
   // Mock Data
   const templeName = 'วัดบวรนิเวศราชวรวิหาร';
   const data = [
@@ -191,6 +191,9 @@ const ConfirmOrder = () => {
               buttonStyle={styles.confirmButton}
               containerStyle={styles.confirmContButton}
               titleStyle={styles.confirmText}
+              onPress={() => {
+                navigation.navigate("Payment")
+              }}
             />
           </View>
         </ScrollView>
