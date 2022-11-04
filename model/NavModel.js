@@ -15,12 +15,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 export const ScreenDetail = [
     {
         name: 'Home',
-        component: ConfirmOrder,
+        component: Question,
         Icon: '',
     },
     {
         name: 'Notification',
-        component: Payment,
+        component: Notification,
         Icon: '',
 
     },
