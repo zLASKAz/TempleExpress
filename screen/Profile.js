@@ -1,10 +1,10 @@
 import { StyleSheet, Button, SafeAreaView, Text, Alert, TouchableOpacity} from 'react-native';
-import Card from '../components/userCard';
+import UserCard from '../components/userCard';
 
 export default function Profile() {
   return (
       <SafeAreaView style={{ flex: 1, alignItems: 'center', marginTop: 45 }}>
-      <Card />
+      <UserCard/>
 
       <TouchableOpacity style={styles.touchBox1} onPress={() => {alert("Go to account !")}}>
         <Text style={styles.textBtn}>Account</Text>

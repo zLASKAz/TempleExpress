@@ -1,10 +1,10 @@
-import { StyleSheet, Button, SafeAreaView, Text, FlatList, TouchableOpacity, Dimensions } from 'react-native';
+import { StyleSheet, Button, SafeAreaView, Text, FlatList, TouchableOpacity, Dimensions, View, ScrollView } from 'react-native';
 import { Card } from "react-native-paper";
 import { Icon} from '@rneui/themed';
 import HeaderTemple from '../components/HeaderTemple';
 const { width , height } = Dimensions.get('window');
 
-export default function Profile({ navigation }) {
+export default function Select({ navigation }) {
   const templeName = 'วัดบวรนิเวศราชวรวิหาร';
   const productToday = [{
     "Screen_id": "MonksOffering",
@@ -20,13 +20,9 @@ export default function Profile({ navigation }) {
   return (
       <SafeAreaView style={styles.container}>
         <HeaderTemple temple={templeName} />
-              <FlatList
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={styles.flatList}
-                horizontal={true}
-                data={productToday}
-                renderItem={({ item }) => {
-                  return (
+      <ScrollView style={styles.flatListBox} horizontal={true} showsHorizontalScrollIndicator={false}>
+      {productToday.map((item,id) => {
+        return (<Card style={styles.flatList} key={id}> 
                     <TouchableOpacity
                       style={styles.cardContainer}
                       onPress={() => {
@@ -39,9 +35,10 @@ export default function Profile({ navigation }) {
                         <Icon reverse containerStyle={styles.icon} name={item.Screen_icon} type={item.Screen_icontype} size={height * 0.03} color="#F86041" />
                       </Card>
                     </TouchableOpacity>
-                  );
-                }}
-              />
+                
+      </Card>
+      )})}
+      </ScrollView>
         
       </SafeAreaView>
   );
@@ -53,11 +50,19 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     padding: 8,
   },
+  flatListBox: {
+    display: 'flex',
+    flexDirection: "row",
+    flexWrap: "wrap",
+  },
   flatList: {
     paddingLeft: width * 0.08,
     // paddingHorizontal: 0,
     paddingVertical: 16,
     paddingTop: height * 0.05,
+    backgroundColor: "#FFFFFF",
+    elevation: 0,
+    shadowColor: "#FFFFFF"
   },
   cardContainer: {
     height: height * 0.35,
