@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, StyleSheet, FlatList} from 'react-native';
+import {View, Text, StyleSheet, ScrollView} from 'react-native';
 import BoxItem from '../components/NotificationBoxItem';
 
 const Notification = () => {
@@ -37,24 +37,22 @@ const Notification = () => {
         detail: 'HELLO FROM SUPER NOTIFICATIONNNNNNNNNNN',
       },
     ]);
-
-    // fetch('')
-    //   .then(response => response.json())
-    //   .then(json => setNotifData(json))
-    //   .catch(errorr => console.error());
   }, []);
 
   return (
     <NotificationLayout label="Notifications">
       <View style={styles.box}>
         <Text style={styles.boxHeader}>Update Status</Text>
-        <FlatList
-          data={notifData}
-          keyExtractor={item => item.id}
-          renderItem={({item}) => (
-            <BoxItem title={item.title} detail={item.detail} />
-          )}
-        />
+        <ScrollView>
+          {notifData.map((item, index) => {
+            return (
+              <BoxItem
+                key={index}
+                title={item.title}
+                detail={item.detail}></BoxItem>
+            );
+          })}
+        </ScrollView>
       </View>
     </NotificationLayout>
   );
@@ -81,7 +79,7 @@ const styles = StyleSheet.create({
     height: '100%',
     backgroundColor: '#ECECEC',
     padding: 20,
-    borderRadius: 5
+    borderRadius: 5,
   },
   boxHeader: {
     textAlign: 'center',

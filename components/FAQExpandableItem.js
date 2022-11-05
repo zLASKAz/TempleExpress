@@ -1,7 +1,7 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 
-const FAQExpandableItem = ({faqData, onClickFunction}) => {
+const FAQExpandableItem = ({faqData, onClickFunction, index}) => {
   const [layoutHeight, setlayoutHeight] = useState(0);
 
   useEffect(() => {
@@ -12,7 +12,7 @@ const FAQExpandableItem = ({faqData, onClickFunction}) => {
     }
   }, [faqData.isExpanded]);
   return (
-    <View>
+    <View key={index}>
       <TouchableOpacity style={styles.articleView} onPress={onClickFunction}>
         <Text style={styles.articleText}>{faqData.article}</Text>
       </TouchableOpacity>

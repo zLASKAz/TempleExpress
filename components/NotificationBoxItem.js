@@ -1,9 +1,9 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 
-export const BoxItem = ({title, detail}) => {
+export const BoxItem = ({title, detail, index}) => {
   return (
-    <View style={styles.container}>
+    <View style={styles.container} key={index}>
       <View
         style={styles.textView}>
         <View>
