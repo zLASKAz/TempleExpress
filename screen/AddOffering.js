@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
 import BoxItem from '../components/AddOfferingCard'
 
 export default function AddOffering({ navigation }) {
@@ -24,7 +24,7 @@ export default function AddOffering({ navigation }) {
   return (
     <OfferingLayout label="ถวายสังฆทาน">
       <View style={styles.box}>
-        <FlatList
+        <ScrollView
           data={OfferingData}
           keyExtractor={item => item.id}
           renderItem={({item}) => (

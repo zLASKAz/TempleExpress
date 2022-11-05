@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
+import { FlatList } from 'react-native';
+import { ScrollView } from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import BoxItem from '../components/OfferingCard';
 
 const Offering = ({navigation }) => {
-  const [OfferingData, setOfferingInfo] = useState([]);
-  useEffect(() => {
-    setOfferingInfo([
+  const OfferingData = [
       {
         id: 1,
         title: 'ผ้าไตรจีวร',
@@ -23,34 +23,23 @@ const Offering = ({navigation }) => {
         title: 'ชุดตักบาตรชุดใหญ๋',
         price: '฿800',
         pricebtn: 'buy',
-      },
-    ]);
-
-    // fetch('')
-    //   .then(response => response.json())
-    //   .then(json => setOfferingInfo(json))
-    //   .catch(errorr => console.error());
-  }, []);
+      }
+  ];
 
   return (
     <OfferingLayout label="ถวายสังฆทาน">
       <View style={styles.box}>
-        <FlatList
-          data={OfferingData}
-          keyExtractor={item => item.id}
-          renderItem={({item}) => (
-            <BoxItem
-              title={item.title}
-              price={item.price}
-              pricebtn={item.pricebtn}
-              navigation= {navigation}>
-            </BoxItem>
-
-            // <TouchableOpacity onPress={() => navigation.navigate('AddOffering')}>
-            //   <Text style={Styles.titleText}>{ item.title }</Text>
-            // </TouchableOpacity>
-          )}
-        />
+        <ScrollView>
+        {OfferingData.map((item,id) => {
+          return (            
+          <BoxItem key={id}
+            title={item.title}
+            price={item.price}
+            pricebtn={item.pricebtn}
+            navigation= {navigation}>
+          </BoxItem>)
+        })}
+        </ScrollView>
       </View>
     </OfferingLayout>
   );

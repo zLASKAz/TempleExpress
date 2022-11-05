@@ -18,7 +18,7 @@ const BoxItem = ({ title, price, pricebtn, navigation }, props ) => {
           <Text style={styles.titleText}>{title}</Text>
           <Text style={styles.priceText}>{price}</Text>
           <TouchableOpacity style={styles.btn} onPress={() => {
-            navigation.navigate("AddOffering")}}>
+            navigation.navigate("ConfirmOrder")}}>
             <Text style={styles.btnText}>{pricebtn}</Text>
           </TouchableOpacity>
         </View>
