@@ -1,6 +1,6 @@
 import HomeScreen from '../screen/HomeScreen';
 import Notification from '../screen/Notification';
-import Question from '../components/Question';
+import Question from '../screen/Question';
 import Profile from '../screen/Profile';
 import Select from '../screen/Select';
 import AskAdmin from '../screen/AskAdmin';
