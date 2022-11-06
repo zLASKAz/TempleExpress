@@ -18,42 +18,50 @@ export const ScreenDetail = [
     {
         name: 'Home',
         component: SignIn,
-        Icon: '',
+        icon: 'home',
+        icontype: 'material-community',
+
     },
     {
         name: 'Notification',
         component: Notification,
-        Icon: '',
+        icon: 'bell-outline',
+        icontype: 'material-community',
 
     },
     {
         name: 'Q&A',
         component: Question,
-        Icon: '',
+        icon: 'help',
+        icontype: 'material-community',
 
     },
     {
         name: 'AskAdmin',
         component: AskAdmin,
-        Icon: '',
+        icon: 'account-tie-hat',
+        icontype: 'material-community',
 
     },
     {
         name: 'Profile',
         component: Profile,
-        Icon: '',
+        icon: 'account',
+        icontype: 'material-community',
 
     },
     {
         name: 'Select',
         component: HomeStackScreen,
-        Icon: '',
+        icon: 'help',
+        icontype: 'material-community',
 
     },
     {
         name: 'Offering',
         component: OfferingStackScreen,
-        Icon: '',
+        icon: 'help',
+        icontype: 'material-community',
     },
 
 ]

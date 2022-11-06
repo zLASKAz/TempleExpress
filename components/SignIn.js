@@ -167,7 +167,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
     paddingTop: 65,
-    backgroundColor: '#FFFFFF',
     padding: 8,
   },
 });

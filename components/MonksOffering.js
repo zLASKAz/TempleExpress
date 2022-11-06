@@ -143,7 +143,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     paddingTop: height * 0.05,
-    backgroundColor: '#FFFFFF',
     padding: 8,
   },
   Box: {
