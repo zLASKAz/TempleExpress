@@ -195,12 +195,17 @@ const ConfirmOrder = ({ navigation }) => {
                 navigation.navigate("Payment")
               }}
             />
+            <Button containerStyle={styles.ButtonCont} buttonStyle={styles.ButtonStyle} onPress={() => {
+                navigation.navigate("offering")
+              }}>Back</Button>
           </View>
         </ScrollView>
       ) : (
         <View style={styles.container}>
           <Text style={styles.text}>ขออภัย ไม่มีสินค้าในตะกร้าของคุณ</Text>
-          <Button containerStyle={styles.ButtonCont} buttonStyle={styles.ButtonStyle}>Back</Button>
+          <Button containerStyle={styles.ButtonCont} buttonStyle={styles.ButtonStyle} onPress={() => {
+                navigation.navigate("offering")
+              }}>Back</Button>
         </View>
       )}
     </SafeAreaView>
@@ -213,7 +218,6 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#fff',
     width: '100%',
     height: '100%',
   },
