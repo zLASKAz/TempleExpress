@@ -26,7 +26,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     marginBottom: 20,
     borderRadius: 20,
-    paddingHorizontal: 18,
+    paddingStart: 18,
+    paddingEnd: 10,
     paddingVertical: 3,
     backgroundColor: '#FFA500',
   },
@@ -35,16 +36,17 @@ const styles = StyleSheet.create({
   },
   titleText: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontFamily: 'Kanit',
   },
   detailText: {
     fontSize: 14,
   },
   iconView: {
-    flex: 1, flexDirection: 'row', justifyContent: 'flex-end'
+    flex: 1, flexDirection: 'row', justifyContent: 'flex-end', paddingStart: 8
   },
   icon: {
     resizeMode: 'contain',
+    alignSelf: 'center',
     width: 50,
     height: 50,
   },

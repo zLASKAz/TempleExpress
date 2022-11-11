@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   },
   articleText: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontFamily: 'Kanit',
   },
   answerView: {
     borderRadius: 20,
@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
   },
   answerText: {
     fontSize: 16,
+    fontFamily: 'Kanit',
   },
 });
 

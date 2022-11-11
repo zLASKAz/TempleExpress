@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     marginBottom: 18,
     fontSize: 30,
-    fontWeight: 'bold',
+    fontFamily: 'Kanit',
   },
 });
 

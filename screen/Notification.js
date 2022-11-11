@@ -84,14 +84,14 @@ const styles = StyleSheet.create({
   boxHeader: {
     textAlign: 'center',
     fontSize: 20,
-    fontWeight: 'bold',
+    fontFamily: 'Kanit',
     marginBottom: 20,
   },
   label: {
     textAlign: 'left',
     marginBottom: 10,
     fontSize: 30,
-    fontWeight: 'bold',
+    fontFamily: 'Kanit',
   },
 });
 
