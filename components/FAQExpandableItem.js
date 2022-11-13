@@ -1,24 +1,20 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
+import Collapsible from 'react-native-collapsible';
 
-const FAQExpandableItem = ({faqData, onClickFunction, index}) => {
-  const [layoutHeight, setlayoutHeight] = useState(0);
+const FAQExpandableItem = ({faqData, index}) => {
+  const [isCollap, setIsCollap] = useState(true);
 
-  useEffect(() => {
-    if (faqData.isExpanded) {
-      setlayoutHeight(null);
-    } else {
-      setlayoutHeight(0);
-    }
-  }, [faqData.isExpanded]);
   return (
     <View key={index}>
-      <TouchableOpacity style={styles.articleView} onPress={onClickFunction}>
+      <TouchableOpacity style={styles.articleView} onPress={() =>{isCollap? setIsCollap(false): setIsCollap(true)}}>
         <Text style={styles.articleText}>{faqData.article}</Text>
       </TouchableOpacity>
-      <View style={[styles.answerView, {height: layoutHeight}]}>
-        <Text style={styles.answerText}>{'\n' + faqData.answer + '\n'}</Text>
-      </View>
+      <Collapsible collapsed={isCollap}>
+        <View style={styles.answerView}>
+          <Text style={styles.answerText}>{'\n' + faqData.answer + '\n'}</Text>
+        </View>
+      </Collapsible>
     </View>
   );
 };

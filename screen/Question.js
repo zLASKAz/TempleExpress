@@ -1,30 +1,17 @@
 import React, {useState, useEffect} from 'react';
-import {
-  Platform,
-  UIManager,
-  LayoutAnimation,
-  ScrollView,
-  View,
-  Text,
-  StyleSheet,
-} from 'react-native';
+import {ScrollView, View, Text, StyleSheet} from 'react-native';
 import FAQArticle from '../components/FAQExpandableItem';
 
 const Question = () => {
   const [FAQData, setFAQData] = useState([]);
-
-  if (Platform.OS === 'android') {
-    // May cause bug when rapidly press the same button for a number of times.
-    UIManager.setLayoutAnimationEnabledExperimental(true);
-  }
 
   useEffect(() => {
     setFAQData([
       {
         id: 1,
         isExpanded: false,
-        article: 'คำถาม 1',
-        answer: 'คำตอบ 1',
+        article: 'ทำไมฉันถึงไม่สามารถสั่งได้',
+        answer: 'ลองเช็คดูว่ายืนยันคำสั่งแล้วหรือไม่',
       },
       {
         id: 2,
@@ -52,30 +39,13 @@ const Question = () => {
       },
     ]);
   }, []);
-  const updateLayout = index => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-    const array = [...FAQData];
-    array.map((value, placeIndex) =>
-      placeIndex === index
-        ? (array[placeIndex]['isExpanded'] = !array[placeIndex]['isExpanded'])
-        : (array[placeIndex]['isExpanded'] = false),
-    );
-    setFAQData(array);
-  };
 
   return (
     <FAQLayout label="คำถามที่พบบ่อย">
       <View style={styles.box}>
         <ScrollView>
           {FAQData.map((item, index) => {
-            return (
-              <FAQArticle
-                key={index}
-                faqData={item}
-                onClickFunction={() => {
-                  updateLayout(item.id - 1);
-                }}></FAQArticle>
-            );
+            return <FAQArticle key={index} faqData={item}></FAQArticle>;
           })}
         </ScrollView>
       </View>
