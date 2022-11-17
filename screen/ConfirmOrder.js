@@ -109,8 +109,8 @@ const ConfirmOrder = ({ navigation }) => {
       <HeaderTemple temple={templeName} />
       {cartItem.length !== 0 ? (
         <ScrollView
-          style={styles.scrollCont}
-          showsVerticalScrollIndicator={false}>
+        style={styles.scrollCont}
+        showsVerticalScrollIndicator={false}>
           <View style={cartItem.length <= 3 ? styles.backgroundBox : styles.backgroundBoxs}>
           {cartItem.map((items, i) => {
             () => {
@@ -202,7 +202,7 @@ const ConfirmOrder = ({ navigation }) => {
           </View>
         </ScrollView>
       ) : (
-        <View style={styles.container}>
+        <View style={styles.container2}>
           <Text style={styles.text}>ขออภัย ไม่มีสินค้าในตะกร้าของคุณ</Text>
           <Button containerStyle={styles.ButtonCont} buttonStyle={styles.ButtonStyle} onPress={() => {
                 navigation.navigate("offering")
@@ -217,6 +217,11 @@ export default ConfirmOrder;
 
 const styles = StyleSheet.create({
   container: {
+    width: '100%',
+    height: '100%',
+  },
+
+  container2: {
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
@@ -227,7 +232,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    height:814.25,
+    height:806,
   },
 
   backgroundBoxs: {
@@ -238,6 +243,7 @@ const styles = StyleSheet.create({
   },
 
   scrollCont: {
+
     width: '100%',
   },
 
