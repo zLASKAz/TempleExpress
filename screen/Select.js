@@ -45,7 +45,7 @@ export default function Select({ navigation }) {
             containerStyle={{
               backgroundColor: "#FFFFFF",
               height:80,
-              borderTopLeftRadius:10,
+              borderTopLeftRadius:20,
               
           }}
           />
@@ -61,7 +61,7 @@ export default function Select({ navigation }) {
           containerStyle={{
             backgroundColor: "#FFFFFF",
             height:80,
-            borderTopRightRadius: 10,
+            borderTopRightRadius: 20,
 
           }}
           />
@@ -94,7 +94,7 @@ export default function Select({ navigation }) {
             </ScrollView>
           </TabView.Item>
         <TabView.Item style={{ backgroundColor: "#FFFFFF", width: '100%' }}>
-            <Text h1>Favorite</Text>
+            <Text h1>{height}</Text>
           </TabView.Item>
         </TabView>
       </>

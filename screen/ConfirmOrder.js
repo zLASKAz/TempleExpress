@@ -35,6 +35,7 @@ const ConfirmOrder = ({ navigation }) => {
       amount: 1,
       img: item1,
     },
+    
   ];
 
   const [cartItem, setcartItem] = useState(data);
@@ -105,11 +106,12 @@ const ConfirmOrder = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <HeaderTemple temple={templeName} />
       {cartItem.length !== 0 ? (
         <ScrollView
           style={styles.scrollCont}
           showsVerticalScrollIndicator={false}>
-          <HeaderTemple temple={templeName} />
+          <View style={cartItem.length <= 3 ? styles.backgroundBox : styles.backgroundBoxs}>
           {cartItem.map((items, i) => {
             () => {
               settotal(total + items.price * items.amount);
@@ -195,9 +197,7 @@ const ConfirmOrder = ({ navigation }) => {
                 navigation.navigate("Payment")
               }}
             />
-            <Button containerStyle={styles.ButtonCont} buttonStyle={styles.ButtonStyle} onPress={() => {
-                navigation.navigate("offering")
-              }}>Back</Button>
+          </View>
           </View>
         </ScrollView>
       ) : (
@@ -222,8 +222,22 @@ const styles = StyleSheet.create({
     height: '100%',
   },
 
+  backgroundBox: {
+    backgroundColor: "#FFFFFF",
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    height:814.25,
+  },
+
+  backgroundBoxs: {
+    backgroundColor: "#FFFFFF",
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    height: 880,
+  },
+
   scrollCont: {
-    width: '80%',
+    width: '100%',
   },
 
   itemImg: {
