@@ -1,26 +1,73 @@
-import { StyleSheet, Button, SafeAreaView, Text, FlatList, TouchableOpacity, Dimensions, View, ScrollView } from 'react-native';
+import { StyleSheet, Button, SafeAreaView, Text, FlatList, TouchableOpacity, Dimensions, View, ScrollView ,Image} from 'react-native';
 import { Card } from "react-native-paper";
 import { Icon, Tab, TabView } from '@rneui/themed';
 import HeaderTemple from '../components/HeaderTemple';
 import LinearGradient from 'react-native-linear-gradient';
 import React, { useState } from 'react';
 const { width, height } = Dimensions.get('window');
+import item1 from '../assets/item1.png';
+import item2 from '../assets/item2.png';
+import four from '../assets/four.png';
 
 export default function Select({ navigation }) {
   const [index, setIndex] = useState(0);
   const templeName = 'วัดบวรนิเวศราชวรวิหาร';
-  const productToday = [{
-    "Screen_id": "MonksOffering",
-    "Screen_name": "Monks Offering",
-    "Screen_icontype": "material-community",
-    "Screen_icon": "cart-outline"
-  }, {
-    "Screen_id": "Donated",
-    "Screen_name": "Donated",
-    "Screen_icontype": "material-community",
-    "Screen_icon": "currency-usd"
-  }]
-  
+  // const productToday = [{
+  //   "Screen_id": "MonksOffering",
+  //   "Screen_name": "Monks Offering",
+  //   "Screen_icontype": "material-community",
+  //   "Screen_icon": "cart-outline"
+  // }, {
+  //   "Screen_id": "Donated",
+  //   "Screen_name": "Donated",
+  //   "Screen_icontype": "material-community",
+  //   "Screen_icon": "currency-usd"
+  // }]
+  const OfferingData = [
+    {
+      id: 1,
+      title: 'ผ้าไตรจีวร',
+      price: '฿70',
+      img: four,
+    },
+    {
+      id: 2,
+      title: 'ชุดสังฆทาน',
+      price: '฿150',
+      img: item2,
+    },
+    {
+      id: 3,
+      title: 'ชุดตักบาตรชุดใหญ๋',
+      price: '฿800',
+      img: item1,
+    },
+    {
+      id: 4,
+      title: 'ชุดตักบาตรชุดใหญ๋',
+      price: '฿800',
+      img: four,
+    },    
+    {
+      id: 4,
+      title: 'ชุดตักบาตรชุดใหญ๋',
+      price: '฿800',
+      img: four,
+    },    
+    {
+      id: 4,
+      title: 'ชุดตักบาตรชุดใหญ๋',
+      price: '฿800',
+      img: four,
+    },    
+    {
+      id: 4,
+      title: 'ชุดตักบาตรชุดใหญ๋',
+      price: '฿800',
+      img: four,
+    },
+    
+  ];
   return (
       <>
         <HeaderTemple temple={templeName} />
@@ -69,29 +116,30 @@ export default function Select({ navigation }) {
 
         <TabView value={index} onChange={setIndex} animationType="spring">
         <TabView.Item style={{ backgroundColor: "#FFFFFF", width: '100%' }}>
-            <ScrollView style={styles.flatListBox} horizontal={true} showsHorizontalScrollIndicator={false}>
-              {productToday.map((item, id) => {
-                return (<Card style={styles.flatList} key={id}>
-                  <TouchableOpacity
-                    style={styles.cardContainer}
-                    onPress={() => {
-                      console.log(item.Screen_id)
-                      navigation.navigate(item.Screen_id)
-                    }}
-                  >
-                    <LinearGradient style={styles.card}
-                      colors={['#FCA973', '#EC8948']}
-                      start={{ x: 0.7, y: 0 }}
-                    >
-                      <Text style={styles.text}>{item.Screen_name}</Text>
-                      <Icon reverse containerStyle={styles.icon} name={item.Screen_icon} type={item.Screen_icontype} size={height * 0.03} color="rgba(255, 248, 241,0.3)" />
-                    </LinearGradient>
-                  </TouchableOpacity>
-
-                </Card>
-                )
+        <View style={styles.box}>
+            <ScrollView>
+              {OfferingData.map((item, id) => {
+                return (
+                  <Card style={styles.CardItem} navigation={navigation} key={id}>
+                    <View style={styles.CardContent} >
+                      <Text style={styles.titleText}>{item.title}</Text>
+                      <Text style={styles.priceText}>{item.price}</Text>
+                      <TouchableOpacity
+                        style={styles.btn}
+                        onPress={() => {
+                          navigation.navigate('ConfirmOrder');
+                        }}>
+                        <Text style={styles.btnText}>Add to cart</Text>
+                      </TouchableOpacity>
+                    </View>
+                    <View style={styles.iconView}>
+                      <Image source={item.img} style={styles.imageView}></Image>
+                    </View>
+                  </Card>
+                );
               })}
             </ScrollView>
+            </View>
           </TabView.Item>
         <TabView.Item style={{ backgroundColor: "#FFFFFF", width: '100%' }}>
             <Text h1>{height}</Text>
@@ -101,51 +149,51 @@ export default function Select({ navigation }) {
   );
 }
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: height * 0.05,
-    padding: 8,
+  box: {
+    width: '100%',
+    height: '88%',
+    paddingTop: 20,
+    alignItems: 'center',
   },
-  flatListBox: {
-    display: 'flex',
-    flexDirection: "row",
-    flexWrap: "wrap",
+  CardItem: {
+    justifyContent: 'center',
+    marginBottom: 10,
+    borderRadius: 10,
+    backgroundColor: '#f6f6f6',
+    height: 120,
+    width: 350,
   },
-  flatList: {
-    paddingLeft: width * 0.08,
-    // paddingHorizontal: 0,
-    paddingVertical: 16,
-    paddingTop: height * 0.05,
-    backgroundColor: 'transparent',
-    elevation: 0,
-    shadowColor: 'transparent',
+  btn: {
+    borderRadius: 7,
+    alignItems: 'center',
+    backgroundColor: '#343779',
+    height: 22,
+    width: 90,
+    marginTop: 10,
+    top: 30,
+    left: 140,
+    textAlign: 'center',
   },
-  cardContainer: {
-    height: height * 0.35,
-    width: width * 0.55,
-    marginRight: width * 0.08, //gap ความห่าง
+  btnText: {
+    fontSize: 14,
+    color: '#ffffff',
   },
-  card: {
-    height: height * 0.35,
-    width: width * 0.55,
-    borderRadius: height * 0.04,
-    padding: 10,
-    backgroundColor: "#FFA646",
-
-
-    elevation: 8,
+  titleText: {
+    fontSize: 14,
+    top: 18,
+    left: 140,
   },
-  text: {
-    color: "#FFFFFF",
-    fontWeight: '500',
-    fontSize: 18,
-    position: 'absolute',
-    bottom: height * 0.02,
-    left: width * 0.03,
+  priceText: {
+    fontSize: 14,
+    top: 25,
+    left: 140,
+    fontWeight:'bold',
   },
-  icon: {
-    position: 'absolute',
-    bottom: 0,
-    right: 0,
-  }
+  imageView: {
+    width: 100,
+    height: 100,
+    borderRadius: 5,
+    bottom: 60,
+    left: 15,
+  },
 });
