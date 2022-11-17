@@ -5,7 +5,7 @@ import {Button, Icon, Card} from '@rneui/themed';
 const HeaderTemple = temple => {
   return (
     <View style={styles.container}>
-      <Icon name="location" type="ionicon" color="#33A9AC" size={40} /> 
+      <Icon name="location" type="ionicon" color="#F9A72B" size={30} /> 
       <Text style={styles.header}>{temple.temple}</Text>
     </View>
   );
@@ -15,17 +15,18 @@ export default HeaderTemple;
 
 const styles = StyleSheet.create({
   header: {
-    fontSize: 18,
+    fontSize: 16,
     fontFamily: 'Kanit',
-    padding: 20,
     paddingBottom: 0,
-    color: '#000',
+    color: '#FFFFFF',
+    paddingLeft: 25,
   },
 
   container: {
     flexDirection: 'row',
-    justifyContent:'center',
-    alignItems:'center'
+    alignItems:'center',
+    height: 60,
+    paddingLeft: 25,
   },
 
 });

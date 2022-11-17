@@ -13,7 +13,7 @@ function App() {
     ...DefaultTheme,
     colors: {
       ...DefaultTheme.colors,
-      background: '#FFF7F1',
+      background: '#B35304',
     },
   };
   return (
