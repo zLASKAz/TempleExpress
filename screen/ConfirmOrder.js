@@ -155,6 +155,7 @@ const ConfirmOrder = ({ navigation }) => {
                           defaultValue={`${items.amount}`}
                           style={styles.textInput}
                           textAlign="center"
+                          editable={false}
                           onChange={e => changeAmountInput(e.nativeEvent.text, items.name)
                           }></TextInput>
 
