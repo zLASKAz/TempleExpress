@@ -8,6 +8,7 @@ const { width, height } = Dimensions.get('window');
 import item1 from '../assets/item1.png';
 import item2 from '../assets/item2.png';
 import four from '../assets/four.png';
+import Payment from './Payment';
 
 export default function Select({ navigation }) {
   const [index, setIndex] = useState(0);
@@ -142,7 +143,7 @@ export default function Select({ navigation }) {
             </View>
           </TabView.Item>
         <TabView.Item style={{ backgroundColor: "#FFFFFF", width: '100%' }}>
-            <Text h1>{height}</Text>
+            <Payment/>
           </TabView.Item>
         </TabView>
       </>
