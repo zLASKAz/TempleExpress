@@ -135,6 +135,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     width: '100%',
     height: '100%',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    marginTop:20
   },
 
   qrcode: {

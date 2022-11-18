@@ -286,7 +286,7 @@ const styles = StyleSheet.create({
   },
 
   cardCont: {
-    backgroundColor: '#F0F0F0',
+    backgroundColor: '#F6F6F6',
     borderRadius: 15,
     shadowOpacity: 1,
     elevation: 10,
@@ -348,7 +348,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     paddingBottom: 20,
     width: '93%',
-    marginBottom: 65,
+    marginBottom: 90,
     marginTop: 10,
   },
 
