@@ -13,7 +13,7 @@ import HeaderTemple from '../components/HeaderTemple';
 import item1 from '../assets/item1.png';
 import item2 from '../assets/item2.png';
 
-const ConfirmOrder = ({ navigation }) => {
+const ConfirmOrder = ({navigation}) => {
   // Mock Data
   const templeName = 'วัดบวรนิเวศราชวรวิหาร';
   const data = [
@@ -109,72 +109,99 @@ const ConfirmOrder = ({ navigation }) => {
       <HeaderTemple temple={templeName} />
       {cartItem.length !== 0 ? (
         <ScrollView
-        style={styles.scrollCont}
-        showsVerticalScrollIndicator={false}>
-          <View style={cartItem.length <= 3 ? styles.backgroundBox : styles.backgroundBoxs}>
-          {cartItem.map((items, i) => {
-            () => {
-              settotal(total + items.price * items.amount);
-            };
-            return (
-              <View key={i}>
-                <Card containerStyle={styles.cardCont}>
-                  <Icon
-                    name="x"
-                    type="feather"
-                    size={15}
-                    color="#F9A72B"
-                    backgroundColor="#fff"
-                    containerStyle={{
-                      top: -20,
-                      right: -20,
-                      borderRadius: 30,
-                      position: 'absolute',
-                    }}
-                    onPress={() => deleteItem(items.name)}
-                  />
+          style={styles.scrollCont}
+          showsVerticalScrollIndicator={false}>
+          <View style={styles.backgroundBox}>
+            {cartItem.map((items, i) => {
+              () => {
+                settotal(total + items.price * items.amount);
+              };
+              return (
+                <View key={i}>
+                  <Card containerStyle={styles.cardCont}>
+                    <Icon
+                      name="x"
+                      type="feather"
+                      size={15}
+                      color="#000"
+                      backgroundColor="#fff"
+                      containerStyle={{
+                        top: -20,
+                        right: -20,
+                        borderRadius: 30,
+                        position: 'absolute',
+                      }}
+                      onPress={() => deleteItem(items.name)}
+                    />
 
-                  <View style={styles.dataCont}>
-                    <View style={styles.imgCont}>
-                      <Image source={items.img} style={styles.itemImg} />
-                    </View>
-                    <View style={styles.textCont}>
-                      <Text style={styles.text}>{items.name}</Text>
-                      <Text style={styles.text}>{items.price} ฿</Text>
-                      <View style={styles.amountItem}>
-                        <Icon
-                          name="remove-circle-outline"
-                          type="ionicon"
-                          size={20}
-                          color="#000"
-                          onPress={() => decrement(items.name)}
-                        />
-                        <TextInput
-                          name="amount"
-                          keyboardType="decimal-pad"
-                          defaultValue={`${items.amount}`}
-                          style={styles.textInput}
-                          textAlign="center"
-                          editable={false}
-                          onChange={e => changeAmountInput(e.nativeEvent.text, items.name)
-                          }></TextInput>
+                    <View style={styles.dataCont}>
+                      <View style={styles.imgCont}>
+                        <Image source={items.img} style={styles.itemImg} />
+                      </View>
+                      <View style={styles.textCont}>
+                        <Text style={styles.text}>{items.name}</Text>
+                        <Text style={styles.text}>{items.price} ฿</Text>
+                        <View style={styles.amountItem}>
+                          <Icon
+                            name="remove-circle-outline"
+                            type="ionicon"
+                            size={20}
+                            color="#000"
+                            onPress={() => decrement(items.name)}
+                          />
+                          <TextInput
+                            name="amount"
+                            keyboardType="decimal-pad"
+                            defaultValue={`${items.amount}`}
+                            style={styles.textInput}
+                            textAlign="center"
+                            editable={false}
+                            onChange={e =>
+                              changeAmountInput(e.nativeEvent.text, items.name)
+                            }></TextInput>
 
-                        <Icon
-                          name="add-circle-outline"
-                          type="ionicon"
-                          size={20}
-                          color="#000"
-                          onPress={() => increment(items.name)}
-                          style={styles.iconItem}
-                        />
+                          <Icon
+                            name="add-circle-outline"
+                            type="ionicon"
+                            size={20}
+                            color="#000"
+                            onPress={() => increment(items.name)}
+                            style={styles.iconItem}
+                          />
+                        </View>
                       </View>
                     </View>
-                  </View>
-                </Card>
+                  </Card>
+                </View>
+              );
+            })}
+
+            <View style={styles.noteCont}>
+              <TextInput
+                placeholder="  ข้อความเพิ่มเติม ( ex. ตักบาตร ทำบุญ )    "
+                style={styles.noteInput}
+                multiline={true}
+              />
+            </View>
+            <View style={styles.sumBox}>
+              <View style={styles.textContTotal}>
+                <Text style={styles.text}>ราคาสินค้าทั้งหมด</Text>
+                <Text style={styles.text}>
+                  {total.toLocaleString('en-US')} ฿
+                </Text>
               </View>
-            );
-          })}
-          <View style={styles.sumBox}>
+              <View style={styles.textContTotal}>
+                <Text style={styles.text}>ค่าจัดส่ง</Text>
+                <Text style={styles.text}>45 ฿</Text>
+              </View>
+              <View style={styles.textContTotal}>
+                <Text style={styles.text}>รวมทั้งหมด</Text>
+                <Text style={styles.text}>
+                  {(total + 45).toLocaleString('en-US')} ฿
+                </Text>
+              </View>
+            </View>
+            {/* <View style={styles.sumBox}>
             <View style={styles.textCont}>
               <Text style={styles.text}>ค่าจัดส่ง</Text>
               <Text style={styles.text}>ราคาสินค้าทั้งหมด</Text>
@@ -187,26 +214,31 @@ const ConfirmOrder = ({ navigation }) => {
                 {(total + 45).toLocaleString('en-US')} ฿
               </Text>
             </View>
-          </View>
-          <View style={styles.ButtonCont}>
-            <Button
-              title="CONFIRM"
-              buttonStyle={styles.confirmButton}
-              containerStyle={styles.confirmContButton}
-              titleStyle={styles.confirmText}
-              onPress={() => {
-                navigation.navigate("Payment")
-              }}
-            />
-          </View>
+          </View> */}
+            <View style={styles.ButtonCont}>
+              <Button
+                title="CONFIRM"
+                buttonStyle={styles.confirmButton}
+                containerStyle={styles.confirmContButton}
+                titleStyle={styles.confirmText}
+                onPress={() => {
+                  navigation.navigate('Payment');
+                }}
+              />
+            </View>
           </View>
         </ScrollView>
       ) : (
         <View style={styles.container2}>
           <Text style={styles.text}>ขออภัย ไม่มีสินค้าในตะกร้าของคุณ</Text>
-          <Button containerStyle={styles.ButtonCont} buttonStyle={styles.ButtonStyle} onPress={() => {
-                navigation.navigate("offering")
-              }}>Back</Button>
+          <Button
+            containerStyle={styles.ButtonCont}
+            buttonStyle={styles.ButtonStyle}
+            onPress={() => {
+              navigation.navigate('offering');
+            }}>
+            Back
+          </Button>
         </View>
       )}
     </SafeAreaView>
@@ -229,21 +261,20 @@ const styles = StyleSheet.create({
   },
 
   backgroundBox: {
-    backgroundColor: "#FFFFFF",
+    backgroundColor: '#FFFFFF',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    height:806,
+    height: 'auto',
   },
 
   backgroundBoxs: {
-    backgroundColor: "#FFFFFF",
+    backgroundColor: '#FFFFFF',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     height: 880,
   },
 
   scrollCont: {
-
     width: '100%',
   },
 
@@ -255,7 +286,7 @@ const styles = StyleSheet.create({
   },
 
   cardCont: {
-    backgroundColor: '#F9A72B',
+    backgroundColor: '#F0F0F0',
     borderRadius: 15,
     shadowOpacity: 1,
     elevation: 10,
@@ -270,14 +301,26 @@ const styles = StyleSheet.create({
   },
 
   sumBox: {
-    padding: 30,
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'space-between',
+    width: '93%',
+    alignSelf: 'center',
   },
 
   textCont: {
     flexDirection: 'column',
     justifyContent: 'space-evenly',
+  },
+
+  textContTotal: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    height: 50,
+    backgroundColor: '#F6F6F6',
+    borderRadius: 10,
+    marginVertical: 2,
+    alignItems: 'center',
+    paddingHorizontal: 15,
   },
 
   text: {
@@ -304,26 +347,51 @@ const styles = StyleSheet.create({
   ButtonCont: {
     alignSelf: 'center',
     paddingBottom: 20,
+    width: '93%',
+    marginBottom: 65,
+    marginTop: 10,
   },
 
   confirmButton: {
-    backgroundColor: '#F86041',
+    backgroundColor: '#343779',
     borderWidth: 2,
     borderColor: '#fff',
-    borderRadius: 30,
+    borderRadius: 10,
+    height: 55,
   },
-  ButtonStyle:{
-    backgroundColor:'#F86041',
-    borderRadius:20,
+  ButtonStyle: {
+    backgroundColor: '#F86041',
+    borderRadius: 20,
   },
 
   confirmContButton: {
-    width: 200,
     alignContent: 'center',
   },
 
   confirmText: {
     fontWeight: 'bold',
     fontFamily: 'Kanit',
+  },
+
+  noteCont: {
+    width: '93%',
+    height: 90,
+    borderWidth: 1,
+    borderColor: '#A7A5A6',
+    fontSize: 16,
+    fontFamily: 'Kanit',
+    color: '#000',
+    alignSelf: 'center',
+    margin: 20,
+    borderRadius: 10,
+    marginTop: 50,
+  },
+  noteInput: {
+    backgroundColor: '#fff',
+    fontSize: 16,
+    fontFamily: 'Kanit',
+    color: '#000',
+    alignSelf: 'baseline',
+    flexWrap: 'wrap',
   },
 });
