@@ -1,48 +1,52 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import HeaderTemple from '../components/HeaderTemple';
 import BoxItem from '../components/NotificationBoxItem';
 
 const Notification = () => {
   const [notifData, setNotifData] = useState([]);
+
+  // Example data. Please delete the hook below when finished.
   useEffect(() => {
     setNotifData([
       {
-        id: 1,
-        title: 'Temple Express',
-        detail: 'Your order is confirm',
+        title: 'จัดส่งสำเร็จ',
+        detail: 'ขอบคุณที่ใช้บริการกับเรา',
       },
       {
-        id: 2,
-        title: 'Temple Express',
-        detail: 'Your order has arrived to the temple',
+        title: 'บริจาคเงินสำเร็จ',
+        detail: 'ขอบคุณที่ใช้บริการกับเรา',
       },
       {
-        id: 3,
+        title: 'วันหยุดนี้ มีส่วนลด',
+        detail: 'หากซื้อสินค้าหรือบริจาคครบ 200 บาท รับส่วนลดค่าจัดส่ง 20 บาท',
+      },
+      {
         title: 'Temple Express',
         detail: '',
       },
       {
-        id: 4,
-        title: 'Temple Express',
-        detail: 'HELLO FROM NOTIFICATIONNNNNNNNNNN',
-      },
-      {
-        id: 5,
         title: 'Temple Express',
         detail: 'HELLO FROM NOTIFICATIONN  ABCDEFGHI',
       },
       {
-        id: 6,
         title: 'Temple Express',
         detail: 'HELLO FROM SUPER NOTIFICATIONNNNNNNNNNN',
+      },
+      {
+        title: 'Temple Express',
+        detail: 'HELLO FROM',
+      },
+      {
+        title: 'วันหยุดนี้ มีส่วนลด',
+        detail: 'หากซื้อสินค้าหรือบริจาคครบ 200 บาท รับส่วนลดค่าจัดส่ง 20 บาท',
       },
     ]);
   }, []);
 
   return (
-    <NotificationLayout label="Notifications">
+    <NotificationLayout>
       <View style={styles.box}>
-        <Text style={styles.boxHeader}>Update Status</Text>
         <ScrollView>
           {notifData.map((item, index) => {
             return (
@@ -52,15 +56,16 @@ const Notification = () => {
                 detail={item.detail}></BoxItem>
             );
           })}
+          <View style={{height: 40}}></View>
         </ScrollView>
       </View>
     </NotificationLayout>
   );
 };
 
-const NotificationLayout = ({label, children}) => (
+const NotificationLayout = ({children}) => (
   <View style={styles.entireView}>
-    <Text style={styles.label}>{label}</Text>
+    <HeaderTemple temple={'Notifications'} useIcon={false} />
     <View style={styles.container}>{children}</View>
   </View>
 );
@@ -68,31 +73,19 @@ const NotificationLayout = ({label, children}) => (
 const styles = StyleSheet.create({
   entireView: {
     flex: 1,
-    padding: 50,
   },
   container: {
     flex: 1,
-    marginTop: 8,
   },
   box: {
     width: '100%',
     height: '100%',
-    backgroundColor: '#ECECEC',
-    padding: 20,
-    borderRadius: 5,
-  },
-  boxHeader: {
-    textAlign: 'center',
-    fontSize: 20,
-    fontFamily: 'Kanit',
-    marginBottom: 20,
-  },
-  label: {
-    textAlign: 'left',
-    marginBottom: 10,
-    fontSize: 30,
-    fontFamily: 'Kanit',
-  },
+    backgroundColor: '#FFFFFF',
+    paddingBottom: 20,
+    paddingTop: 40,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+  }
 });
 
 export default Notification;
