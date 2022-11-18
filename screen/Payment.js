@@ -98,6 +98,8 @@ const styles = StyleSheet.create({
     borderColor: '#fff',
     borderRadius: 10,
     height: 60,
+    justifyContent: 'flex-start',
+
   },
 
   confirmButtonUnselect: {
@@ -106,6 +108,7 @@ const styles = StyleSheet.create({
     borderColor: '#fff',
     borderRadius: 10,
     height: 60,
+    justifyContent: 'flex-start',
   },
 
   confirmContButton: {
@@ -116,12 +119,15 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: 'Kanit',
     color: '#fff',
+    
+
   },
 
   confirmTextUnselect: {
     fontSize: 18,
     fontFamily: 'Kanit',
     color: '#000',
+    textAlign:'left'
   },
 
   container: {
