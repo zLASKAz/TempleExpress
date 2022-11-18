@@ -21,9 +21,9 @@ const Payment = () => {
     <SafeAreaView style={styles.container}>
         <Button
           title="Mobile Banking"
-          buttonStyle={styles.confirmButton}
+          buttonStyle={MobileBanking ? styles.confirmButtonUnselect : styles.confirmButton }
           containerStyle={styles.confirmContButton}
-          titleStyle={styles.confirmText}
+          titleStyle={MobileBanking ? styles.confirmTextUnselect :styles.confirmText}
           onPress={() => {
             setMobileBanking(!MobileBanking);
             setEwallet(true);
@@ -41,9 +41,9 @@ const Payment = () => {
         </Collapsible>
         <Button
           title="E-Wallet"
-          buttonStyle={styles.confirmButton}
+          buttonStyle={Ewallet ?  styles.confirmButtonUnselect:styles.confirmButton}
           containerStyle={styles.confirmContButton}
-          titleStyle={styles.confirmText}
+          titleStyle={Ewallet ? styles.confirmTextUnselect :styles.confirmText}
           onPress={() => {
             setMobileBanking(true);
             setEwallet(!Ewallet);
@@ -61,9 +61,9 @@ const Payment = () => {
         </Collapsible>
         <Button
           title="Credit Card"
-          buttonStyle={styles.confirmButton}
+          buttonStyle={CreditCard ? styles.confirmButtonUnselect :styles.confirmButton}
           containerStyle={styles.confirmContButton}
-          titleStyle={styles.confirmText}
+          titleStyle={CreditCard ? styles.confirmTextUnselect :styles.confirmText}
           onPress={() => {
             setMobileBanking(true);
             setEwallet(true);
@@ -79,26 +79,8 @@ const Payment = () => {
             />
           </View>
         </Collapsible>
-        <Button
-          title="Debit Card"
-          buttonStyle={styles.confirmButton}
-          containerStyle={styles.confirmContButton}
-          titleStyle={styles.confirmText}
-          onPress={() => {
-            setMobileBanking(true);
-            setEwallet(true);
-            setCreditCard(true);
-            setDebitCard(!DebitCard);
-          }}
-        />
-        <Collapsible collapsed={DebitCard}>
-          <View style={styles.qrcode}>
-            <Image
-              source={require('../assets/qrcode.png')}
-              style={styles.itemImg}
-            />
-          </View>
-        </Collapsible>
+        
+        
     </SafeAreaView>
   );
 };
@@ -107,42 +89,53 @@ export default Payment;
 
 const styles = StyleSheet.create({
   ButtonCont: {
-    alignSelf: 'center',
     paddingBottom: 20,
   },
 
   confirmButton: {
-    backgroundColor: '#FFA646',
+    backgroundColor: '#343779',
     borderWidth: 2,
     borderColor: '#fff',
-    borderRadius: 20,
+    borderRadius: 10,
+    height: 60,
+  },
+
+  confirmButtonUnselect: {
+    backgroundColor: '#F6F6F6',
+    borderWidth: 2,
+    borderColor: '#fff',
+    borderRadius: 10,
     height: 60,
   },
 
   confirmContButton: {
-    width: 300,
-    alignContent: 'center',
+    width: '93%',
   },
 
   confirmText: {
     fontSize: 18,
-    fontWeight: 'bold',
     fontFamily: 'Kanit',
     color: '#fff',
   },
 
+  confirmTextUnselect: {
+    fontSize: 18,
+    fontFamily: 'Kanit',
+    color: '#000',
+  },
+
   container: {
     alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: '#fff',
     width: '100%',
     height: '100%',
   },
 
   qrcode: {
-    backgroundColor: '#F86041',
     padding: 20,
     borderRadius: 20,
+    borderBottomColor:'#F6F6F6',
+    borderBottomWidth:2,
     width: 300,
     height: 320,
     justifyContent: 'space-between',
