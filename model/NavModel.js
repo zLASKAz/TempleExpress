@@ -76,6 +76,7 @@ function HomeStackScreen() {
             <HomeStack.Screen name="select" component={Select} options={{ headerShown: false }} />
             <HomeStack.Screen name="Donated" component={Donated} options={{ headerShown: false }} />
             <HomeStack.Screen name="MonksOffering" component={MonksOffering} options={{ headerShown: false }} />
+            <OfferingStack.Screen name="ConfirmOrder" component={ConfirmOrder} options={{ headerShown: false }} />
         </HomeStack.Navigator>
     );
 }
