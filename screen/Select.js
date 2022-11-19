@@ -5,9 +5,17 @@ import HeaderTemple from '../components/HeaderTemple';
 import LinearGradient from 'react-native-linear-gradient';
 import React, { useState } from 'react';
 const { width, height } = Dimensions.get('window');
-import item1 from '../assets/item1.png';
-import item2 from '../assets/item2.png';
-import four from '../assets/four.png';
+import img1 from '../assets/img1.jpg';
+import img2 from '../assets/img2.jpg';
+import img3 from '../assets/img3.jpg';
+import img4 from '../assets/img4.jpg';
+import img5 from '../assets/img5.jpg';
+import img6 from '../assets/img6.jpg';
+import img7 from '../assets/img7.jpg';
+import img8 from '../assets/img8.jpg';
+import img9 from '../assets/img9.jpg';
+import img10 from '../assets/img10.jpg';
+import img11 from '../assets/img11.jpg';
 
 export default function Select({ navigation }) {
   const [index, setIndex] = useState(0);
@@ -27,44 +35,68 @@ export default function Select({ navigation }) {
     {
       id: 1,
       title: 'ผ้าไตรจีวร',
-      price: '฿70',
-      img: four,
+      price: '฿79',
+      img: img1,
     },
     {
       id: 2,
       title: 'ชุดสังฆทาน',
-      price: '฿150',
-      img: item2,
+      price: '฿159',
+      img: img2,
     },
     {
       id: 3,
-      title: 'ชุดตักบาตรชุดใหญ๋',
-      price: '฿800',
-      img: item1,
+      title: 'ชุดตักบาตรชุดใหญ่',
+      price: '฿799',
+      img: img3,
     },
     {
       id: 4,
-      title: 'ชุดตักบาตรชุดใหญ๋',
-      price: '฿800',
-      img: four,
+      title: 'ชุดตักบาตร',
+      price: '฿59',
+      img: img4,
     },    
     {
-      id: 4,
-      title: 'ชุดตักบาตรชุดใหญ๋',
-      price: '฿800',
-      img: four,
+      id: 5,
+      title: 'อาหารปลาต่อถุง',
+      price: '฿20',
+      img: img5,
     },    
     {
-      id: 4,
-      title: 'ชุดตักบาตรชุดใหญ๋',
-      price: '฿800',
-      img: four,
+      id: 6,
+      title: 'ดอกบัวต่อกำ',
+      price: '฿30',
+      img: img6,
     },    
     {
-      id: 4,
-      title: 'ชุดตักบาตรชุดใหญ๋',
-      price: '฿800',
-      img: four,
+      id: 7,
+      title: 'กล้วยไม้ต่อช่อ',
+      price: '฿20',
+      img: img7,
+    },   
+    {
+      id: 8,
+      title: 'อาหารรายวัน (แต่ละวันไม่ซ้ำกัน)',
+      price: '฿60',
+      img: img8,
+    },
+    {
+      id: 9,
+      title: 'น้ำดื่ม',
+      price: '฿10',
+      img: img9,
+    },
+    {
+      id: 10,
+      title: 'ข้าวเหนียวมะม่วง',
+      price: '฿100',
+      img: img10,
+    },
+    {
+      id: 11,
+      title: 'ธูปและเทียน(ธูป 3 ดอก เทียน 1 แท่ง)',
+      price: '฿10',
+      img: img11,
     },
     
   ];
@@ -117,7 +149,7 @@ export default function Select({ navigation }) {
         <TabView value={index} onChange={setIndex} animationType="spring">
         <TabView.Item style={{ backgroundColor: "#FFFFFF", width: '100%' }}>
         <View style={styles.box}>
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false}>
               {OfferingData.map((item, id) => {
                 return (
                   <Card style={styles.CardItem} navigation={navigation} key={id}>
@@ -177,17 +209,20 @@ const styles = StyleSheet.create({
   btnText: {
     fontSize: 14,
     color: '#ffffff',
+    fontFamily: 'Kanit'
   },
   titleText: {
     fontSize: 14,
     top: 18,
     left: 140,
+    fontFamily: 'Kanit'
   },
   priceText: {
     fontSize: 14,
     top: 25,
     left: 140,
     fontWeight:'bold',
+    fontFamily: 'Kanit'
   },
   imageView: {
     width: 100,
