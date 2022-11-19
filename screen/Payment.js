@@ -37,7 +37,7 @@ const Payment = () => {
         <Collapsible collapsed={MobileBanking}>
           {bankModel.map((item, index) => {
             return (
-              <Button buttonStyle={{backgroundColor:'transparent'}} onPress={() => alert('Hi')}>
+              <Button key={index} buttonStyle={{backgroundColor:'transparent'}} onPress={() => alert('Hi')}>
                 <View key={index} style={styles.listItem}>
                   <Image source={item.img} style={styles.itemImg} />
                   <Text style={styles.text}>{item.name}</Text>
@@ -62,7 +62,7 @@ const Payment = () => {
         <Collapsible collapsed={Ewallet}>
           {ewalletModel.map((item, index) => {
             return (
-              <Button buttonStyle={{backgroundColor:'transparent'}} onPress={() => alert('Hi')}>
+              <Button key={index} buttonStyle={{backgroundColor:'transparent'}} onPress={() => alert('Hi')}>
                 <View key={index} style={styles.listItem}>
                   <Image source={item.img} style={styles.itemImg} />
                   <Text style={styles.text}>{item.name}</Text>
