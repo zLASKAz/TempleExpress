@@ -8,80 +8,94 @@ import {
 } from 'react-native';
 import {Button, Icon, Card} from '@rneui/themed';
 import React, {useState} from 'react';
-import SignIn from '../components/SignIn';
 import Collapsible from 'react-native-collapsible';
+import {bankModel, ewalletModel} from '../model/PaymentModel';
 
 const Payment = () => {
   const [MobileBanking, setMobileBanking] = useState(false);
   const [Ewallet, setEwallet] = useState(true);
   const [CreditCard, setCreditCard] = useState(true);
-  const [DebitCard, setDebitCard] = useState(true);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <ScrollView style={styles.ScrollContainer}>
+      <SafeAreaView style={styles.container}>
         <Button
           title="Mobile Banking"
-          buttonStyle={MobileBanking ? styles.confirmButtonUnselect : styles.confirmButton }
+          buttonStyle={
+            MobileBanking ? styles.confirmButtonUnselect : styles.confirmButton
+          }
           containerStyle={styles.confirmContButton}
-          titleStyle={MobileBanking ? styles.confirmTextUnselect :styles.confirmText}
+          titleStyle={
+            MobileBanking ? styles.confirmTextUnselect : styles.confirmText
+          }
           onPress={() => {
             setMobileBanking(!MobileBanking);
             setEwallet(true);
             setCreditCard(true);
-            setDebitCard(true);
           }}
         />
         <Collapsible collapsed={MobileBanking}>
-          <View style={styles.qrcode}>
-            <Image
-              source={require('../assets/qrcode.png')}
-              style={styles.itemImg}
-            />
-          </View>
+          {bankModel.map((item, index) => {
+            return (
+              <Button buttonStyle={{backgroundColor:'transparent'}} onPress={() => alert('Hi')}>
+                <View key={index} style={styles.listItem}>
+                  <Image source={item.img} style={styles.itemImg} />
+                  <Text style={styles.text}>{item.name}</Text>
+                </View>
+              </Button>
+            );
+          })}
         </Collapsible>
         <Button
           title="E-Wallet"
-          buttonStyle={Ewallet ?  styles.confirmButtonUnselect:styles.confirmButton}
+          buttonStyle={
+            Ewallet ? styles.confirmButtonUnselect : styles.confirmButton
+          }
           containerStyle={styles.confirmContButton}
-          titleStyle={Ewallet ? styles.confirmTextUnselect :styles.confirmText}
+          titleStyle={Ewallet ? styles.confirmTextUnselect : styles.confirmText}
           onPress={() => {
             setMobileBanking(true);
             setEwallet(!Ewallet);
             setCreditCard(true);
-            setDebitCard(true);
           }}
         />
         <Collapsible collapsed={Ewallet}>
-          <View style={styles.qrcode}>
-            <Image
-              source={require('../assets/qrcode.png')}
-              style={styles.itemImg}
-            />
-          </View>
+          {ewalletModel.map((item, index) => {
+            return (
+              <Button buttonStyle={{backgroundColor:'transparent'}} onPress={() => alert('Hi')}>
+                <View key={index} style={styles.listItem}>
+                  <Image source={item.img} style={styles.itemImg} />
+                  <Text style={styles.text}>{item.name}</Text>
+                </View>
+              </Button>
+            );
+          })}
         </Collapsible>
         <Button
-          title="Credit Card"
-          buttonStyle={CreditCard ? styles.confirmButtonUnselect :styles.confirmButton}
+          title="Cards"
+          buttonStyle={
+            CreditCard ? styles.confirmButtonUnselect : styles.confirmButton
+          }
           containerStyle={styles.confirmContButton}
-          titleStyle={CreditCard ? styles.confirmTextUnselect :styles.confirmText}
+          titleStyle={
+            CreditCard ? styles.confirmTextUnselect : styles.confirmText
+          }
           onPress={() => {
             setMobileBanking(true);
             setEwallet(true);
             setCreditCard(!CreditCard);
-            setDebitCard(true);
           }}
         />
         <Collapsible collapsed={CreditCard}>
-          <View style={styles.qrcode}>
+          <View style={styles.listItem}>
             <Image
               source={require('../assets/qrcode.png')}
               style={styles.itemImg}
             />
           </View>
         </Collapsible>
-        
-        
-    </SafeAreaView>
+      </SafeAreaView>
+    </ScrollView>
   );
 };
 
@@ -99,7 +113,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     height: 60,
     justifyContent: 'flex-start',
-
   },
 
   confirmButtonUnselect: {
@@ -119,15 +132,13 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: 'Kanit',
     color: '#fff',
-    
-
   },
 
   confirmTextUnselect: {
     fontSize: 18,
     fontFamily: 'Kanit',
     color: '#000',
-    textAlign:'left'
+    textAlign: 'left',
   },
 
   container: {
@@ -137,25 +148,38 @@ const styles = StyleSheet.create({
     height: '100%',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    marginTop:20
+    marginTop: 20,
   },
 
-  qrcode: {
-    padding: 20,
+  ScrollContainer: {
+    backgroundColor: '#fff',
+    width: '100%',
+    height: 'auto',
+    marginBottom: 100,
+  },
+
+  listItem: {
+    padding: 15,
     borderRadius: 20,
-    borderBottomColor:'#F6F6F6',
-    borderBottomWidth:2,
-    width: 300,
-    height: 320,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    margin: 5,
+    borderBottomColor: '#F6F6F6',
+    borderBottomWidth: 2,
+    flexDirection: 'row',
+    width: 400,
   },
 
   itemImg: {
-    width: 250,
-    height: 280,
+    width: 20,
+    height: 20,
     backgroundColor: '#fff',
     borderRadius: 15,
+    marginLeft:15,
+    marginRight:10
   },
+  text:{
+    fontSize:16,
+    fontFamily:'Kanit',
+    fontWeight:'100',
+    color:'#555'
+    
+  }
 });
