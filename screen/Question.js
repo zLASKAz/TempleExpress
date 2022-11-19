@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {ScrollView, View, Text, StyleSheet} from 'react-native';
 import FAQArticle from '../components/FAQExpandableItem';
+import HeaderTemple from '../components/HeaderTemple';
 
 const Question = () => {
   const [FAQData, setFAQData] = useState([]);
@@ -35,27 +36,28 @@ const Question = () => {
         id: 5,
         isExpanded: false,
         article: 'คำถาม 5',
-        answer: '',
+        answer: 'ABC',
       },
     ]);
   }, []);
 
   return (
-    <FAQLayout label="คำถามที่พบบ่อย">
+    <FAQLayout>
       <View style={styles.box}>
         <ScrollView>
           {FAQData.map((item, index) => {
             return <FAQArticle key={index} faqData={item}></FAQArticle>;
           })}
+        <View style={{height: 40}}></View>
         </ScrollView>
       </View>
     </FAQLayout>
   );
 };
 
-const FAQLayout = ({label, children}) => (
+const FAQLayout = ({children}) => (
   <View style={styles.entireView}>
-    <Text style={styles.label}>{label}</Text>
+    <HeaderTemple temple={'FAQ'} useIcon={false} />
     <View style={styles.container}>{children}</View>
   </View>
 );
@@ -63,7 +65,6 @@ const FAQLayout = ({label, children}) => (
 const styles = StyleSheet.create({
   entireView: {
     flex: 1,
-    padding: 50,
   },
   container: {
     flex: 1,
@@ -71,14 +72,11 @@ const styles = StyleSheet.create({
   box: {
     width: '100%',
     height: '100%',
-    backgroundColor: '#FFA500',
-    padding: 20,
-  },
-  label: {
-    textAlign: 'left',
-    marginBottom: 18,
-    fontSize: 30,
-    fontFamily: 'Kanit',
+    backgroundColor: '#FFFFFF',
+    paddingBottom: 20,
+    paddingTop: 40,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
   },
 });
 
