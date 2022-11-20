@@ -8,11 +8,11 @@ const userCard = () => {
     return (
         <View style={{width:'100%', alignContent:'center'}}>
             <View style={{width:'100%', flexDirection:'row',paddingTop:30,paddingHorizontal:20}}>
-                    {/* <Image
+                    <Image
                         style = {{width:100,height:100,borderRadius:100/2,backgroundColor:'#ffa646', resizeMode:'contain'}}
                         source={require('../assets/Profile_Pic.png')}
                         
-                    /> */}
+                    />
                 <View style={{width:'100%', flexDirection:'column', alignSelf:'center', padding:10}}>
                     <Text style={{fontFamily:'Kanit',fontSize:20, color:'#ff780c'}}>username</Text>
                     <TouchableOpacity>
