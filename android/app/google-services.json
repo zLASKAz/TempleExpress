@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "148469365565",
+    "project_id": "temple-express-app",
+    "storage_bucket": "temple-express-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:148469365565:android:60d77f64e7ae81bd39e354",
+        "android_client_info": {
+          "package_name": "com.templeexpress"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "148469365565-uqs8q7bupjjpmc6bop87g7lf7icsklt0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.templeexpress",
+            "certificate_hash": "9d3a89dea7d2d3f898569c912d4679635b96e696"
+          }
+        },
+        {
+          "client_id": "148469365565-1ojvc8900cucm0fg9f6e2spb3cams492.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtPOs_z1IeGXH2tY91ZfYz3DDfV5Fsilw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "148469365565-1ojvc8900cucm0fg9f6e2spb3cams492.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

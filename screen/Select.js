@@ -4,6 +4,7 @@ import { Icon, Tab, TabView } from '@rneui/themed';
 import HeaderTemple from '../components/HeaderTemple';
 import LinearGradient from 'react-native-linear-gradient';
 import React, { useState } from 'react';
+import Payment from './Payment'
 const { width, height } = Dimensions.get('window');
 import img1 from '../assets/img1.jpg';
 import img2 from '../assets/img2.jpg';
