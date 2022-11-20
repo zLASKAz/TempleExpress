@@ -8,7 +8,7 @@ const FAQExpandableItem = ({faqData, index}) => {
   return (
     <View key={index}>
       <TouchableOpacity style={styles.articleView} onPress={() =>{isCollap? setIsCollap(false): setIsCollap(true)}}>
-        <Text style={styles.articleText}>{faqData.article}</Text>
+        <Text style={styles.articleText}>{'\u25CF  ' + faqData.article}</Text>
       </TouchableOpacity>
       <Collapsible collapsed={isCollap}>
         <View style={styles.answerView}>
@@ -23,19 +23,21 @@ const styles = StyleSheet.create({
   articleView: {
     borderRadius: 20,
     marginBottom: 10,
+    marginHorizontal: 24,
     paddingHorizontal: 18,
     paddingVertical: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#FAFAFA',
   },
   articleText: {
     fontSize: 18,
     fontFamily: 'Kanit',
+    color: '#FF780C',
   },
   answerView: {
+    marginHorizontal: 24,
     borderRadius: 20,
     marginBottom: 10,
     paddingHorizontal: 18,
-    backgroundColor: '#FFFFFF',
     overflow: 'hidden',
   },
   answerText: {

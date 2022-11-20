@@ -2,11 +2,15 @@ import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {Button, Icon, Card} from '@rneui/themed';
 
-const HeaderTemple = temple => {
+const HeaderTemple = ({temple, useIcon = true}) => {
   return (
     <View style={styles.container}>
-      <Icon name="location" type="ionicon" color="#F9A72B" size={30} /> 
-      <Text style={styles.header}>{temple.temple}</Text>
+      {useIcon ? (
+        <Icon name="location" type="ionicon" color="#F9A72B" size={30} />
+      ) : (
+        <></>
+      )}
+      <Text style={styles.header}>{temple}</Text>
     </View>
   );
 };
@@ -24,9 +28,8 @@ const styles = StyleSheet.create({
 
   container: {
     flexDirection: 'row',
-    alignItems:'center',
+    alignItems: 'center',
     height: 60,
     paddingLeft: 25,
   },
-
 });
