@@ -4,9 +4,10 @@ import Question from '../screen/Question';
 import Profile from '../screen/Profile';
 import Select from '../screen/Select';
 import AskAdmin from '../screen/AskAdmin';
-import SignIn from '../components/SignIn';
+import SignIn from '../components/ValidateSignIn';
 import ConfirmOrder from '../screen/ConfirmOrder';
 import Payment from '../screen/Payment'
+import SignUp from '../components/SignUpRedo';
 
 import Donated from '../components/Donated';
 import MonksOffering from '../components/MonksOffering';
@@ -17,7 +18,7 @@ import AddOffering from '../screen/AddOffering';
 export const ScreenDetail = [
     {
         name: 'Home',
-        component: SignIn,
+        component: SignInStackScreen,
         icon: 'home',
         icontype: 'material-community',
 
@@ -68,7 +69,7 @@ export const ScreenDetail = [
 
 const HomeStack = createNativeStackNavigator();
 const OfferingStack = createNativeStackNavigator();
-
+const SignInScreen = createNativeStackNavigator();
 
 function HomeStackScreen() {
     return (
@@ -88,5 +89,14 @@ function OfferingStackScreen() {
             <OfferingStack.Screen name="ConfirmOrder" component={ConfirmOrder} options={{ headerShown: false }} />
             <OfferingStack.Screen name="Payment" component={Payment} options={{ headerShown: false }} />
         </OfferingStack.Navigator>
+    );
+}
+
+function SignInStackScreen() {
+    return (
+        <SignInScreen.Navigator>
+            <SignInScreen.Screen name="validateSignIn" component={SignIn} options={{ headerShown: false }} />
+            <SignInScreen.Screen name="SignUpRedo" component={SignUp} options={{ headerShown: false }} />
+        </SignInScreen.Navigator>
     );
 }
