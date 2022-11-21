@@ -6,8 +6,7 @@ import Select from '../screen/Select';
 import AskAdmin from '../screen/AskAdmin';
 import SignIn from '../components/SignIn';
 import ConfirmOrder from '../screen/ConfirmOrder';
-import Payment from '../screen/Payment'
-
+import PaymentPage from '../screen/PaymentPage';
 import Donated from '../components/Donated';
 import MonksOffering from '../components/MonksOffering';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -87,7 +86,7 @@ function OfferingStackScreen() {
             <OfferingStack.Screen name="offering" component={Offering} options={{ headerShown: false }} />
             <OfferingStack.Screen name="AddOffering" component={AddOffering} options={{ headerShown: false }} />
             <OfferingStack.Screen name="ConfirmOrder" component={ConfirmOrder} options={{ headerShown: false }} />
-            <OfferingStack.Screen name="Payment" component={Payment} options={{ headerShown: false }} />
+            <OfferingStack.Screen name="Payment" component={PaymentPage} options={{ headerShown: false }} />
         </OfferingStack.Navigator>
     );
 }

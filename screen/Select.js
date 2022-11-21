@@ -8,7 +8,7 @@ const { width, height } = Dimensions.get('window');
 import item1 from '../assets/item1.png';
 import item2 from '../assets/item2.png';
 import four from '../assets/four.png';
-import Payment from './Payment';
+import Payment from '../components/Payment';
 
 export default function Select({ navigation }) {
   const [index, setIndex] = useState(0);

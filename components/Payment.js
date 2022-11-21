@@ -10,7 +10,7 @@ import {Button, Icon, Card,} from '@rneui/themed';
 import React, {useState} from 'react';
 import Collapsible from 'react-native-collapsible';
 import {bankModel, ewalletModel} from '../model/PaymentModel';
-import CreditCardForm from '../components/CreditCardForm';
+import CreditCardForm from './CreditCardForm';
 
 const Payment = () => {
   const [MobileBanking, setMobileBanking] = useState(false);
@@ -152,6 +152,8 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 'auto',
     marginBottom: 100,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
   },
 
   listItem: {
