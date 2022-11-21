@@ -66,17 +66,9 @@ export const ScreenDetail = [
     },
 ]
 
-export const LoginDetail = [
-    {
-        name: 'Login',
-        component: SignInStackScreen,
-    },
-]
-
 const HomeStack = createNativeStackNavigator();
 const OfferingStack = createNativeStackNavigator();
 const ProfileStack = createNativeStackNavigator();
-const SignInScreen = createNativeStackNavigator();
 
 function HomeStackScreen() {
     return (

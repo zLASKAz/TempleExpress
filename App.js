@@ -3,7 +3,7 @@ import { View, Text, } from 'react-native';
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { ScreenDetail } from './model/NavModel';
-import ValidateSignIn from './components/ValidateSignIn'
+import Navlogin from './model/Navlogin';
 import LinearGradient from 'react-native-linear-gradient';
 import { Icon } from '@rneui/themed';
 import auth from '@react-native-firebase/auth';
@@ -78,7 +78,13 @@ function App() {
     );
   }
   return (
-    <ValidateSignIn/>
+    <NavigationContainer theme={navTheme} >
+      
+      <Navlogin />
+
+      
+    </NavigationContainer>
+    
   );
 }
 
