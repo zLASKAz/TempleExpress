@@ -15,6 +15,7 @@ const SignIn = ({navigation}) => {
       }
     } catch (e) {
       console.log(e);
+      Alert.alert("Email or Password is invalid")
     }
   }
 
@@ -115,7 +116,6 @@ const loginValidationSchema = yup.object().shape({
     .required('Email Address is Required'),
   password: yup
     .string()
-    .min(8, ({min}) => `Password must be at least ${min} characters`)
     .required('Password is required'),
 });
 

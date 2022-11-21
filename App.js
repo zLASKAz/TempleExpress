@@ -61,7 +61,6 @@ function App() {
           }
   }}>
           {ScreenDetail.map((item,i) => {
-            console.log(item.name)
             return (
               <Tab.Screen key={i} name={item.name} component={item.component} 
                 options={{

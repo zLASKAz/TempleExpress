@@ -13,7 +13,6 @@ const SignUp = ({navigation}) => {
       let response = await auth().createUserWithEmailAndPassword(email, password)
       if (response) {
         console.log(response)
-        navigation.navigate('validateSignIn');
       }
     } catch (e) {
       if (e.code === 'auth/email-already-in-use') {
