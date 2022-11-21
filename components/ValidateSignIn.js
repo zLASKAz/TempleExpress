@@ -6,16 +6,15 @@ import * as yup from 'yup';
 import auth from '@react-native-firebase/auth';
 
 const SignIn = ({navigation}) => {
-  
+
   const __doSingIn = async (email, password) => {
     try {
       let response = await auth().signInWithEmailAndPassword(email, password)
       if (response && response.user) {
         Alert.alert("Success ✅", "Authenticated successfully")
-        navigation.navigate('Profile');
       }
     } catch (e) {
-      Alert.alert("Email or Password is invalid")
+      console.log(e);
     }
   }
 

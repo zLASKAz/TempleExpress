@@ -1,8 +1,14 @@
 import { StyleSheet, Button, SafeAreaView, Text, Alert, TouchableOpacity} from 'react-native';
 import UserCard from '../components/userCard';
 import { NavigationContainer } from '@react-navigation/native';
+import auth from '@react-native-firebase/auth';
 
 export default function Profile({ navigation }) {
+  function signout() {
+    auth()
+      .signOut()
+      .then(() => console.log('User signed out!'));
+  }
   return (
       <SafeAreaView style={{ flex: 1, alignItems: 'center', backgroundColor:'#ffffff' }}>
       <UserCard/>
@@ -36,7 +42,7 @@ export default function Profile({ navigation }) {
       </TouchableOpacity>
       
 
-      <TouchableOpacity style={styles.signOutBox} onPress={() => navigation.navigate('Home')}>
+      <TouchableOpacity style={styles.signOutBox} onPress={() => signout()}>
         <Text style={{color:'#ffffff', padding: 8, textAlign: 'center', fontSize: 23, fontWeight: '350', fontFamily: 'Kanit'}}>Sign Out</Text>
       </TouchableOpacity>
 

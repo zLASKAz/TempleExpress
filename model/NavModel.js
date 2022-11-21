@@ -8,6 +8,7 @@ import SignIn from '../components/ValidateSignIn';
 import ConfirmOrder from '../screen/ConfirmOrder';
 import Payment from '../screen/Payment'
 import SignUp from '../components/SignUpRedo';
+import Map from '../screen/Map'
 
 import Donated from '../components/Donated';
 import MonksOffering from '../components/MonksOffering';
@@ -19,7 +20,7 @@ import AddOffering from '../screen/AddOffering';
 export const ScreenDetail = [
     {
         name: 'Home',
-        component: SignInStackScreen,
+        component: Map,
         icon: 'home',
         icontype: 'material-community',
 
@@ -64,6 +65,13 @@ export const ScreenDetail = [
         component: OfferingStackScreen,
         icon: 'help',
         icontype: 'material-community',
+    },
+]
+
+export const LoginDetail = [
+    {
+        name: 'Login',
+        component: SignInStackScreen,
     },
 ]
 
