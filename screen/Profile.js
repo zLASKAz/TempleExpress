@@ -1,29 +1,43 @@
 import { StyleSheet, Button, SafeAreaView, Text, Alert, TouchableOpacity} from 'react-native';
 import UserCard from '../components/userCard';
+import { NavigationContainer } from '@react-navigation/native';
 
-export default function Profile() {
+export default function Profile({ navigation }) {
   return (
-      <SafeAreaView style={{ flex: 1, alignItems: 'center', marginTop: 45 }}>
+      <SafeAreaView style={{ flex: 1, alignItems: 'center', backgroundColor:'#ffffff' }}>
       <UserCard/>
 
-      <TouchableOpacity style={styles.touchBox1} onPress={() => {alert("Go to account !")}}>
-        <Text style={styles.textBtn}>Account</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.touchBox2} onPress={() => {alert("Go to History !")}}>
+      <TouchableOpacity style={styles.textStyleTop} onPress={() => {alert("")}}>
         <Text style={styles.textBtn}>History</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.touchBox2} onPress={() => {alert("Go to Fav Temple !")}}>
+      <TouchableOpacity style={styles.textStyle} onPress={() => {alert("")}}>
         <Text style={styles.textBtn}>Favorite Temple</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.touchBox2} onPress={() => {alert("Go to My Address !")}}>
-        <Text style={styles.textBtn}>My Address</Text>
+      <TouchableOpacity style={styles.textStyle} onPress={() => {alert("")}}>
+        <Text style={styles.textBtn}>Recommend Temple</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.signOutBox} onPress={() => alert("Sign Out")}>
-        <Text style={{color:'#ffffff', padding: 8, textAlign: 'center', fontSize: 23, fontWeight: 'bold', fontWeight: '350'}}>Sign Out</Text>
+      <TouchableOpacity style={styles.textStyle} onPress={() => {alert("")}}>
+        <Text style={styles.textBtn}>Payment Methods</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.textStyle} onPress={() => {alert("")}}>
+        <Text style={styles.textBtn}>Coupon</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.textStyle} onPress={() => {alert("")}}>
+        <Text style={styles.textBtn}>Fortune Card</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.textStyle} onPress={() => {alert("")}}>
+        <Text style={styles.textBtn}>Language</Text>
+      </TouchableOpacity>
+      
+
+      <TouchableOpacity style={styles.signOutBox} onPress={() => navigation.navigate('Home')}>
+        <Text style={{color:'#ffffff', padding: 8, textAlign: 'center', fontSize: 23, fontWeight: '350', fontFamily: 'Kanit'}}>Sign Out</Text>
       </TouchableOpacity>
 
       </SafeAreaView>
@@ -57,9 +71,35 @@ const styles =  StyleSheet.create({
   },
 
   signOutBox: {
-    width:'75%',
     marginTop:80,
-    backgroundColor:'#f86041',
+    backgroundColor:'#343779',
     borderRadius: 9,
-  }
+    padding:5,
+    paddingHorizontal:30,
+  },
+
+  textStyleTop: {
+    fontSize:16,
+    fontWeight: '150',
+    fontFamily: 'Kanit',
+    backgroundColor: '#ffffff',
+    width:'85%',
+    alignSelf:'center',
+    padding: 10,
+    borderBottomWidth:0.3,
+    marginTop:10,
+
+  },
+
+  textStyle: {
+    fontSize:16,
+    fontWeight: '150',
+    fontFamily: 'Kanit',
+    backgroundColor: '#ffffff',
+    width:'85%',
+    alignSelf:'center',
+    padding: 5,
+    borderBottomWidth:0.3,
+
+  },
 })
