@@ -6,10 +6,11 @@ import {
   Image,
   ScrollView,
 } from 'react-native';
-import {Button, Icon, Card} from '@rneui/themed';
+import {Button, Icon, Card,} from '@rneui/themed';
 import React, {useState} from 'react';
 import Collapsible from 'react-native-collapsible';
 import {bankModel, ewalletModel} from '../model/PaymentModel';
+import CreditCardForm from '../components/CreditCardForm';
 
 const Payment = () => {
   const [MobileBanking, setMobileBanking] = useState(false);
@@ -87,12 +88,7 @@ const Payment = () => {
           }}
         />
         <Collapsible collapsed={CreditCard}>
-          <View style={styles.listItem}>
-            <Image
-              source={require('../assets/qrcode.png')}
-              style={styles.itemImg}
-            />
-          </View>
+          <CreditCardForm/>
         </Collapsible>
       </SafeAreaView>
     </ScrollView>
