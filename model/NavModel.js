@@ -10,6 +10,7 @@ import Payment from '../screen/Payment'
 
 import Donated from '../components/Donated';
 import MonksOffering from '../components/MonksOffering';
+import { RandomLuckResult } from '../screen/Fortune';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Offering from '../screen/Offering';
@@ -45,7 +46,7 @@ export const ScreenDetail = [
     },
     {
         name: 'Profile',
-        component: Profile,
+        component: ProfileStackScreen,
         icon: 'account',
         icontype: 'material-community',
 
@@ -63,12 +64,11 @@ export const ScreenDetail = [
         icon: 'help',
         icontype: 'material-community',
     },
-
 ]
 
 const HomeStack = createNativeStackNavigator();
 const OfferingStack = createNativeStackNavigator();
-
+const ProfileStack = createNativeStackNavigator();
 
 function HomeStackScreen() {
     return (
@@ -89,5 +89,14 @@ function OfferingStackScreen() {
             <OfferingStack.Screen name="ConfirmOrder" component={ConfirmOrder} options={{ headerShown: false }} />
             <OfferingStack.Screen name="Payment" component={Payment} options={{ headerShown: false }} />
         </OfferingStack.Navigator>
+    );
+}
+
+function ProfileStackScreen() {
+    return (
+        <ProfileStack.Navigator>
+            <ProfileStack.Screen name="profile" component={Profile} options={{ headerShown: false }} />
+            <ProfileStack.Screen name="Fortune" component={RandomLuckResult} options={{ headerShown: false }} />
+        </ProfileStack.Navigator>
     );
 }

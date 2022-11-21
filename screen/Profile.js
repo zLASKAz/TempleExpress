@@ -27,7 +27,7 @@ export default function Profile({ navigation }) {
         <Text style={styles.textBtn}>Coupon</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.textStyle} onPress={() => {alert("")}}>
+      <TouchableOpacity style={styles.textStyle} onPress={() => navigation.navigate('Fortune')}>
         <Text style={styles.textBtn}>Fortune Card</Text>
       </TouchableOpacity>
 
@@ -102,4 +102,8 @@ const styles =  StyleSheet.create({
     borderBottomWidth:0.3,
 
   },
+<<<<<<< HEAD
 })
+=======
+})
+>>>>>>> origin/ph2/wom
