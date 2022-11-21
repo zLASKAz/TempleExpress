@@ -4,10 +4,8 @@ import Question from '../screen/Question';
 import Profile from '../screen/Profile';
 import Select from '../screen/Select';
 import AskAdmin from '../screen/AskAdmin';
-import SignIn from '../components/ValidateSignIn';
 import ConfirmOrder from '../screen/ConfirmOrder';
 import Payment from '../screen/Payment'
-import SignUp from '../components/SignUpRedo';
 import Map from '../screen/Map'
 
 import Donated from '../components/Donated';
@@ -108,14 +106,5 @@ function ProfileStackScreen() {
             <ProfileStack.Screen name="profile" component={Profile} options={{ headerShown: false }} />
             <ProfileStack.Screen name="Fortune" component={RandomLuckResult} options={{ headerShown: false }} />
         </ProfileStack.Navigator>
-    );
-}
-
-function SignInStackScreen() {
-    return (
-        <SignInScreen.Navigator>
-            <SignInScreen.Screen name="validateSignIn" component={SignIn} options={{ headerShown: false }} />
-            <SignInScreen.Screen name="SignUpRedo" component={SignUp} options={{ headerShown: false }} />
-        </SignInScreen.Navigator>
     );
 }
