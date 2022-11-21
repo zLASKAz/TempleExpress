@@ -11,11 +11,12 @@ import Map from '../screen/Map';
 import Donated from '../components/Donated';
 import MonksOffering from '../components/MonksOffering';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Maps from '../screen/Map';
 
 export const ScreenDetail = [
     {
         name: 'Home',
-        component: Map,
+        component: Maps,
         Icon: '',
     },
     {
