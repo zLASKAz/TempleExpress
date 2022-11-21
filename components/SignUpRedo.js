@@ -4,8 +4,30 @@ import {Text, Card, Button, Icon, ButtonGroup, Input} from '@rneui/themed';
 import {Formik, Field} from 'formik';
 import * as yup from 'yup';
 import CustomSignUp from './CustomSignUp';
+import auth from "@react-native-firebase/auth"
 
 const SignUp = ({navigation}) => {
+
+  const __doCreateUser = async (userName, phoneNumber, email, password) => {
+    try {
+      let response = await auth().createUserWithEmailAndPassword(email, password)
+      if (response) {
+        console.log(response)
+        navigation.navigate('validateSignIn');
+      }
+    } catch (e) {
+      if (e.code === 'auth/email-already-in-use') {
+        console.log('That email address is already in use!');
+      }
+
+      if (e.code === 'auth/invalid-email') {
+        console.log('That email address is invalid!');
+      }
+
+      console.error(e);
+  }
+}
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={{width: '80%', alignSelf: 'center'}}>
@@ -18,7 +40,7 @@ const SignUp = ({navigation}) => {
             password: '',
           }}
           onSubmit={values => console.log(values)}>
-          {({handleSubmit, isValid}) => (
+          {({ handleSubmit, isValid, values}) => (
             <Card containerStyle={styles.cardsetting}>
               <>
                 <Text style={styles.placefont}>Username</Text>
@@ -55,7 +77,7 @@ const SignUp = ({navigation}) => {
                   }}
                   disabled={!isValid}
                   onPress={() => {
-                    navigation.navigate('validateSignIn');
+                    __doCreateUser(values.userName, values.phoneNumber, values.email, values.password)
                   }}
                 />
                 <Button

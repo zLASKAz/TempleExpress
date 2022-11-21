@@ -102,8 +102,4 @@ const styles =  StyleSheet.create({
     borderBottomWidth:0.3,
 
   },
-<<<<<<< HEAD
 })
-=======
-})
->>>>>>> origin/ph2/wom

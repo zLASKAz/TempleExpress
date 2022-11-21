@@ -1,10 +1,24 @@
-import {StyleSheet, View, ScrollView, SafeAreaView} from 'react-native';
+import {StyleSheet, View, ScrollView, SafeAreaView , Alert} from 'react-native';
 import React, {useState} from 'react';
 import {Text, Card, Button, Icon, ButtonGroup, Input} from '@rneui/themed';
 import {Formik} from 'formik';
 import * as yup from 'yup';
+import auth from '@react-native-firebase/auth';
 
 const SignIn = ({navigation}) => {
+  
+  const __doSingIn = async (email, password) => {
+    try {
+      let response = await auth().signInWithEmailAndPassword(email, password)
+      if (response && response.user) {
+        Alert.alert("Success ✅", "Authenticated successfully")
+        navigation.navigate('Profile');
+      }
+    } catch (e) {
+      Alert.alert("Email or Password is invalid")
+    }
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={{width: '80%', alignSelf: 'center'}}>
@@ -70,7 +84,7 @@ const SignIn = ({navigation}) => {
                   }}
                   disabled={!isValid}
                   onPress={() => {
-                    navigation.navigate('Profile');
+                    __doSingIn(values.email , values.password)
                   }}
                 />
                 <Button
