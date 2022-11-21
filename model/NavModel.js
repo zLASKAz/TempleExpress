@@ -4,9 +4,10 @@ import Question from '../screen/Question';
 import Profile from '../screen/Profile';
 import Select from '../screen/Select';
 import AskAdmin from '../screen/AskAdmin';
-import SignIn from '../components/SignIn';
+import SignIn from '../components/ValidateSignIn';
 import ConfirmOrder from '../screen/ConfirmOrder';
 import Payment from '../screen/Payment'
+import SignUp from '../components/SignUpRedo';
 
 import Donated from '../components/Donated';
 import MonksOffering from '../components/MonksOffering';
@@ -18,7 +19,7 @@ import AddOffering from '../screen/AddOffering';
 export const ScreenDetail = [
     {
         name: 'Home',
-        component: SignIn,
+        component: SignInStackScreen,
         icon: 'home',
         icontype: 'material-community',
 
@@ -69,6 +70,7 @@ export const ScreenDetail = [
 const HomeStack = createNativeStackNavigator();
 const OfferingStack = createNativeStackNavigator();
 const ProfileStack = createNativeStackNavigator();
+const SignInScreen = createNativeStackNavigator();
 
 function HomeStackScreen() {
     return (
@@ -98,5 +100,14 @@ function ProfileStackScreen() {
             <ProfileStack.Screen name="profile" component={Profile} options={{ headerShown: false }} />
             <ProfileStack.Screen name="Fortune" component={RandomLuckResult} options={{ headerShown: false }} />
         </ProfileStack.Navigator>
+    );
+}
+
+function SignInStackScreen() {
+    return (
+        <SignInScreen.Navigator>
+            <SignInScreen.Screen name="validateSignIn" component={SignIn} options={{ headerShown: false }} />
+            <SignInScreen.Screen name="SignUpRedo" component={SignUp} options={{ headerShown: false }} />
+        </SignInScreen.Navigator>
     );
 }
