@@ -104,11 +104,10 @@ const SignUp = ({navigation}) => {
 const signUpValidationSchema = yup.object().shape({
   username: yup
     .string()
-    .matches(/(\w.+\s).+/, 'Enter at least 8 names')
     .required('Userame is required'),
   phoneNumber: yup
     .string()
-    .matches(/(01)(\d){8}\b/, 'Enter a valid phone number')
+    .matches(/(0)(\d){9}\b/, 'Enter a valid phone number')
     .required('Phone number is required'),
   email: yup
     .string()
@@ -119,10 +118,6 @@ const signUpValidationSchema = yup.object().shape({
     .matches(/\w*[a-z]\w*/, 'Password must have a small letter')
     .matches(/\w*[A-Z]\w*/, 'Password must have a capital letter')
     .matches(/\d/, 'Password must have a number')
-    .matches(
-      /[!@#$%^&*()\-_"=+{}; :,<.>]/,
-      'Password must have a special character',
-    )
     .min(8, ({min}) => `Password must be at least ${min} characters`)
     .required('Password is required'),
 });

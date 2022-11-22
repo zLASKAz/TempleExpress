@@ -1,4 +1,3 @@
-import HomeScreen from '../screen/HomeScreen';
 import Notification from '../screen/Notification';
 import Question from '../screen/Question';
 import Profile from '../screen/Profile';
@@ -13,8 +12,6 @@ import MonksOffering from '../components/MonksOffering';
 import { RandomLuckResult } from '../screen/Fortune';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import Offering from '../screen/Offering';
-import AddOffering from '../screen/AddOffering';
 export const ScreenDetail = [
     {
         name: 'Home',
@@ -58,16 +55,9 @@ export const ScreenDetail = [
         icontype: 'material-community',
 
     },
-    {
-        name: 'Offering',
-        component: OfferingStackScreen,
-        icon: 'help',
-        icontype: 'material-community',
-    },
 ]
 
 const HomeStack = createNativeStackNavigator();
-const OfferingStack = createNativeStackNavigator();
 const ProfileStack = createNativeStackNavigator();
 
 function HomeStackScreen() {
@@ -76,19 +66,9 @@ function HomeStackScreen() {
             <HomeStack.Screen name="select" component={Select} options={{ headerShown: false }} />
             <HomeStack.Screen name="Donated" component={Donated} options={{ headerShown: false }} />
             <HomeStack.Screen name="MonksOffering" component={MonksOffering} options={{ headerShown: false }} />
-            <OfferingStack.Screen name="ConfirmOrder" component={ConfirmOrder} options={{ headerShown: false }} />
+            <HomeStack.Screen name="ConfirmOrder" component={ConfirmOrder} options={{ headerShown: false }} />
+            <HomeStack.Screen name="Payment" component={PaymentPage} options={{ headerShown: false }} />
         </HomeStack.Navigator>
-    );
-}
-
-function OfferingStackScreen() {
-    return (
-        <OfferingStack.Navigator>
-            <OfferingStack.Screen name="offering" component={Offering} options={{ headerShown: false }} />
-            <OfferingStack.Screen name="AddOffering" component={AddOffering} options={{ headerShown: false }} />
-            <OfferingStack.Screen name="ConfirmOrder" component={ConfirmOrder} options={{ headerShown: false }} />
-            <OfferingStack.Screen name="Payment" component={PaymentPage} options={{ headerShown: false }} />
-        </OfferingStack.Navigator>
     );
 }
 
