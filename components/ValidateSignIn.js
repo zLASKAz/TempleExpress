@@ -1,4 +1,4 @@
-import {StyleSheet, View, ScrollView, SafeAreaView , Alert} from 'react-native';
+import {StyleSheet, View, ScrollView, SafeAreaView , Alert, Image} from 'react-native';
 import React, {useState} from 'react';
 import {Text, Card, Button, Icon, ButtonGroup, Input} from '@rneui/themed';
 import {Formik} from 'formik';
@@ -22,6 +22,7 @@ const SignIn = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={{width: '80%', alignSelf: 'center'}}>
+      <Image source={require('../assets/temple_express_logo.png')} style={{ width: 240, height: 240, alignSelf: 'center' }} />
         <Formik
           validationSchema={loginValidationSchema}
           initialValues={{email: '', password: ''}}
@@ -148,6 +149,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
     backgroundColor: '#F6F6F6',
+    elevation:0,
   },
 });
 

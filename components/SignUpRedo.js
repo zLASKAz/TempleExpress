@@ -30,6 +30,7 @@ const SignUp = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={{width: '80%', alignSelf: 'center'}}>
+      <Image source={require('../assets/temple_express_logo.png')} style={{ width: 240, height: 240, alignSelf: 'center' }} />
         <Formik
           validationSchema={signUpValidationSchema}
           initialValues={{
@@ -150,5 +151,6 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
     backgroundColor: '#F6F6F6',
+    elevation:0,
   },
 });

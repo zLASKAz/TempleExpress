@@ -41,11 +41,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   errorInput: {
-    fontSize: 10, 
+    fontSize: 14, 
     color: 'red', 
-    paddingLeft: 11, 
-    marginTop: -20, 
-    marginBottom: 10,
   },
 });
 
