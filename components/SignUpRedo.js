@@ -1,4 +1,4 @@
-import {StyleSheet, View, ScrollView, SafeAreaView} from 'react-native';
+import {StyleSheet, View, ScrollView, SafeAreaView , Image} from 'react-native';
 import React, {useState} from 'react';
 import {Text, Card, Button, Icon, ButtonGroup, Input} from '@rneui/themed';
 import {Formik, Field} from 'formik';
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     width: '100%',
-    paddingTop: 140,
+    paddingTop: 20,
     padding: 8,
     backgroundColor: '#fff',
   },
