@@ -5,9 +5,9 @@ import Profile from '../screen/Profile';
 import Select from '../screen/Select';
 import AskAdmin from '../screen/AskAdmin';
 import ConfirmOrder from '../screen/ConfirmOrder';
-import Payment from '../screen/Payment'
 import Map from '../screen/Map'
 
+import PaymentPage from '../screen/PaymentPage';
 import Donated from '../components/Donated';
 import MonksOffering from '../components/MonksOffering';
 import { RandomLuckResult } from '../screen/Fortune';
@@ -87,7 +87,7 @@ function OfferingStackScreen() {
             <OfferingStack.Screen name="offering" component={Offering} options={{ headerShown: false }} />
             <OfferingStack.Screen name="AddOffering" component={AddOffering} options={{ headerShown: false }} />
             <OfferingStack.Screen name="ConfirmOrder" component={ConfirmOrder} options={{ headerShown: false }} />
-            <OfferingStack.Screen name="Payment" component={Payment} options={{ headerShown: false }} />
+            <OfferingStack.Screen name="Payment" component={PaymentPage} options={{ headerShown: false }} />
         </OfferingStack.Navigator>
     );
 }

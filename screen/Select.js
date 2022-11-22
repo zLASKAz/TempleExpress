@@ -4,7 +4,6 @@ import { Icon, Tab, TabView } from '@rneui/themed';
 import HeaderTemple from '../components/HeaderTemple';
 import LinearGradient from 'react-native-linear-gradient';
 import React, { useState } from 'react';
-import Payment from './Payment'
 const { width, height } = Dimensions.get('window');
 import img1 from '../assets/img1.jpg';
 import img2 from '../assets/img2.jpg';
@@ -17,6 +16,7 @@ import img8 from '../assets/img8.jpg';
 import img9 from '../assets/img9.jpg';
 import img10 from '../assets/img10.jpg';
 import img11 from '../assets/img11.jpg';
+import Payment from '../components/Payment';
 
 export default function Select({ navigation }) {
   const [index, setIndex] = useState(0);
