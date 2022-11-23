@@ -1,11 +1,14 @@
 import React from "react";
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import { StyleSheet, Text, View, ScrollView ,Image} from "react-native";
 import MapView,{ Marker } from "react-native-maps";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { data } from "../model/dataTemple";
 import TempleCard from "../components/TmpleCard";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { Searchbar } from 'react-native-paper';
+import {Button, Icon, Card} from '@rneui/themed';
+
+import ListMarker from '../components/ListMarker'
 
 const Item = ({ title }) => (
   <View style={styles.item}>
@@ -13,44 +16,72 @@ const Item = ({ title }) => (
   </View>
 );
 
-const Map = ()=>{
+export default function Map({ navigation }) {
+
   const dataImport = data
   const [searchQuery, setSearchQuery] = React.useState('');
 
   const onChangeSearch = query => setSearchQuery(query);
-  
+  const myLoc =[14.060567,100.596508]
+  const selectedRegion = {
+    latitude: 100,
+    longitude: 100,
+    latitudeDelta: 0.01,
+    longitudeDelta: 0.01,
+  };
+  const goTolocation = () => {
+    //Animate the user to new region. Complete this animation in 3 seconds
+    mapRef.current.animateToRegion(selectedRegion, 3 * 1000);
+
+  };
   return(
-  <View style={styles.container}>
+
+  <View style={styles.container} navigation={navigation} >
       
       <MapView 
         style={styles.map}
         initialRegion={{
-          latitude: 14.060567,
-          longitude: 100.596508,
+          latitude: myLoc[0],
+          longitude: myLoc[1],
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}
         >
-        {/* <Marker
-          coordinate={{
-            latitude: 14.060567,
-            longitude: 100.596508
-          }}
-          
-        /> */}
-
+      {/* {dataImport.map((dataIms, index) => (
+      <Marker 
+        key ={dataIms.Id}
+        coordinate={{
+            latitude : dataIms.lat,
+            longitude : dataIms.lon
+           }}
+        title ={dataIms.Name}  
+    />
+))} */}
       </MapView>
-      <Searchbar style = {{marginLeft :30, marginRight:30,borderRadius:10,marginBottom:300}}
+      
+      <Searchbar style = {{justifyContent:'flex-start',marginLeft :30, marginRight:30,borderRadius:10,marginBottom:280,
+        }}
         placeholder="Search"
         onChangeText={onChangeSearch}
         value={searchQuery}
       />
-      <View style ={{height : 260,marginBottom:50,marginLeft:20,marginRight:20,borderRadius:10}}>
+      <View style ={{height : 260,marginBottom:100,marginLeft:20,marginRight:20,borderRadius:10}}>
         <ScrollView horizontal = {true}>
-          <TempleCard ImageUri ={require('../assets/wat1.jpeg')} 
+          {/* <TempleCard ImageUri ={require('../assets/wat1.jpeg')} 
           name = {dataImport[0].Name}  
           delivertPrice = {dataImport[0].DeliveryPrice}
-          />
+          onPress={() => {
+            console.log('press')
+            navigation.navigate('Select');
+          }}
+          >
+                  <Button
+                  buttonStyle={{borderRadius: 10, marginLeft: 20, marginRight: 20, marginBottom: 50}}
+                  title='Choose this Location' 
+                  
+                  />
+            </TempleCard>
+          
 
           <TempleCard ImageUri ={require('../assets/wat2.jpeg')} 
           name = {dataImport[1].Name}  
@@ -95,19 +126,323 @@ const Map = ()=>{
           <TempleCard ImageUri ={require('../assets/wat10.jpeg')} 
           name = {dataImport[9].Name}  
           delivertPrice = {dataImport[9].DeliveryPrice}
-          />
+          /> */}
+        <View style ={{height : 260,width :330,
+          backgroundColor : 'white',borderRadius : 10,marginStart: 10,marginEnd:10}}>
+              <View style ={{flexDirection:'row'}}>
+                  <Image style = {{marginLeft :20,marginTop:20,borderRadius : 10
+                  ,paddingTop: 50,width: 100,height: 100}} 
+                  source={require('../assets/wat1.jpeg')}/>
+                  <View style ={{height:100,width:200}}>
+                    <Text style={{marginLeft :20,marginTop:20,fontSize : 18,color:'black',fontWeight:'bold',paddingTop:10}}>{dataImport[0].Name}</Text>
+                    <Text style={{marginLeft :20,marginRight:20,marginTop:0,fontSize : 12}}>248 Phra Sumen Rd, Wat Bowon Niwet, Phra Nakhon, Bangkok 10200</Text>
+                  </View>
+              </View>
+              <View style ={{marginTop :10,marginBottom:10,marginStart: 20,marginEnd:20,borderRadius:10,flexDirection:'row',backgroundColor : '#ededed'}} >
+                <View>
+                  <Text style={{marginTop:10,marginLeft :20,fontSize : 15,fontWeight:'bold',color:'black'}}>Delivery Fee</Text>
+                  <Text style={{fontSize : 12,marginLeft :20,marginBottom:10}}>{dataImport[0].km} km.</Text>
+                </View> 
+                <View style={{position:'absolute',right: 0}}>
+                  <Text style={{marginEnd:20,fontSize : 18,padding: 10,fontWeight:'bold',color:'black'}}>${dataImport[0].DeliveryPrice}</Text>
+                </View>
+              </View>
+              <View >
+                  <Button
+                  buttonStyle={{borderRadius: 10, marginLeft: 20, marginRight: 20, marginBottom: 25}}
+                  title='Choose this Location' 
+                  onPress={() => {
+                    navigation.navigate('Select');
+                  }}
+                  />
+              </View>
 
+              <View style ={{height : 260,width :330,
+          backgroundColor : 'white',borderRadius : 10,marginStart: 10,marginEnd:10}}>
+              <View style ={{flexDirection:'row'}}>
+                  <Image style = {{marginLeft :20,marginTop:20,borderRadius : 10
+                  ,paddingTop: 50,width: 100,height: 100}} 
+                  source={require('../assets/wat2.jpeg')}/>
+                  <View style ={{height:100,width:200}}>
+                    <Text style={{marginLeft :20,marginTop:20,fontSize : 18,color:'black',fontWeight:'bold',paddingTop:10}}>{dataImport[1].Name}</Text>
+                    <Text style={{marginLeft :20,marginRight:20,marginTop:0,fontSize : 12}}>248 Phra Sumen Rd, Wat Bowon Niwet, Phra Nakhon, Bangkok 10200</Text>
+                  </View>
+              </View>
+              <View style ={{marginTop :10,marginBottom:10,marginStart: 20,marginEnd:20,borderRadius:10,flexDirection:'row',backgroundColor : '#ededed'}} >
+                <View>
+                  <Text style={{marginTop:10,marginLeft :20,fontSize : 15,fontWeight:'bold',color:'black'}}>Delivery Fee</Text>
+                  <Text style={{fontSize : 12,marginLeft :20,marginBottom:10}}>{dataImport[1].km} km.</Text>
+                </View> 
+                <View style={{position:'absolute',right: 0}}>
+                  <Text style={{marginEnd:20,fontSize : 18,padding: 10,fontWeight:'bold',color:'black'}}>${dataImport[1].DeliveryPrice}</Text>
+                </View>
+              </View>
+              <View >
+                  <Button
+                  buttonStyle={{borderRadius: 10, marginLeft: 20, marginRight: 20, marginBottom: 25}}
+                  title='Choose this Location' 
+                  onPress={() => {
+                    navigation.navigate('Select');
+                  }}
+                  />
+              </View>
+        </View>
+
+        <View style ={{height : 260,width :330,
+          backgroundColor : 'white',borderRadius : 10,marginStart: 10,marginEnd:10}}>
+              <View style ={{flexDirection:'row'}}>
+                  <Image style = {{marginLeft :20,marginTop:20,borderRadius : 10
+                  ,paddingTop: 50,width: 100,height: 100}} 
+                  source={require('../assets/wat3.jpeg')}/>
+                  <View style ={{height:100,width:200}}>
+                    <Text style={{marginLeft :20,marginTop:20,fontSize : 18,color:'black',fontWeight:'bold',paddingTop:10}}>{dataImport[2].Name}</Text>
+                    <Text style={{marginLeft :20,marginRight:20,marginTop:0,fontSize : 12}}>248 Phra Sumen Rd, Wat Bowon Niwet, Phra Nakhon, Bangkok 10200</Text>
+                  </View>
+              </View>
+              <View style ={{marginTop :10,marginBottom:10,marginStart: 20,marginEnd:20,borderRadius:10,flexDirection:'row',backgroundColor : '#ededed'}} >
+                <View>
+                  <Text style={{marginTop:10,marginLeft :20,fontSize : 15,fontWeight:'bold',color:'black'}}>Delivery Fee</Text>
+                  <Text style={{fontSize : 12,marginLeft :20,marginBottom:10}}>{dataImport[2].km} km.</Text>
+                </View> 
+                <View style={{position:'absolute',right: 0}}>
+                  <Text style={{marginEnd:20,fontSize : 18,padding: 10,fontWeight:'bold',color:'black'}}>${dataImport[2].DeliveryPrice}</Text>
+                </View>
+              </View>
+              <View >
+                  <Button
+                  buttonStyle={{borderRadius: 10, marginLeft: 20, marginRight: 20, marginBottom: 25}}
+                  title='Choose this Location' 
+                  onPress={() => {
+                    navigation.navigate('Select');
+                  }}
+                  />
+              </View>
+        </View>
+
+        <View style ={{height : 260,width :330,
+          backgroundColor : 'white',borderRadius : 10,marginStart: 10,marginEnd:10}}>
+              <View style ={{flexDirection:'row'}}>
+                  <Image style = {{marginLeft :20,marginTop:20,borderRadius : 10
+                  ,paddingTop: 50,width: 100,height: 100}} 
+                  source={require('../assets/wat4.jpeg')}/>
+                  <View style ={{height:100,width:200}}>
+                    <Text style={{marginLeft :20,marginTop:20,fontSize : 18,color:'black',fontWeight:'bold',paddingTop:10}}>{dataImport[3].Name}</Text>
+                    <Text style={{marginLeft :20,marginRight:20,marginTop:0,fontSize : 12}}>248 Phra Sumen Rd, Wat Bowon Niwet, Phra Nakhon, Bangkok 10200</Text>
+                  </View>
+              </View>
+              <View style ={{marginTop :10,marginBottom:10,marginStart: 20,marginEnd:20,borderRadius:10,flexDirection:'row',backgroundColor : '#ededed'}} >
+                <View>
+                  <Text style={{marginTop:10,marginLeft :20,fontSize : 15,fontWeight:'bold',color:'black'}}>Delivery Fee</Text>
+                  <Text style={{fontSize : 12,marginLeft :20,marginBottom:10}}>{dataImport[3].km} km.</Text>
+                </View> 
+                <View style={{position:'absolute',right: 0}}>
+                  <Text style={{marginEnd:20,fontSize : 18,padding: 10,fontWeight:'bold',color:'black'}}>${dataImport[3].DeliveryPrice}</Text>
+                </View>
+              </View>
+              <View >
+                  <Button
+                  buttonStyle={{borderRadius: 10, marginLeft: 20, marginRight: 20, marginBottom: 25}}
+                  title='Choose this Location' 
+                  onPress={() => {
+                    navigation.navigate('Select');
+                  }}
+                  />
+              </View>
+        </View>
+
+
+        </View>
+        <View style ={{height : 260,width :330,
+          backgroundColor : 'white',borderRadius : 10,marginStart: 10,marginEnd:10}}>
+              <View style ={{flexDirection:'row'}}>
+                  <Image style = {{marginLeft :20,marginTop:20,borderRadius : 10
+                  ,paddingTop: 50,width: 100,height: 100}} 
+                  source={require('../assets/wat5.jpeg')}/>
+                  <View style ={{height:100,width:200}}>
+                    <Text style={{marginLeft :20,marginTop:20,fontSize : 18,color:'black',fontWeight:'bold',paddingTop:10}}>{dataImport[4].Name}</Text>
+                    <Text style={{marginLeft :20,marginRight:20,marginTop:0,fontSize : 12}}>248 Phra Sumen Rd, Wat Bowon Niwet, Phra Nakhon, Bangkok 10200</Text>
+                  </View>
+              </View>
+              <View style ={{marginTop :10,marginBottom:10,marginStart: 20,marginEnd:20,borderRadius:10,flexDirection:'row',backgroundColor : '#ededed'}} >
+                <View>
+                  <Text style={{marginTop:10,marginLeft :20,fontSize : 15,fontWeight:'bold',color:'black'}}>Delivery Fee</Text>
+                  <Text style={{fontSize : 12,marginLeft :20,marginBottom:10}}>{dataImport[4].km} km.</Text>
+                </View> 
+                <View style={{position:'absolute',right: 0}}>
+                  <Text style={{marginEnd:20,fontSize : 18,padding: 10,fontWeight:'bold',color:'black'}}>${dataImport[4].DeliveryPrice}</Text>
+                </View>
+              </View>
+              <View >
+                  <Button
+                  buttonStyle={{borderRadius: 10, marginLeft: 20, marginRight: 20, marginBottom: 25}}
+                  title='Choose this Location' 
+                  onPress={() => {
+                    navigation.navigate('Select');
+                  }}
+                  />
+              </View>
+        </View>
           
-          
+        <View style ={{height : 260,width :330,
+          backgroundColor : 'white',borderRadius : 10,marginStart: 10,marginEnd:10}}>
+              <View style ={{flexDirection:'row'}}>
+                  <Image style = {{marginLeft :20,marginTop:20,borderRadius : 10
+                  ,paddingTop: 50,width: 100,height: 100}} 
+                  source={require('../assets/wat6.jpeg')}/>
+                  <View style ={{height:100,width:200}}>
+                    <Text style={{marginLeft :20,marginTop:20,fontSize : 18,color:'black',fontWeight:'bold',paddingTop:10}}>{dataImport[5].Name}</Text>
+                    <Text style={{marginLeft :20,marginRight:20,marginTop:0,fontSize : 12}}>248 Phra Sumen Rd, Wat Bowon Niwet, Phra Nakhon, Bangkok 10200</Text>
+                  </View>
+              </View>
+              <View style ={{marginTop :10,marginBottom:10,marginStart: 20,marginEnd:20,borderRadius:10,flexDirection:'row',backgroundColor : '#ededed'}} >
+                <View>
+                  <Text style={{marginTop:10,marginLeft :20,fontSize : 15,fontWeight:'bold',color:'black'}}>Delivery Fee</Text>
+                  <Text style={{fontSize : 12,marginLeft :20,marginBottom:10}}>{dataImport[5].km} km.</Text>
+                </View> 
+                <View style={{position:'absolute',right: 0}}>
+                  <Text style={{marginEnd:20,fontSize : 18,padding: 10,fontWeight:'bold',color:'black'}}>${dataImport[5].DeliveryPrice}</Text>
+                </View>
+              </View>
+              <View >
+                  <Button
+                  buttonStyle={{borderRadius: 10, marginLeft: 20, marginRight: 20, marginBottom: 25}}
+                  title='Choose this Location' 
+                  onPress={() => {
+                    navigation.navigate('Select');
+                  }}
+                  />
+              </View>
+        </View>
+
+        <View style ={{height : 260,width :330,
+          backgroundColor : 'white',borderRadius : 10,marginStart: 10,marginEnd:10}}>
+              <View style ={{flexDirection:'row'}}>
+                  <Image style = {{marginLeft :20,marginTop:20,borderRadius : 10
+                  ,paddingTop: 50,width: 100,height: 100}} 
+                  source={require('../assets/wat7.jpeg')}/>
+                  <View style ={{height:100,width:200}}>
+                    <Text style={{marginLeft :20,marginTop:20,fontSize : 18,color:'black',fontWeight:'bold',paddingTop:10}}>{dataImport[6].Name}</Text>
+                    <Text style={{marginLeft :20,marginRight:20,marginTop:0,fontSize : 12}}>248 Phra Sumen Rd, Wat Bowon Niwet, Phra Nakhon, Bangkok 10200</Text>
+                  </View>
+              </View>
+              <View style ={{marginTop :10,marginBottom:10,marginStart: 20,marginEnd:20,borderRadius:10,flexDirection:'row',backgroundColor : '#ededed'}} >
+                <View>
+                  <Text style={{marginTop:10,marginLeft :20,fontSize : 15,fontWeight:'bold',color:'black'}}>Delivery Fee</Text>
+                  <Text style={{fontSize : 12,marginLeft :20,marginBottom:10}}>{dataImport[6].km} km.</Text>
+                </View> 
+                <View style={{position:'absolute',right: 0}}>
+                  <Text style={{marginEnd:20,fontSize : 18,padding: 10,fontWeight:'bold',color:'black'}}>${dataImport[6].DeliveryPrice}</Text>
+                </View>
+              </View>
+              <View >
+                  <Button
+                  buttonStyle={{borderRadius: 10, marginLeft: 20, marginRight: 20, marginBottom: 25}}
+                  title='Choose this Location' 
+                  onPress={() => {
+                    navigation.navigate('Select');
+                  }}
+                  />
+              </View>
+        </View>
+
+        <View style ={{height : 260,width :330,
+          backgroundColor : 'white',borderRadius : 10,marginStart: 10,marginEnd:10}}>
+              <View style ={{flexDirection:'row'}}>
+                  <Image style = {{marginLeft :20,marginTop:20,borderRadius : 10
+                  ,paddingTop: 50,width: 100,height: 100}} 
+                  source={require('../assets/wat8.jpeg')}/>
+                  <View style ={{height:100,width:200}}>
+                    <Text style={{marginLeft :20,marginTop:20,fontSize : 18,color:'black',fontWeight:'bold',paddingTop:10}}>{dataImport[7].Name}</Text>
+                    <Text style={{marginLeft :20,marginRight:20,marginTop:0,fontSize : 12}}>248 Phra Sumen Rd, Wat Bowon Niwet, Phra Nakhon, Bangkok 10200</Text>
+                  </View>
+              </View>
+              <View style ={{marginTop :10,marginBottom:10,marginStart: 20,marginEnd:20,borderRadius:10,flexDirection:'row',backgroundColor : '#ededed'}} >
+                <View>
+                  <Text style={{marginTop:10,marginLeft :20,fontSize : 15,fontWeight:'bold',color:'black'}}>Delivery Fee</Text>
+                  <Text style={{fontSize : 12,marginLeft :20,marginBottom:10}}>{dataImport[7].km} km.</Text>
+                </View> 
+                <View style={{position:'absolute',right: 0}}>
+                  <Text style={{marginEnd:20,fontSize : 18,padding: 10,fontWeight:'bold',color:'black'}}>${dataImport[7].DeliveryPrice}</Text>
+                </View>
+              </View>
+              <View >
+                  <Button
+                  buttonStyle={{borderRadius: 10, marginLeft: 20, marginRight: 20, marginBottom: 25}}
+                  title='Choose this Location' 
+                  onPress={() => {
+                    navigation.navigate('Select');
+                  }}
+                  />
+              </View>
+        </View>
+
+        <View style ={{height : 260,width :330,
+          backgroundColor : 'white',borderRadius : 10,marginStart: 10,marginEnd:10}}>
+              <View style ={{flexDirection:'row'}}>
+                  <Image style = {{marginLeft :20,marginTop:20,borderRadius : 10
+                  ,paddingTop: 50,width: 100,height: 100}} 
+                  source={require('../assets/wat9.jpeg')}/>
+                  <View style ={{height:100,width:200}}>
+                    <Text style={{marginLeft :20,marginTop:20,fontSize : 18,color:'black',fontWeight:'bold',paddingTop:10}}>{dataImport[8].Name}</Text>
+                    <Text style={{marginLeft :20,marginRight:20,marginTop:0,fontSize : 12}}>248 Phra Sumen Rd, Wat Bowon Niwet, Phra Nakhon, Bangkok 10200</Text>
+                  </View>
+              </View>
+              <View style ={{marginTop :10,marginBottom:10,marginStart: 20,marginEnd:20,borderRadius:10,flexDirection:'row',backgroundColor : '#ededed'}} >
+                <View>
+                  <Text style={{marginTop:10,marginLeft :20,fontSize : 15,fontWeight:'bold',color:'black'}}>Delivery Fee</Text>
+                  <Text style={{fontSize : 12,marginLeft :20,marginBottom:10}}>{dataImport[8].km} km..</Text>
+                </View> 
+                <View style={{position:'absolute',right: 0}}>
+                  <Text style={{marginEnd:20,fontSize : 18,padding: 10,fontWeight:'bold',color:'black'}}>${dataImport[8].DeliveryPrice}</Text>
+                </View>
+              </View>
+              <View >
+                  <Button
+                  buttonStyle={{borderRadius: 10, marginLeft: 20, marginRight: 20, marginBottom: 25}}
+                  title='Choose this Location' 
+                  onPress={() => {
+                    navigation.navigate('Select');
+                  }}
+                  />
+              </View>
+        </View>
+
+        <View style ={{height : 260,width :330,
+          backgroundColor : 'white',borderRadius : 10,marginStart: 10,marginEnd:10}}>
+              <View style ={{flexDirection:'row'}}>
+                  <Image style = {{marginLeft :20,marginTop:20,borderRadius : 10
+                  ,paddingTop: 50,width: 100,height: 100}} 
+                  source={require('../assets/wat10.jpeg')}/>
+                  <View style ={{height:100,width:200}}>
+                    <Text style={{marginLeft :20,marginTop:20,fontSize : 18,color:'black',fontWeight:'bold',paddingTop:10}}>{dataImport[9].Name}</Text>
+                    <Text style={{marginLeft :20,marginRight:20,marginTop:0,fontSize : 12}}>248 Phra Sumen Rd, Wat Bowon Niwet, Phra Nakhon, Bangkok 10200</Text>
+                  </View>
+              </View>
+              <View style ={{marginTop :10,marginBottom:10,marginStart: 20,marginEnd:20,borderRadius:10,flexDirection:'row',backgroundColor : '#ededed'}} >
+                <View>
+                  <Text style={{marginTop:10,marginLeft :20,fontSize : 15,fontWeight:'bold',color:'black'}}>Delivery Fee</Text>
+                  <Text style={{fontSize : 12,marginLeft :20,marginBottom:10}}>{dataImport[9].km} km.</Text>
+                </View> 
+                <View style={{position:'absolute',right: 0}}>
+                  <Text style={{marginEnd:20,fontSize : 18,padding: 10,fontWeight:'bold',color:'black'}}>${dataImport[9].DeliveryPrice}</Text>
+                </View>
+              </View>
+              <View >
+                  <Button
+                  buttonStyle={{borderRadius: 10, marginLeft: 20, marginRight: 20, marginBottom: 25}}
+                  title='Choose this Location' 
+                  onPress={() => {
+                    navigation.navigate('Select');
+                  }}
+                  />
+              </View>
+        </View>
+
         </ScrollView>
       </View>
     </View>
     );
 }
-
-
-export default Map;
-
 //create our styling code:
 const styles = StyleSheet.create({
   container: {
@@ -115,6 +450,8 @@ const styles = StyleSheet.create({
     flex: 1, //the container will fill the whole screen.
     justifyContent: "flex-end",
     alignItems: "center",
+    position:'absolute',
+    width:'100%'
   },
   map: {
     ...StyleSheet.absoluteFillObject,
