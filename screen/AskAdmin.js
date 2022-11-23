@@ -88,18 +88,6 @@ export default function HomeScreen() {
           <View style={styles.viewStyle}>
             <CheckBox 
               disabled={false}
-              value={state.app}
-              onValueChange={(value) => setState({...state,app:value,
-                mobile:false,
-                email:false,
-                noreply:false,})}
-            />
-            <Text style={styles.selectTextStyle}>ติดต่อกลับผ่านช่องทางแชทในแอพพลิเคชัน</Text>
-          </View>
-
-          <View style={styles.viewStyle}>
-            <CheckBox 
-              disabled={false}
               value={state.noreply}
               onValueChange={(value) => setState({...state,noreply:value,
                 mobile:false,
