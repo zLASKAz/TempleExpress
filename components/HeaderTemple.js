@@ -4,7 +4,7 @@ import {Button, Icon, Card} from '@rneui/themed';
 
 const HeaderTemple = ({temple, useIcon = true}) => {
   return (
-    <View style={styles.container}>
+    <View style={temple == 'Notifications' || temple == 'FAQ' || temple == 'Help Center' ? styles.container2 : styles.container}>
       {useIcon ? (
         <Icon name="location" type="ionicon" color="#F9A72B" size={30} />
       ) : (
@@ -27,6 +27,12 @@ const styles = StyleSheet.create({
   },
 
   container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    height: 60,
+    paddingLeft: 75,
+  },
+  container2: {
     flexDirection: 'row',
     alignItems: 'center',
     height: 60,

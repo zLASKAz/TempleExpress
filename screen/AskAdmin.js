@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet,SafeAreaView, Text,TouchableOpacity,View, TextInput} from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import CheckBox from '@react-native-community/checkbox';
+import HeaderTemple from '../components/HeaderTemple';
 
 const initialState= {
   mobile:false,
@@ -16,11 +17,11 @@ export default function HomeScreen() {
   const [state,setState] = useState(initialState);
   return (
     
-    <SafeAreaView style={{flex:1, alignItems: 'center', justifyContent: 'center' }}>
+    
+      <HelpCenterLayout>
       <KeyboardAwareScrollView  
         contentProps={{keyboardDismissMode: 'interactive', keyboardShouldPersistTaps: 'handled'}}
         style= {{flex:1, width:'100%'}}  >
-        <Text style={styles.textHeaderStyle}>Help Center</Text>
         <View style={styles.backgroundBox}>
           <Text style={styles.textTopicStyle}>
             หัวข้อที่เราสามารถช่วยคุณได้
@@ -114,12 +115,23 @@ export default function HomeScreen() {
           </TouchableOpacity>
         </View>
       </KeyboardAwareScrollView>
-    </SafeAreaView>
+      </HelpCenterLayout>
   );
 }
+const HelpCenterLayout = ({ children }) => (
+  <View style={styles.entireView}>
+    <HeaderTemple temple={'Help Center'} useIcon={false} />
+    <View style={styles.container}>{children}</View>
+  </View>
+);
 
 const styles =  StyleSheet.create({
-
+  entireView: {
+    flex: 1,
+  },
+  container: {
+    flex: 1,
+  },
   helpTopic: {
       margin:10,
       flex:1,

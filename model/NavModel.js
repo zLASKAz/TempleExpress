@@ -15,7 +15,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 export const ScreenDetail = [
     {
         name: 'Home',
-        component: Map,
+        component: HomeStackScreen,
         icon: 'home',
         icontype: 'material-community',
 
@@ -48,13 +48,6 @@ export const ScreenDetail = [
         icontype: 'material-community',
 
     },
-    {
-        name: 'Select',
-        component: HomeStackScreen,
-        icon: 'help',
-        icontype: 'material-community',
-
-    },
 ]
 
 const HomeStack = createNativeStackNavigator();
@@ -63,7 +56,8 @@ const ProfileStack = createNativeStackNavigator();
 function HomeStackScreen() {
     return (
         <HomeStack.Navigator>
-            <HomeStack.Screen name="select" component={Select} options={{ headerShown: false }} />
+            <HomeStack.Screen name="Map" component={Map} options={{ headerShown: false }} />
+            <HomeStack.Screen name="Select" component={Select} options={{ headerShown: false }} />
             <HomeStack.Screen name="Donated" component={Donated} options={{ headerShown: false }} />
             <HomeStack.Screen name="MonksOffering" component={MonksOffering} options={{ headerShown: false }} />
             <HomeStack.Screen name="ConfirmOrder" component={ConfirmOrder} options={{ headerShown: false }} />

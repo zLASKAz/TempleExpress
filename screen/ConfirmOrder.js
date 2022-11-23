@@ -13,9 +13,9 @@ import HeaderTemple from '../components/HeaderTemple';
 import item1 from '../assets/item1.png';
 import item2 from '../assets/item2.png';
 
-const ConfirmOrder = ({navigation}) => {
+const ConfirmOrder = ({navigation,route}) => {
   // Mock Data
-  const templeName = 'วัดบวรนิเวศราชวรวิหาร';
+  const templeName = route.params.templeName;
   const data = [
     {
       name: 'ชุดตักบาตรใหญ่',
@@ -106,6 +106,14 @@ const ConfirmOrder = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <Icon
+        name="arrow-back-outline"
+        type="ionicon"
+        size={30}
+        containerStyle={{ position: 'absolute', marginTop: 15, paddingLeft: 25, }}
+        color="#FFFFFF"
+        onPress={() => navigation.goBack()}
+      />
       <HeaderTemple temple={templeName} />
       {cartItem.length !== 0 ? (
         <ScrollView

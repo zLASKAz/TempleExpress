@@ -8,6 +8,8 @@ import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplet
 import { Searchbar } from 'react-native-paper';
 import {Button, Icon, Card} from '@rneui/themed';
 
+const marker = require('../assets/marker01.png')
+
 import ListMarker from '../components/ListMarker'
 
 const Item = ({ title }) => (
@@ -34,39 +36,38 @@ export default function Map({ navigation }) {
     mapRef.current.animateToRegion(selectedRegion, 3 * 1000);
 
   };
+  var markers = [
+    {
+      latitude: 14.060178,
+      longitude: 100.590133,
+      title: 'Foo Place',
+      subtitle: '1234 Foo Drive'
+    }
+  ];
   return(
 
   <View style={styles.container} navigation={navigation} >
       
       <MapView 
         style={styles.map}
-        initialRegion={{
+        region={{
           latitude: myLoc[0],
           longitude: myLoc[1],
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}
+        
         >
-      {/* {dataImport.map((dataIms, index) => (
-      <Marker 
-        key ={dataIms.Id}
-        coordinate={{
-            latitude : dataIms.lat,
-            longitude : dataIms.lon
-           }}
-        title ={dataIms.Name}  
-    />
-))} */}
       </MapView>
       
-      <Searchbar style = {{justifyContent:'flex-start',marginLeft :30, marginRight:30,borderRadius:10,marginBottom:280,
+      <Searchbar style = {{width: 350,borderRadius:10,marginTop:20,
         }}
         placeholder="Search"
         onChangeText={onChangeSearch}
         value={searchQuery}
       />
-      <View style ={{height : 260,marginBottom:100,marginLeft:20,marginRight:20,borderRadius:10}}>
-        <ScrollView horizontal = {true}>
+      <View style={{ height: 260, width: 370,marginBottom:90,borderRadius:10,}}>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           {/* <TempleCard ImageUri ={require('../assets/wat1.jpeg')} 
           name = {dataImport[0].Name}  
           delivertPrice = {dataImport[0].DeliveryPrice}
@@ -127,7 +128,7 @@ export default function Map({ navigation }) {
           name = {dataImport[9].Name}  
           delivertPrice = {dataImport[9].DeliveryPrice}
           /> */}
-        <View style ={{height : 260,width :330,
+        <View style ={{height : 260,width :350,
           backgroundColor : 'white',borderRadius : 10,marginStart: 10,marginEnd:10}}>
               <View style ={{flexDirection:'row'}}>
                   <Image style = {{marginLeft :20,marginTop:20,borderRadius : 10
@@ -152,12 +153,12 @@ export default function Map({ navigation }) {
                   buttonStyle={{borderRadius: 10, marginLeft: 20, marginRight: 20, marginBottom: 25}}
                   title='Choose this Location' 
                   onPress={() => {
-                    navigation.navigate('Select');
+                    navigation.navigate('Select', { templeName:  dataImport[0].Name  });
                   }}
                   />
               </View>
 
-              <View style ={{height : 260,width :330,
+              <View style ={{height : 260,width :350,
           backgroundColor : 'white',borderRadius : 10,marginStart: 10,marginEnd:10}}>
               <View style ={{flexDirection:'row'}}>
                   <Image style = {{marginLeft :20,marginTop:20,borderRadius : 10
@@ -182,13 +183,13 @@ export default function Map({ navigation }) {
                   buttonStyle={{borderRadius: 10, marginLeft: 20, marginRight: 20, marginBottom: 25}}
                   title='Choose this Location' 
                   onPress={() => {
-                    navigation.navigate('Select');
+                    navigation.navigate('Select', { templeName: dataImport[1].Name });
                   }}
                   />
               </View>
         </View>
 
-        <View style ={{height : 260,width :330,
+        <View style ={{height : 260,width :350,
           backgroundColor : 'white',borderRadius : 10,marginStart: 10,marginEnd:10}}>
               <View style ={{flexDirection:'row'}}>
                   <Image style = {{marginLeft :20,marginTop:20,borderRadius : 10
@@ -213,13 +214,13 @@ export default function Map({ navigation }) {
                   buttonStyle={{borderRadius: 10, marginLeft: 20, marginRight: 20, marginBottom: 25}}
                   title='Choose this Location' 
                   onPress={() => {
-                    navigation.navigate('Select');
+                    navigation.navigate('Select', { templeName: dataImport[2].Name });
                   }}
                   />
               </View>
         </View>
 
-        <View style ={{height : 260,width :330,
+        <View style ={{height : 260,width :350,
           backgroundColor : 'white',borderRadius : 10,marginStart: 10,marginEnd:10}}>
               <View style ={{flexDirection:'row'}}>
                   <Image style = {{marginLeft :20,marginTop:20,borderRadius : 10
@@ -244,7 +245,7 @@ export default function Map({ navigation }) {
                   buttonStyle={{borderRadius: 10, marginLeft: 20, marginRight: 20, marginBottom: 25}}
                   title='Choose this Location' 
                   onPress={() => {
-                    navigation.navigate('Select');
+                    navigation.navigate('Select', { templeName: dataImport[3].Name });
                   }}
                   />
               </View>
@@ -252,7 +253,7 @@ export default function Map({ navigation }) {
 
 
         </View>
-        <View style ={{height : 260,width :330,
+        <View style ={{height : 260,width :350,
           backgroundColor : 'white',borderRadius : 10,marginStart: 10,marginEnd:10}}>
               <View style ={{flexDirection:'row'}}>
                   <Image style = {{marginLeft :20,marginTop:20,borderRadius : 10
@@ -277,13 +278,13 @@ export default function Map({ navigation }) {
                   buttonStyle={{borderRadius: 10, marginLeft: 20, marginRight: 20, marginBottom: 25}}
                   title='Choose this Location' 
                   onPress={() => {
-                    navigation.navigate('Select');
+                    navigation.navigate('Select', { templeName: dataImport[4].Name });
                   }}
                   />
               </View>
         </View>
           
-        <View style ={{height : 260,width :330,
+        <View style ={{height : 260,width :350,
           backgroundColor : 'white',borderRadius : 10,marginStart: 10,marginEnd:10}}>
               <View style ={{flexDirection:'row'}}>
                   <Image style = {{marginLeft :20,marginTop:20,borderRadius : 10
@@ -308,13 +309,13 @@ export default function Map({ navigation }) {
                   buttonStyle={{borderRadius: 10, marginLeft: 20, marginRight: 20, marginBottom: 25}}
                   title='Choose this Location' 
                   onPress={() => {
-                    navigation.navigate('Select');
+                    navigation.navigate('Select', { templeName: dataImport[5].Name });
                   }}
                   />
               </View>
         </View>
 
-        <View style ={{height : 260,width :330,
+        <View style ={{height : 260,width :350,
           backgroundColor : 'white',borderRadius : 10,marginStart: 10,marginEnd:10}}>
               <View style ={{flexDirection:'row'}}>
                   <Image style = {{marginLeft :20,marginTop:20,borderRadius : 10
@@ -339,13 +340,13 @@ export default function Map({ navigation }) {
                   buttonStyle={{borderRadius: 10, marginLeft: 20, marginRight: 20, marginBottom: 25}}
                   title='Choose this Location' 
                   onPress={() => {
-                    navigation.navigate('Select');
+                    navigation.navigate('Select', { templeName: dataImport[6].Name });
                   }}
                   />
               </View>
         </View>
 
-        <View style ={{height : 260,width :330,
+        <View style ={{height : 260,width :350,
           backgroundColor : 'white',borderRadius : 10,marginStart: 10,marginEnd:10}}>
               <View style ={{flexDirection:'row'}}>
                   <Image style = {{marginLeft :20,marginTop:20,borderRadius : 10
@@ -370,13 +371,13 @@ export default function Map({ navigation }) {
                   buttonStyle={{borderRadius: 10, marginLeft: 20, marginRight: 20, marginBottom: 25}}
                   title='Choose this Location' 
                   onPress={() => {
-                    navigation.navigate('Select');
+                    navigation.navigate('Select', { templeName: dataImport[7].Name });
                   }}
                   />
               </View>
         </View>
 
-        <View style ={{height : 260,width :330,
+        <View style ={{height : 260,width :350,
           backgroundColor : 'white',borderRadius : 10,marginStart: 10,marginEnd:10}}>
               <View style ={{flexDirection:'row'}}>
                   <Image style = {{marginLeft :20,marginTop:20,borderRadius : 10
@@ -401,13 +402,13 @@ export default function Map({ navigation }) {
                   buttonStyle={{borderRadius: 10, marginLeft: 20, marginRight: 20, marginBottom: 25}}
                   title='Choose this Location' 
                   onPress={() => {
-                    navigation.navigate('Select');
+                    navigation.navigate('Select', { templeName: dataImport[8].Name });
                   }}
                   />
               </View>
         </View>
 
-        <View style ={{height : 260,width :330,
+        <View style ={{height : 260,width :350,
           backgroundColor : 'white',borderRadius : 10,marginStart: 10,marginEnd:10}}>
               <View style ={{flexDirection:'row'}}>
                   <Image style = {{marginLeft :20,marginTop:20,borderRadius : 10
@@ -432,7 +433,7 @@ export default function Map({ navigation }) {
                   buttonStyle={{borderRadius: 10, marginLeft: 20, marginRight: 20, marginBottom: 25}}
                   title='Choose this Location' 
                   onPress={() => {
-                    navigation.navigate('Select');
+                    navigation.navigate('Select', { templeName: dataImport[9].Name });
                   }}
                   />
               </View>
@@ -448,8 +449,8 @@ const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
     flex: 1, //the container will fill the whole screen.
-    justifyContent: "flex-end",
     alignItems: "center",
+    justifyContent: "space-between",
     position:'absolute',
     width:'100%'
   },

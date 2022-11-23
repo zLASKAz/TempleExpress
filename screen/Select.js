@@ -18,9 +18,10 @@ import img10 from '../assets/img10.jpg';
 import img11 from '../assets/img11.jpg';
 import Payment from '../components/Payment';
 
-export default function Select({ navigation }) {
+export default function Select({ navigation,route }) {
+  console.log(route.params.templeName)
   const [index, setIndex] = useState(0);
-  const templeName = 'วัดบวรนิเวศราชวรวิหาร';
+  const templeName = route.params.templeName;
   // const productToday = [{
   //   "Screen_id": "MonksOffering",
   //   "Screen_name": "Monks Offering",
@@ -103,6 +104,14 @@ export default function Select({ navigation }) {
   ];
   return (
       <>
+        <Icon
+          name="arrow-back-outline"
+          type="ionicon"
+          size={30}
+          containerStyle={{ position: 'absolute', marginTop: 15, paddingLeft: 25, }}
+          color="#FFFFFF"
+          onPress={() => navigation.goBack()}
+        />
         <HeaderTemple temple={templeName} />
         <Tab
           value={index}
@@ -160,7 +169,7 @@ export default function Select({ navigation }) {
                       <TouchableOpacity
                         style={styles.btn}
                         onPress={() => {
-                          navigation.navigate('ConfirmOrder');
+                          navigation.navigate('ConfirmOrder',{ templeName: templeName });
                         }}>
                         <Text style={styles.btnText}>Add to cart</Text>
                       </TouchableOpacity>
