@@ -21,26 +21,6 @@ const Notification = () => {
         title: 'วันหยุดนี้ มีส่วนลด',
         detail: 'หากซื้อสินค้าหรือบริจาคครบ 200 บาท รับส่วนลดค่าจัดส่ง 20 บาท',
       },
-      {
-        title: 'Temple Express',
-        detail: '',
-      },
-      {
-        title: 'Temple Express',
-        detail: 'HELLO FROM NOTIFICATIONN  ABCDEFGHI',
-      },
-      {
-        title: 'Temple Express',
-        detail: 'HELLO FROM SUPER NOTIFICATIONNNNNNNNNNN',
-      },
-      {
-        title: 'Temple Express',
-        detail: 'HELLO FROM',
-      },
-      {
-        title: 'วันหยุดนี้ มีส่วนลด',
-        detail: 'หากซื้อสินค้าหรือบริจาคครบ 200 บาท รับส่วนลดค่าจัดส่ง 20 บาท',
-      },
     ]);
   }, []);
 
